@@ -1,33 +1,10 @@
-import { createStore } from 'redux'
+import { createStore, combineReducers } from 'redux'
+import allReducer from '../reducers'
 
-const initialState = {
-  posts: [{ id: 1, title: 'Test Post' }],
-  loginModal: {
-    open: false
-  }
-}
-
-const reducer = (state = initialState, action) => {
-  switch (action.type){ 
-    case 'ADD_POST': {
-        return {
-            ...state,
-            posts: state.posts.concat(action.payload)
-        }
-    }
-    case 'LOAD_POSTS': {
-        return {
-            ...state,
-            posts: state.posts.concat(action.payload)
-        }
-    }
-  }
-
-  return state
-}
+const initialState = {}
 
 const store = createStore(
-  reducer,
+  allReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 

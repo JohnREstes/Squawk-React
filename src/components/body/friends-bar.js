@@ -1,11 +1,23 @@
 import React from 'react';
-import { useSelector } from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+import {increment, decrement} from '../../actions'
 
 function Friends() {
-  const store = useSelector(store => store)
+  const counter = useSelector(state => state.counter);
+  const dispatch = useDispatch();
   return (
-        <div className="col-3 d-flex justify-content-center center-text" id="friends-div">
-            <h1>Friends</h1>
+        <div className="col-3 text-center" id="friends-div">
+          <div className="row">
+            <div className="col-12">
+              <h1>Friends: {counter}</h1>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12">
+              <button className="button" onClick={() => dispatch(increment(1))}>+</button>
+              <button className="button" onClick={() => dispatch(decrement(1))}>-</button>
+            </div>
+          </div>
         </div>
   );
 }
