@@ -1,7 +1,6 @@
 import React from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
-import {addPost} from '../../actions'
 import Friends from './friends-bar'
 
 class Body extends React.Component {
@@ -43,9 +42,9 @@ class Body extends React.Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-3 main-body"></div>
-        <div className="col-6 text-center main-body">
+      <div className="row main-body">
+        <div className="col-3"></div>
+        <div className="col-6 text-center">
           <h1>Put in your name!</h1>
           <form onSubmit={this.handleSubmit}>
             <input
@@ -63,6 +62,7 @@ class Body extends React.Component {
             {this.props.posts.posts.map(posts => (
               <p key={posts.id}>{posts.title}</p>
             ))}
+                  {this.props.isLogged ? <h3>You are logged in</h3> : ''}
           </div>
         </div>
         <Friends/>
@@ -72,7 +72,7 @@ class Body extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { posts: state.posts }
+  return { posts: state.posts, isLogged: state.isLogged }
 }
 
 const mapDispatchToProps = (dispatch) => {
