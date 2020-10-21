@@ -1,5 +1,5 @@
 const initialState = {
-    posts: [{ id: 1, title: 'Test Post' }]
+    posts: [{ id: 1, title: 'John' }]
 }
 
 const postReducer = (state = initialState, action) => {

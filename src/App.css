@@ -1,3 +1,7 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
 input{
   margin: 5px;
 }
@@ -10,4 +14,7 @@ input{
 }
 #friends-div{
   border-left: 1px black solid;
+}
+.main-body{
+  height: 100%;
 }

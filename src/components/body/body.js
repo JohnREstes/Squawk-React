@@ -1,5 +1,5 @@
 import React from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import '../../App.css'
 import { connect } from 'react-redux'
 import {addPost} from '../../actions'
 import Friends from './friends-bar'
@@ -16,16 +16,16 @@ class Body extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(json => {
-        this.props.dispatch({
-          type: 'LOAD_POSTS',
-          payload: json
-        })
-      })
-  }
+  // componentDidMount() {
+  //   fetch('https://jsonplaceholder.typicode.com/posts')
+  //     .then(response => response.json())
+  //     .then(json => {
+  //       this.props.dispatch({
+  //         type: 'LOAD_POSTS',
+  //         payload: json
+  //       })
+  //     })
+  // }
 
   handleChange(event) {
     this.setState({ value: event.target.value })
@@ -44,7 +44,9 @@ class Body extends React.Component {
   render() {
     return (
       <div className="row">
-        <div className="col-9">
+        <div className="col-3 main-body"></div>
+        <div className="col-6 text-center main-body">
+          <h1>Put in your name!</h1>
           <form onSubmit={this.handleSubmit}>
             <input
               type="text"
@@ -57,11 +59,11 @@ class Body extends React.Component {
               </button>
             </div>
           </form>
-          <ul>
+          <div>
             {this.props.posts.posts.map(posts => (
-              <li key={posts.id}>{posts.title}</li>
+              <p key={posts.id}>{posts.title}</p>
             ))}
-          </ul>
+          </div>
         </div>
         <Friends/>
       </div>

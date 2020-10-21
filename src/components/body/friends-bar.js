@@ -6,7 +6,7 @@ function Friends() {
   const counter = useSelector(state => state.counter);
   const dispatch = useDispatch();
   return (
-        <div className="col-3 text-center" id="friends-div">
+        <div className="col-3 text-center main-body" id="friends-div">
           <div className="row">
             <div className="col-12">
               <h1>Friends: {counter}</h1>
