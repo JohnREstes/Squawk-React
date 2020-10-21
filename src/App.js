@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+import { connect } from 'react-redux'
+import Header from './components/header/header'
+import Body from './components/body/body'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {}
+  }
+  
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(json => {
+        this.props.dispatch({
+          type: 'LOAD_POSTS',
+          payload: json
+        })
+      })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header/>
+        <Body />
+      </div>
+    )
+  }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatch
+  }
+}
+
+export default connect(
+  mapDispatchToProps
+)(App)
