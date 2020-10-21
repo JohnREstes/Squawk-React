@@ -1,6 +1,13 @@
+input{
+  margin: 5px;
+}
 .App {
   text-align: center;
 }
 #main-header{
   width: 100%;
+  border-bottom: 1px black solid;
+}
+#friends-div{
+  border-left: 1px black solid;
 }

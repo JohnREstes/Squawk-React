@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Friends from './friends-bar'
 
 class Body extends React.Component {
   constructor() {
@@ -30,7 +31,7 @@ class Body extends React.Component {
   render() {
     return(
         <div className="row">
-        <div className="col-12">
+        <div className="col-9">
           <form onSubmit={this.handleSubmit}>
             <input
               type="text"
@@ -49,6 +50,7 @@ class Body extends React.Component {
             ))}
           </ul>
         </div>
+              <Friends/>
       </div>
     )
     }
