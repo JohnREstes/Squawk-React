@@ -1,9 +1,9 @@
 import React from 'react'
 import '../../App.css'
-import Friends from './friends-bar'
-import Login from '../../components/login'
-import Feed from '../../components/Feed'
-import CreateNewUser from '../createNewUser'
+import Friends from '../FriendsBar/FriendsBar'
+import Login from '../Login/Login'
+import Feed from '../Feed/Feed'
+import CreateNewUser from '../CreateNewUser/CreateNewUser'
 import {useSelector, useDispatch} from 'react-redux'
 
 

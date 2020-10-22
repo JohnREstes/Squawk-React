@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch} from 'react-redux'
-import {loginToggle} from '../../actions'
+import {loginToggle} from '../../actions/userActions'
 
 function Header() {
   const dispatch = useDispatch();

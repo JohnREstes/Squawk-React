@@ -1,3 +1,10 @@
+export const INCREMENT = 'INCREMENT';
+export const DECREMENT = 'DECREMENT';
+export const SIGN_IN = 'SIGN_IN';
+export const LOGIN_USER = 'LOGIN_USER';
+
+
+
 export const increment = (number) => {
     return {
         type: 'INCREMENT',
@@ -12,7 +19,7 @@ export const decrement = (number) => {
 };
 export const loginToggle = () => {
     return {
-        type: 'SIGN-IN'
+        type: 'SIGN_IN'
     };
 };
 export const addPost = (info) => {

@@ -15,24 +15,12 @@ class newUser extends React.Component {
       aboutMe: '',
       myBirds: '',
       birdsIWatch:'',
-      base64TextString: '',
-      pictures: [] 
+      base64TextString: ''
     }
 
     this.onChange = this.onChange.bind(this)
     this.handlePictureChange = this.handlePictureChange.bind(this)
   }
-
-//   componentDidMount() {
-//     fetch('https://jsonplaceholder.typicode.com/posts')
-//       .then(response => response.json())
-//       .then(json => {
-//         this.props.dispatch({
-//           type: 'LOAD_POSTS',
-//           payload: json
-//         })
-//       })
-//   }
 
   onChange(e) {
     this.setState({ 
@@ -43,7 +31,6 @@ class newUser extends React.Component {
   handlePictureChange(event){
       console.log("file to upload: ", event.target.files[0])
       let file = event.target.files[0]
-
       if (file){
         const reader = new FileReader();
         reader.onload = this._handleReaderLoaded.bind(this);
@@ -57,11 +44,9 @@ class newUser extends React.Component {
         })
     }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.props.dispatch({
-      type: 'NEW_USER',
-      payload: { 
+  onSubmit(e) {
+    e.preventDefault();
+    const newUser = { 
         user: this.state.user,
         password: this.state.password,
         email: this.state.email,
@@ -69,18 +54,18 @@ class newUser extends React.Component {
         aboutMe: this.state.aboutMe,
         myBirds: this.state.myBirds,
         birdsIWatch:this.state.birdsIWatch,
-        picture: this.state.base64
-        }
-      })
+        base64TextString: this.state.base64TextString
     }
+    const preview = document.getElementById('profile-picture');
+    console.log("binary string: ", this.state.base64TextString)
+
+    let payload = {image: this.state.base64TextString}
+    preview.src = "data:image/png;base64," + this.state.base64TextString
+  }
 
   onFileSubmit = (e) => {
       e.preventDefault();
-      const preview = document.getElementById('profile-picture');
-      console.log("binary string: ", this.state.base64TextString)
 
-      let payload = {image: this.state.base64TextString}
-      preview.src = "data:image/png;base64," + this.state.base64TextString
     }
 
   render() {
@@ -89,7 +74,7 @@ class newUser extends React.Component {
         <div className="col-6">
             <div className="login-div">
                 <h3 className="text-center">Log in to Squawk</h3>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={(e) => this.onSubmit(e)}>
                     User: <input
                     type="text" name="user"
                     value={this.state.user}
@@ -125,21 +110,19 @@ class newUser extends React.Component {
                     value={this.state.birdsIWatch}
                     onChange={(e) => this.onChange(e)}
                     />     <br></br>                                
-                    <div>
-                    <button type="submit">
-                        Submit
-                    </button>
-                    </div>
-                </form><br></br>
-                <form onSubmit={(event) => this.onFileSubmit(event)} onChange={(event) => this.handlePictureChange(event)}>
+                    <div><br></br>
                     <input
                         type="file"
                         name="image"
                         id="file"
                         accept=".jpeg, .png, .jpg"
+                        onChange={(e) => this.handlePictureChange(e)}
                     />
-                    <input type="submit"/>
-                </form>
+                    <button type="submit">
+                        Submit
+                    </button>
+                    </div>
+                </form><br></br>
 
                 <div>
                     <a><h5>Create New Account</h5></a>
