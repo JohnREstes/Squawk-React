@@ -1,36 +1,19 @@
 import React from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
+import $ from 'jquery'
 
 class newUser extends React.Component {
   constructor() {
     super()
     this.state = {
-      user: '',
+      username: '',
       password: '',
+      passwordVerify: '',
       email: '',
-      birdCall: '',
-      picture: '',
-      aboutMe: '',
-      myBirds: '',
-      birdsIWatch:'',
-      base64TextString: ''
     }
-
     this.onChange = this.onChange.bind(this)
-    this.handlePictureChange = this.handlePictureChange.bind(this)
   }
-
-//   componentDidMount() {
-//     fetch('https://jsonplaceholder.typicode.com/posts')
-//       .then(response => response.json())
-//       .then(json => {
-//         this.props.dispatch({
-//           type: 'LOAD_POSTS',
-//           payload: json
-//         })
-//       })
-//   }
 
   onChange(e) {
     this.setState({ 
@@ -38,40 +21,23 @@ class newUser extends React.Component {
      })
   }
 
-  handlePictureChange(event){
-      console.log("file to upload: ", event.target.files[0])
-      let file = event.target.files[0]
-
-      if (file){
-        const reader = new FileReader();
-        reader.onload = this._handleReaderLoaded.bind(this);
-        reader.readAsBinaryString(file);
-      }  
-    }
-    _handleReaderLoaded = (readerEvt) => {
-        let binaryString = readerEvt.target.result;
-        this.setState({
-            base64TextString: btoa(binaryString)
-        })
-    }
-
   onSubmit(e) {
     e.preventDefault();
-    const newUser = { 
-        user: this.state.user,
+    if(this.state.password !== this.state.passwordVerify){
+      console.log('Password Mismatch');
+      $("#passwordMismatch").css('display', 'inline');
+    }else{
+      const newUser = { 
+        username: this.state.username,
         password: this.state.password,
-        email: this.state.email,
-        birdCall: this.state.birdCall,
-        aboutMe: this.state.aboutMe,
-        myBirds: this.state.myBirds,
-        birdsIWatch:this.state.birdsIWatch,
-        base64TextString: this.state.base64TextString
-    }
-    const preview = document.getElementById('profile-picture');
-    console.log("binary string: ", this.state.base64TextString)
+        email: this.state.email
+      }
+      const preview = document.getElementById('profile-picture');
+      //console.log("binary string: ", this.state.base64TextString)
 
-    let payload = {image: this.state.base64TextString}
-    preview.src = "data:image/png;base64," + this.state.base64TextString
+      let payload = {image: this.state.base64TextString}
+      preview.src = "data:image/png;base64," + this.state.base64TextString
+    }
   }
 
   onFileSubmit = (e) => {
@@ -80,20 +46,14 @@ class newUser extends React.Component {
     }
 
   render() {
-    console.log(this.state.pictures)
     return (
         <div className="col-6">
             <div className="login-div">
                 <h3 className="text-center">Log in to Squawk</h3>
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     User: <input
-                    type="text" name="user"
-                    value={this.state.user}
-                    onChange={(e) => this.onChange(e)}
-                    /><br></br>
-                    Password: <input
-                    type="password" name="password"
-                    value={this.state.password}
+                    type="text" name="username"
+                    value={this.state.username}
                     onChange={(e) => this.onChange(e)}
                     /><br></br>
                     Email: <input
@@ -101,51 +61,31 @@ class newUser extends React.Component {
                     value={this.state.email}
                     onChange={(e) => this.onChange(e)}
                     /><br></br>
-                    About me: <textarea
-                    type="text" name="aboutMe"
-                    value={this.state.aboutMe}
+                    Password: <input
+                    type="password" name="password"
+                    value={this.state.password}
                     onChange={(e) => this.onChange(e)}
                     /><br></br>
-                    Bird Call: <textarea
-                    type="text" name="birdCall"
-                    value={this.state.birdCall}
+                    Re-enter Password: <input
+                    type="password" name="passwordVerify"
+                    value={this.state.passwordVerify}
                     onChange={(e) => this.onChange(e)}
                     /><br></br>
-                    My Birds: <textarea
-                    type="text" name="myBirds"
-                    value={this.state.myBirds}
-                    onChange={(e) => this.onChange(e)}
-                    />     <br></br>
-                    Birds I Watch: <textarea
-                    type="text" name="birdsIWatch"
-                    value={this.state.birdsIWatch}
-                    onChange={(e) => this.onChange(e)}
-                    />     <br></br>                                
-                    <div><br></br>
-                    <input
-                        type="file"
-                        name="image"
-                        id="file"
-                        accept=".jpeg, .png, .jpg"
-                        onChange={(e) => this.handlePictureChange(e)}
-                    />
+                    <p id="passwordMismatch" className="hidden red">Passwords do not match!</p>
+                    <br></br>
                     <button type="submit">
                         Submit
                     </button>
-                    </div>
                 </form><br></br>
 
                 <div>
                     <a><h5>Create New Account</h5></a>
                     {this.props.isLogged ? <h3>You are logged in</h3> : ''}
                       <img id="profile-picture"/>
-                      <p>{this.state.user}</p>
-                      <p>{this.state.password}</p>
+                      <p>{this.state.username}</p>
                       <p>{this.state.email}</p>
-                      <p>{this.state.birdCall}</p>
-                      <p>{this.state.aboutMe}</p>
-                      <p>{this.state.myBirds}</p>
-                      <p>{this.state.birdsIWatch}</p>
+                      <p>{this.state.password}</p>
+                      <p>{this.state.passwordVerify}</p>
                 </div>
             </div>
         </div>

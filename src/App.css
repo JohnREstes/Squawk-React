@@ -29,3 +29,9 @@ input{
 #profile-picture{
   width: 200px;
 }
+#passwordMismatch{
+  display: none;
+}
+.red{
+  color: rgb(133, 36, 36);
+}
