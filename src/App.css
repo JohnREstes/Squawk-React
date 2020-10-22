@@ -27,3 +27,6 @@ input{
   border: solid 1px black;
   margin: 20px;
 }
+#profile-picture{
+  width: 200px;
+}
