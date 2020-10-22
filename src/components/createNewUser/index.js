@@ -19,14 +19,8 @@ class newUser extends React.Component {
       pictures: [] 
     }
 
-    this.handleUserChange = this.handleUserChange.bind(this)
-    this.handlePasswordChange = this.handlePasswordChange.bind(this)
-    this.handleEmailChange = this.handleEmailChange.bind(this)
-    this.handleBirdCallChange = this.handleBirdCallChange.bind(this)
+    this.onChange = this.onChange.bind(this)
     this.handlePictureChange = this.handlePictureChange.bind(this)
-    this.handleAboutMeChange = this.handleAboutMeChange.bind(this)
-    this.handleMyBirdsChange = this.handleMyBirdsChange.bind(this)
-    this.handleBirdsIWatchChange = this.handleBirdsIWatchChange.bind(this)
   }
 
 //   componentDidMount() {
@@ -40,51 +34,9 @@ class newUser extends React.Component {
 //       })
 //   }
 
-  handleUserChange(event) {
+  onChange(e) {
     this.setState({ 
-        user: event.target.value
-     })
-  }
-
-  handlePasswordChange(event) {
-    this.setState({ 
-        password: event.target.value
-     })
-  }
-
-  handleEmailChange(event) {
-    this.setState({ 
-        email: event.target.value
-     })
-  }
-
-  handleBirdCallChange(event) {
-    this.setState({ 
-        birdCall: event.target.value
-     })
-  }
-
-  handlePictureChange(event) {
-    this.setState({ 
-        picture: event.target.value
-     })
-  }
-
-  handleAboutMeChange(event) {
-    this.setState({ 
-        aboutMe: event.target.value
-     })
-  }
-
-  handleMyBirdsChange(event) {
-    this.setState({ 
-        myBirds: event.target.value
-     })
-  }
-
-  handleBirdsIWatchChange(event) {
-    this.setState({ 
-        birdsIWatch: event.target.value
+        [e.target.name]: e.target.value
      })
   }
 
@@ -114,13 +66,13 @@ class newUser extends React.Component {
         password: this.state.password,
         email: this.state.email,
         birdCall: this.state.birdCall,
-        picture: this.state.base64,
         aboutMe: this.state.aboutMe,
         myBirds: this.state.myBirds,
-        birdsIWatch:this.state.birdsIWatch 
+        birdsIWatch:this.state.birdsIWatch,
+        picture: this.state.base64
         }
-    })
-  }
+      })
+    }
 
   onFileSubmit = (e) => {
       e.preventDefault();
@@ -134,26 +86,51 @@ class newUser extends React.Component {
   render() {
     console.log(this.state.pictures)
     return (
-        <div className="col-6 text-center d-flex justify-content-center">
+        <div className="col-6">
             <div className="login-div">
-                <h3>Log in to Squawk</h3>
+                <h3 className="text-center">Log in to Squawk</h3>
                 <form onSubmit={this.handleSubmit}>
                     User: <input
-                    type="text"
+                    type="text" name="user"
                     value={this.state.user}
-                    onChange={this.handleUserChange}
+                    onChange={(e) => this.onChange(e)}
                     /><br></br>
                     Password: <input
-                    type="text"
+                    type="password" name="password"
                     value={this.state.password}
-                    onChange={this.handlePasswordChange}
-                    />
+                    onChange={(e) => this.onChange(e)}
+                    /><br></br>
+                    Email: <input
+                    type="email" name="email"
+                    value={this.state.email}
+                    onChange={(e) => this.onChange(e)}
+                    /><br></br>
+                    About me: <textarea
+                    type="text" name="aboutMe"
+                    value={this.state.aboutMe}
+                    onChange={(e) => this.onChange(e)}
+                    /><br></br>
+                    Bird Call: <textarea
+                    type="text" name="birdCall"
+                    value={this.state.birdCall}
+                    onChange={(e) => this.onChange(e)}
+                    /><br></br>
+                    My Birds: <textarea
+                    type="text" name="myBirds"
+                    value={this.state.myBirds}
+                    onChange={(e) => this.onChange(e)}
+                    />     <br></br>
+                    Birds I Watch: <textarea
+                    type="text" name="birdsIWatch"
+                    value={this.state.birdsIWatch}
+                    onChange={(e) => this.onChange(e)}
+                    />     <br></br>                                
                     <div>
-                    <button type="submit" onClick={this.handleSubmit}>
+                    <button type="submit">
                         Submit
                     </button>
                     </div>
-                </form>
+                </form><br></br>
                 <form onSubmit={(event) => this.onFileSubmit(event)} onChange={(event) => this.handlePictureChange(event)}>
                     <input
                         type="file"
@@ -167,7 +144,14 @@ class newUser extends React.Component {
                 <div>
                     <a><h5>Create New Account</h5></a>
                     {this.props.isLogged ? <h3>You are logged in</h3> : ''}
-                    <img id="profile-picture"/>
+                      <img id="profile-picture"/>
+                      <p>{this.state.user}</p>
+                      <p>{this.state.password}</p>
+                      <p>{this.state.email}</p>
+                      <p>{this.state.birdCall}</p>
+                      <p>{this.state.aboutMe}</p>
+                      <p>{this.state.myBirds}</p>
+                      <p>{this.state.birdsIWatch}</p>
                 </div>
             </div>
         </div>
