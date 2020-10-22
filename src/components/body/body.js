@@ -1,85 +1,39 @@
 import React from 'react'
 import '../../App.css'
-import { connect } from 'react-redux'
 import Friends from './friends-bar'
+import Login from '../../components/login'
+import Feed from '../../components/Feed'
+import {useSelector, useDispatch} from 'react-redux'
+import {isLogged} from '../../actions'
 
-class Body extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      value: '',
-      postId: 2
-    }
 
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
 
-  // componentDidMount() {
-  //   fetch('https://jsonplaceholder.typicode.com/posts')
-  //     .then(response => response.json())
-  //     .then(json => {
-  //       this.props.dispatch({
-  //         type: 'LOAD_POSTS',
-  //         payload: json
-  //       })
-  //     })
-  // }
+function Body(){
+  const isLogged = useSelector(state => state.isLogged);
 
-  handleChange(event) {
-    this.setState({ value: event.target.value })
-  }
-
-  handleSubmit(event) {
-    event.preventDefault()
-    this.props.dispatch({
-      type: 'ADD_POST',
-      payload: { id: this.state.postId, title: this.state.value }
-    })
-
-    this.setState({ postId: this.state.postId + 1 })
-  }
-
-  render() {
+  if(isLogged){
     return (
       <div className="row main-body">
-        <div className="col-3"></div>
-        <div className="col-6 text-center">
-          <h1>Put in your name!</h1>
-          <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-            <div>
-              <button type="submit" onClick={this.handleSubmit}>
-                Submit
-              </button>
-            </div>
-          </form>
-          <div>
-            {this.props.posts.posts.map(posts => (
-              <p key={posts.id}>{posts.title}</p>
-            ))}
-                  {this.props.isLogged ? <h3>You are logged in</h3> : ''}
-          </div>
+        <div className="col-3">
+
         </div>
+        <Feed/>
+        <Friends/>
+      </div>
+    )
+
+  }else{
+
+    return (
+      <div className="row main-body">
+        <div className="col-3">
+
+        </div>
+        <Login/>
         <Friends/>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return { posts: state.posts, isLogged: state.isLogged }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return { dispatch }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Body)
+export default Body

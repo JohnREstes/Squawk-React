@@ -1,6 +1,10 @@
+body{
+  background-color: rgb(176, 199, 241);
+}
 .full-page {
-  height: 100%;
-  margin: 0;
+  height: 100%!important;
+  width: 100%!important;
+  margin: 0px!important;
 }
 input{
   margin: 5px;
@@ -9,12 +13,17 @@ input{
   text-align: center;
 }
 #main-header{
-  width: 100%;
   border-bottom: 1px black solid;
 }
 #friends-div{
   border-left: 1px black solid;
 }
 .main-body{
-  height: 100%;
+  height: 700px;
+}
+.login-div{
+  height: 400px;
+  width: 75%;
+  border: solid 1px black;
+  margin: 20px;
 }

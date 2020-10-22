@@ -15,9 +15,9 @@ export const loginToggle = () => {
         type: 'SIGN-IN'
     };
 };
-export const addPost = (post) => {
+export const addPost = (info) => {
     return {
-        type: 'ADD_POST',
-        payload: post
+        type: 'LOGIN_USER',
+        payload: info
     }
 }
