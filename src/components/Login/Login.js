@@ -1,11 +1,15 @@
 import React from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
-import { createAccount, createNewUser } from '../../actions/userActions'
-import { createFeed } from '../../actions/userActions'
+import { createAccount, createNewUser, createFeed } from '../../actions/userActions'
 import PropTypes from 'prop-types'
 
 class Login extends React.Component {
+  
+  componentDidMount(){
+    this.props.createFeed();
+  }
+
   constructor() {
     super()
     this.state = {
@@ -19,9 +23,6 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount(){
-    this.props.createFeed();
-  }
 
   handleUserChange(event) {
     this.setState({ 
@@ -33,6 +34,10 @@ class Login extends React.Component {
     this.setState({ 
         password: event.target.value
      })
+  }
+
+  handleCreateUser(){
+    this.props.createNewUser();
   }
 
   handleSubmit(event) {
@@ -70,7 +75,8 @@ class Login extends React.Component {
                     </div>
                 </form>
                 <div>
-                    <button>Create New Account</button>
+                    <button onCLick={this.handleCreateUser}>Create New Account</button>
+                    <p>{this.props.pageDisplayed}</p>
                 </div>
             </div>
         </div>
@@ -84,18 +90,15 @@ Login.propTypes = {
   createFeed: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
-  return { posts: state.posts }
-}
+const mapStateToProps = (state) => ({
+  pageDisplayed: state.pageDisplayed.type 
+})
 
-const mapDispatchToProps = (dispatch) => {
-  return { dispatch }
-}
-
-export default connect(null,
+export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  {
   createFeed,
   createAccount,
   createNewUser
-)(Login)
+})
+(Login);

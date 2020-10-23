@@ -77,10 +77,8 @@ export const createBirdFact = () => dispatch => {
 };
 export const createFeed = () => dispatch => {
     axios.get('https://jsonplaceholder.typicode.com/posts')
-    .then(res => {
-        dispatch({
+    .then(res => dispatch({
             type: LOAD_FEED,
-            payload: res
-        });
-    });
+            payload: res.data
+        }));
 };
