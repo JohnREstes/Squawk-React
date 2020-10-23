@@ -2,7 +2,7 @@ import React from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
 import $ from 'jquery'
-import { createNewUser } from '../../actions/userActions'
+import { createNewUser, feed, loginToggle } from '../../actions/userActions'
 import PropTypes from 'prop-types'
 
 class UserRegistration extends React.Component {
@@ -34,6 +34,8 @@ class UserRegistration extends React.Component {
         password: this.state.password,
         emailAddress: this.state.email
       }
+      this.props.feed();
+      this.props.loginToggle();
       this.props.createNewUser(newUserInfo);
       //login
     }
@@ -88,7 +90,14 @@ class UserRegistration extends React.Component {
 }
 
 UserRegistration.propTypes = {
-  createNewUser: PropTypes.func.isRequired
+  createNewUser: PropTypes.func.isRequired,
+  feed: PropTypes.func.isRequired,
+  loginToggle:  PropTypes.func.isRequired
 };
 
-export default connect(null, { createNewUser })(UserRegistration);
+
+export default connect(null, { 
+  createNewUser,
+  feed,
+  loginToggle
+})(UserRegistration);

@@ -22,7 +22,7 @@ export const loginToggle = () => dispatch => {
         type: SIGN_IN
     });
 };
-export const addPost = info => dispatch => {
+export const loginUser = info => dispatch => {
     dispatch({
         type: LOGIN_USER,
         payload: info

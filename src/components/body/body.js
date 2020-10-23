@@ -43,7 +43,7 @@ function Body(){
           </div>
           )    
     }
-  }else if(!isLogged && pageDisplayed === CREATE_ACCOUNT){
+  }else if(isLogged === false && pageDisplayed === CREATE_ACCOUNT){
       return (
         <div className="row main-body">
           <BirdBar/>

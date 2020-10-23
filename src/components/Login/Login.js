@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
 import { createAccount, createNewUser, createFeed } from '../../actions/userActions'
 import PropTypes from 'prop-types'
 
-class Login extends React.Component {
+class Login extends Component {
   
   componentDidMount(){
     this.props.createFeed();
@@ -37,10 +37,12 @@ class Login extends React.Component {
   }
 
   handleCreateUser(){
-    this.props.createNewUser();
+    console.log("button clicked")
+    this.props.createAccount();
   }
 
   handleSubmit(event) {
+    console.log("clicked submit")
     event.preventDefault()
     const login = {
       type: 'LOGIN_USER',
@@ -57,7 +59,7 @@ class Login extends React.Component {
         <div className="col-6 text-center d-flex justify-content-center">
             <div className="login-div">
                 <h3>Log in to Squawk</h3>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={(e) => this.handleSubmit(e)}>
                     User: <input
                     type="text"
                     value={this.state.user}
@@ -69,13 +71,13 @@ class Login extends React.Component {
                     onChange={this.handlePasswordChange}
                     />
                     <div>
-                    <button type="submit" onClick={this.handleSubmit}>
+                    <button type="submit">
                         Submit
                     </button>
                     </div>
                 </form>
                 <div>
-                    <button onCLick={this.handleCreateUser}>Create New Account</button>
+                    <button onClick={() => this.handleCreateUser()}>Create New Account</button>
                     <p>{this.props.pageDisplayed}</p>
                 </div>
             </div>
