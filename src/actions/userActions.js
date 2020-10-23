@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER } from './types';
+import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE } from './types';
 import axios from 'axios';
 
 //each action creator is a function
@@ -44,5 +44,20 @@ export const createNewUser = userInfo => dispatch => {
             type: CREATE_NEW_USER,
             payload: allUserInfo
         });
+    });
+};
+export const feed = () => dispatch => {
+    dispatch({
+        type: FEED,
+    });
+};
+export const friends = () => dispatch => {
+    dispatch({
+        type: FRIENDS,
+    });
+};
+export const editProfile = () => dispatch => {
+    dispatch({
+        type: EDIT_PROFILE,
     });
 };

@@ -73,7 +73,7 @@ class newUser extends React.Component {
     return (
         <div className="col-6">
             <div className="login-div">
-                <h3 className="text-center">Log in to Squawk</h3>
+                <h3 className="text-center">Edit User</h3>
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     User: <input
                     type="text" name="user"

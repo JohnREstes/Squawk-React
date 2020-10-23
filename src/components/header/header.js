@@ -1,13 +1,15 @@
 import React from 'react';
-import {useDispatch} from 'react-redux'
-import {loginToggle} from '../../actions/userActions'
+import { useDispatch, connect, useSelector } from 'react-redux'
+import { feed, friends, editProfile, loginToggle } from '../../actions/userActions'
 
 function Header() {
   const dispatch = useDispatch();
+  const isLogged = useSelector(state => state.isLogged);
   return (
     <div className="row" id="main-header">
       <div className="col-2">
-      <button onClick={() => dispatch(loginToggle())}>Log In Toggle</button>
+      <button onClick={() => dispatch(loginToggle())}>Log In Toggle</button><br></br>
+      {isLogged ? <h6>You are logged in</h6> : ''}
       </div>
         <div className="col-8">
             <div className="row">
@@ -23,9 +25,9 @@ function Header() {
         </div>
         <div className="col-2">
           <div className="row hidden justiy-content-center" id="navButtonsDiv">
-            <button id="navButtons">Friends</button>
-            <button id="navButtons">Edit Profile</button>
-            <button id="navButtons">Home</button>
+            <button id="navButtons" onClick={() => dispatch(friends())}>Friends</button>
+            <button id="navButtons" onClick={() => dispatch(editProfile())}>Edit Profile</button>
+            <button id="navButtons" onClick={() => dispatch(feed())}>Home</button>
           </div>
           
         </div>
@@ -33,4 +35,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default connect(null, { feed, friends, editProfile })(Header);

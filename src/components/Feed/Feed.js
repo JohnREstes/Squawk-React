@@ -2,8 +2,7 @@ import React from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 
 function Feed() {
-  const payload = useSelector(state => state.users);
-  const dispatch = useDispatch();
+  const payload = useSelector(state => state.user);
   return (
         <div className="col-6 text-center main-body">
           <div className="row">
