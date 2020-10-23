@@ -1,8 +1,7 @@
 import React from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
-import { createAccount } from '../../actions/userActions'
-import { CREATE_ACCOUNT } from '../../actions/types'
+import { createAccount, createNewUser } from '../../actions/userActions'
 import { createFeed } from '../../actions/userActions'
 import PropTypes from 'prop-types'
 
@@ -20,9 +19,9 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  // componentDidMount(){
-  //   this.props.createFeed;
-  // }
+  componentDidMount(){
+    this.props.createFeed();
+  }
 
   handleUserChange(event) {
     this.setState({ 
@@ -97,5 +96,6 @@ export default connect(null,
   mapStateToProps,
   mapDispatchToProps,
   createFeed,
-  createAccount
+  createAccount,
+  createNewUser
 )(Login)
