@@ -6,5 +6,5 @@ import { combineReducers } from 'redux';
 export default combineReducers({
     counter: counterReducer,
     isLogged: loggedReducer,
-    users: userReducer
+    user: userReducer
 })
