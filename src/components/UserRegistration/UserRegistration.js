@@ -2,8 +2,10 @@ import React from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
 import $ from 'jquery'
+import { createNewUser } from '../../actions/userActions'
+import PropTypes from 'prop-types'
 
-class newUser extends React.Component {
+class UserRegistration extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -27,23 +29,15 @@ class newUser extends React.Component {
       console.log('Password Mismatch');
       $("#passwordMismatch").css('display', 'inline');
     }else{
-      const newUser = { 
+      const newUserInfo = { 
         username: this.state.username,
         password: this.state.password,
-        email: this.state.email
+        emailAddress: this.state.email
       }
-      const preview = document.getElementById('profile-picture');
-      //console.log("binary string: ", this.state.base64TextString)
-
-      let payload = {image: this.state.base64TextString}
-      preview.src = "data:image/png;base64," + this.state.base64TextString
+      this.props.createNewUser(newUserInfo);
+      //login
     }
   }
-
-  onFileSubmit = (e) => {
-      e.preventDefault();
-
-    }
 
   render() {
     return (
@@ -51,7 +45,7 @@ class newUser extends React.Component {
             <div className="login-div">
                 <h3 className="text-center">Log in to Squawk</h3>
                 <form onSubmit={(e) => this.onSubmit(e)}>
-                    User: <input
+                    Username: <input
                     type="text" name="username"
                     value={this.state.username}
                     onChange={(e) => this.onChange(e)}
@@ -93,15 +87,8 @@ class newUser extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { posts: state.posts, isLogged: state.isLogged }
-}
+UserRegistration.propTypes = {
+  createNewUser: PropTypes.func.isRequired
+};
 
-const mapDispatchToProps = (dispatch) => {
-  return { dispatch }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(newUser)
+export default connect(null, { createNewUser })(UserRegistration);

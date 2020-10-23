@@ -1,4 +1,5 @@
-import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER } from './types';
+import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER } from './types';
+import axios from 'axios';
 
 //each action creator is a function
 //thunk middleware allows us to call dispatch function directly so we can make asynchronous requests
@@ -26,4 +27,22 @@ export const addPost = info => dispatch => {
         type: LOGIN_USER,
         payload: info
     });
-}
+};
+export const createNewUser = userInfo => dispatch => {
+    axios.post('http://localhost:5000/api/users',
+    {
+        username: userInfo.username,
+        password: userInfo.password,
+        emailAddress: userInfo.emailAddress
+    })
+    .then(res => {
+        const allUserInfo = {
+            token: res.headers['x-auth-token'],
+            ...res.data
+        }
+        dispatch({
+            type: CREATE_NEW_USER,
+            payload: allUserInfo
+        });
+    });
+};

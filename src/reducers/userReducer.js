@@ -1,9 +1,16 @@
+import { CREATE_NEW_USER } from '../actions/types';
+
 const initialState = {
-    users: [{ id: 1, user: 'John', password: '123' }]
+    userDetails: {}
 }
 
-const postReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
  switch(action.type){
+    case CREATE_NEW_USER:
+      return {
+        ...state,
+        userDetails: action.payload
+      }
     case 'LOGIN_USER':
       return { state,
         login: state.users = action.payload
@@ -19,4 +26,4 @@ const postReducer = (state = initialState, action) => {
   }
 }
 
-export default postReducer;
+export default userReducer;

@@ -3,7 +3,7 @@ import '../../App.css'
 import Friends from '../FriendsBar/FriendsBar'
 import Login from '../Login/Login'
 import Feed from '../Feed/Feed'
-import CreateNewUser from '../CreateNewUser/CreateNewUser'
+import CreateNewUser from '../UserRegistration/UserRegistration'
 import {useSelector, useDispatch} from 'react-redux'
 
 
