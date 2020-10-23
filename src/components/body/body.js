@@ -5,6 +5,7 @@ import Login from '../Login/Login'
 import Feed from '../Feed/Feed'
 import CreateNewUser from '../UserRegistration/UserRegistration'
 import {useSelector, useDispatch} from 'react-redux'
+import $ from 'jquery'
 
 
 
@@ -14,23 +15,24 @@ function Body(){
   const newUser = false;
 
   if(isLogged){
+    $("#navButtonsDiv").css("display", "initial");
     return (
       <div className="row main-body">
         <div className="col-3">
 
         </div>
-        <CreateNewUser/>
+        <Feed/>
         <Friends/>
       </div>
     )
   
-  }else if(!isLogged && newUser){
+  }else if(!isLogged){
     return (
       <div className="row main-body">
         <div className="col-3">
 
         </div>
-        <CreateNewUser/>
+        <Login/>
         <Friends/>
       </div>
     )

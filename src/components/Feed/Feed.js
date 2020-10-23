@@ -8,7 +8,7 @@ function Feed() {
         <div className="col-6 text-center main-body">
           <div className="row">
             <div className="col-12">
-                <h1>Friends:</h1>
+                <h1>Feed:</h1>
                 {payload.login.map(x => (
                     <p>{x.title}</p>
                 ))}

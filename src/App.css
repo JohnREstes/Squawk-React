@@ -35,3 +35,10 @@ input{
 .red{
   color: rgb(133, 36, 36);
 }
+.hidden{
+  display: none;
+}
+#navButtons{
+  margin: 10px;
+  padding: 2px;
+}
