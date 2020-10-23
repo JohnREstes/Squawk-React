@@ -4,11 +4,12 @@ import Friends from '../FriendsBar/FriendsBar'
 import Login from '../Login/Login'
 import Feed from '../Feed/Feed'
 import EditUser from '../EditUser/EditUser'
+import UserRegistration from '../UserRegistration/UserRegistration'
 import FriendsList from '../FriendsList/FriendsList'
 import BirdBar from '../BirdBar/BirdBar'
 import { useSelector } from 'react-redux'
 import $ from 'jquery'
-import { FEED, FRIENDS, EDIT_PROFILE } from '../../actions/types'
+import { FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT } from '../../actions/types'
 
 function Body(){
   const isLogged = useSelector(state => state.isLogged);
@@ -42,14 +43,22 @@ function Body(){
           </div>
           )    
     }
-  }else if(!isLogged){
-    return (
-      <div className="row main-body">
-        <BirdBar/>
-        <Login/>
-        <Friends/>
-      </div>
-    )
+  }else if(!isLogged && pageDisplayed === CREATE_ACCOUNT){
+      return (
+        <div className="row main-body">
+          <BirdBar/>
+          <UserRegistration/>
+          <Friends/>
+        </div>
+        )  
+  }else{
+        return (
+        <div className="row main-body">
+          <BirdBar/>
+          <Login/>
+          <Friends/>
+        </div>
+      )
   } 
 }
 

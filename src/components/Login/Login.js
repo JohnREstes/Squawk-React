@@ -1,6 +1,10 @@
 import React from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
+import { createAccount } from '../../actions/userActions'
+import { CREATE_ACCOUNT } from '../../actions/types'
+import { createFeed } from '../../actions/userActions'
+import PropTypes from 'prop-types'
 
 class Login extends React.Component {
   constructor() {
@@ -16,16 +20,9 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(json => {
-        this.props.dispatch({
-          type: 'LOAD_POSTS',
-          payload: json
-        })
-      })
-  }
+  // componentDidMount(){
+  //   this.props.createFeed;
+  // }
 
   handleUserChange(event) {
     this.setState({ 
@@ -39,16 +36,14 @@ class Login extends React.Component {
      })
   }
 
-
   handleSubmit(event) {
     event.preventDefault()
-    this.props.dispatch({
+    const login = {
       type: 'LOGIN_USER',
-      payload: { 
-          id: this.state.postId, 
+      payload: {  
           user: this.state.user, 
           password: this.state.password }
-    })
+    }
 
     this.setState({ postId: this.state.postId + 1 })
   }
@@ -76,8 +71,7 @@ class Login extends React.Component {
                     </div>
                 </form>
                 <div>
-                    <a><h5>Create New Account</h5></a>
-                    {this.props.isLogged ? <h3>You are logged in</h3> : ''}
+                    <button>Create New Account</button>
                 </div>
             </div>
         </div>
@@ -85,15 +79,23 @@ class Login extends React.Component {
   }
 }
 
+Login.propTypes = {
+  createAccount: PropTypes.func.isRequired,
+  createNewUser: PropTypes.func.isRequired,
+  createFeed: PropTypes.func.isRequired
+};
+
 const mapStateToProps = (state) => {
-  return { posts: state.posts, isLogged: state.isLogged }
+  return { posts: state.posts }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return { dispatch }
 }
 
-export default connect(
+export default connect(null,
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  createFeed,
+  createAccount
 )(Login)

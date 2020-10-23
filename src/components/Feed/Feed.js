@@ -8,9 +8,9 @@ function Feed() {
           <div className="row">
             <div className="col-12">
                 <h1>Feed:</h1>
-                {payload.login.map(x => (
+                {/* {payload.login.map(x => (
                     <p>{x.title}</p>
-                ))}
+                ))} */}
             </div>
           </div>
           <div className="row">

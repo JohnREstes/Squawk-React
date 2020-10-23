@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, BIRD_FACTS } from './types';
+import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, BIRD_FACTS, CREATE_ACCOUNT, LOAD_FEED } from './types';
 import axios from 'axios';
 
 //each action creator is a function
@@ -61,12 +61,26 @@ export const editProfile = () => dispatch => {
         type: EDIT_PROFILE,
     });
 };
+export const createAccount = () => dispatch => {
+    dispatch({
+        type: CREATE_ACCOUNT,
+    });
+};
 export const createBirdFact = () => dispatch => {
     axios.get('https://some-random-api.ml/facts/bird')
     .then(res => {
         dispatch({
             type: BIRD_FACTS,
             payload: res.fact
+        });
+    });
+};
+export const createFeed = () => dispatch => {
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+    .then(res => {
+        dispatch({
+            type: LOAD_FEED,
+            payload: res
         });
     });
 };

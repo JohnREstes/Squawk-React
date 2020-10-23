@@ -3,6 +3,7 @@ import loggedReducer from './isLogged';
 import userReducer from './userReducer';
 import pageDisplayedReducer from './pageDisplayedReducer';
 import birdFactReducer from './birdFactReducer'
+import feedReducer from './feedReducer'
 import { combineReducers } from 'redux';
 
 export default combineReducers({
@@ -10,5 +11,6 @@ export default combineReducers({
     isLogged: loggedReducer,
     user: userReducer,
     pageDisplayed: pageDisplayedReducer,
-    birdFact: birdFactReducer
+    birdFact: birdFactReducer,
+    feed: feedReducer
 })

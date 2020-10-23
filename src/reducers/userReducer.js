@@ -16,11 +16,6 @@ const userReducer = (state = initialState, action) => {
         login: state.users = action.payload
 
       }
-    case 'LOAD_POSTS':
-        return {
-            state,
-            login: state.title = action.payload
-        }
     default:
       return state
   }

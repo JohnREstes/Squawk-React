@@ -1,4 +1,4 @@
-import { FEED, FRIENDS, EDIT_PROFILE } from '../actions/types';
+import { FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT } from '../actions/types';
 
 let initialState = {
     type: FEED
@@ -11,6 +11,8 @@ const pageDisplayedReducer = (state = initialState, action) => {
         case FRIENDS:
             return  state = action;
         case EDIT_PROFILE:
+                return state = action;
+        case CREATE_ACCOUNT:
                 return state = action;
         default:
             return state
