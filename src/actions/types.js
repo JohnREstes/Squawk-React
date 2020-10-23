@@ -6,3 +6,4 @@ export const CREATE_NEW_USER = 'CREATE_NEW_USER';
 export const FEED = "FEED";
 export const FRIENDS = "FRIENDS";
 export const EDIT_PROFILE = "EDIT_PROFILE";
+export const BIRD_FACTS = "BIRD_FACTS";

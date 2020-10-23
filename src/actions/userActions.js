@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE } from './types';
+import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, BIRD_FACTS } from './types';
 import axios from 'axios';
 
 //each action creator is a function
@@ -59,5 +59,14 @@ export const friends = () => dispatch => {
 export const editProfile = () => dispatch => {
     dispatch({
         type: EDIT_PROFILE,
+    });
+};
+export const createBirdFact = () => dispatch => {
+    axios.get('https://some-random-api.ml/facts/bird')
+    .then(res => {
+        dispatch({
+            type: BIRD_FACTS,
+            payload: res.fact
+        });
     });
 };

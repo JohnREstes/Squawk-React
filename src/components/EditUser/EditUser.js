@@ -1,7 +1,6 @@
 import React from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
-import ImageUploader from 'react-images-upload';
 
 class newUser extends React.Component {
   constructor() {
@@ -125,8 +124,6 @@ class newUser extends React.Component {
                 </form><br></br>
 
                 <div>
-                    <a><h5>Create New Account</h5></a>
-                    {this.props.isLogged ? <h3>You are logged in</h3> : ''}
                       <img id="profile-picture"/>
                       <p>{this.state.user}</p>
                       <p>{this.state.password}</p>

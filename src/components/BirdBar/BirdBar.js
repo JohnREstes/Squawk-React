@@ -1,6 +1,7 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import {increment, decrement} from '../../actions/userActions'
+import BirdFacts from '../BirdFacts/BirdFacts'
 
 function BirdBar() {
   const counter = useSelector(state => state.counter);
@@ -18,6 +19,7 @@ function BirdBar() {
               <button className="button" onClick={() => dispatch(decrement(1))}>-</button>
             </div>
           </div>
+        <BirdFacts/>
         </div>
   );
 }
