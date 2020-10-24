@@ -42,6 +42,7 @@ function Body(){
             <Friends/>
           </div>
           )    
+      default:
     }
   }else if(isLogged === false && pageDisplayed === CREATE_ACCOUNT){
       return (

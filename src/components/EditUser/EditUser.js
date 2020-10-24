@@ -45,20 +45,19 @@ class newUser extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const newUser = { 
-        user: this.state.user,
-        password: this.state.password,
-        email: this.state.email,
-        birdCall: this.state.birdCall,
-        aboutMe: this.state.aboutMe,
-        myBirds: this.state.myBirds,
-        birdsIWatch:this.state.birdsIWatch,
-        base64TextString: this.state.base64TextString
-    }
+    // const newUser = { 
+    //     user: this.state.user,
+    //     password: this.state.password,
+    //     email: this.state.email,
+    //     birdCall: this.state.birdCall,
+    //     aboutMe: this.state.aboutMe,
+    //     myBirds: this.state.myBirds,
+    //     birdsIWatch:this.state.birdsIWatch,
+    //     base64TextString: this.state.base64TextString
+    // }
     const preview = document.getElementById('profile-picture');
     console.log("binary string: ", this.state.base64TextString)
 
-    let payload = {image: this.state.base64TextString}
     preview.src = "data:image/png;base64," + this.state.base64TextString
   }
 
@@ -124,7 +123,7 @@ class newUser extends React.Component {
                 </form><br></br>
 
                 <div>
-                      <img id="profile-picture"/>
+                      <img id="profile-picture" alt="User uploaded for profile"/>
                       <p>{this.state.user}</p>
                       <p>{this.state.password}</p>
                       <p>{this.state.email}</p>

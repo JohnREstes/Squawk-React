@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
-import { createAccount, createNewUser, createFeed } from '../../actions/userActions'
+import { createFeed, createAccount, loginUser} from '../../actions/userActions'
 import PropTypes from 'prop-types'
 
 class Login extends Component {
@@ -50,8 +50,7 @@ class Login extends Component {
           user: this.state.user, 
           password: this.state.password }
     }
-
-    this.setState({ postId: this.state.postId + 1 })
+    this.props.loginUser(login);
   }
 
   render() {
@@ -88,8 +87,8 @@ class Login extends Component {
 
 Login.propTypes = {
   createAccount: PropTypes.func.isRequired,
-  createNewUser: PropTypes.func.isRequired,
-  createFeed: PropTypes.func.isRequired
+  loginUser: PropTypes.func.isRequired,
+  createFeed: PropTypes.func.isRequired,  
 };
 
 const mapStateToProps = (state) => ({
@@ -99,8 +98,8 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   {
-  createFeed,
   createAccount,
-  createNewUser
+  loginUser,
+  createFeed
 })
 (Login);

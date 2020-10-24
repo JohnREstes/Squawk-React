@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector } from 'react-redux'
 
 function Feed() {
   const feed = useSelector(state => state.feed);
@@ -9,7 +9,7 @@ function Feed() {
             <div className="col-12">
                 <h1>Feed:</h1>
                 {feed.feed.map(x => (
-                    <p>{x.title}</p>
+                    <p key={x.id}>{x.title}</p>
                 ))}
             </div>
           </div>

@@ -75,9 +75,8 @@ class UserRegistration extends React.Component {
                 </form><br></br>
 
                 <div>
-                    <a><h5>Create New Account</h5></a>
                     {this.props.isLogged ? <h3>You are logged in</h3> : ''}
-                      <img id="profile-picture"/>
+                      <img id="profile-picture" alt="User uploaded for profile"/>
                       <p>{this.state.username}</p>
                       <p>{this.state.email}</p>
                       <p>{this.state.password}</p>
