@@ -67,13 +67,15 @@ export const createAccount = () => dispatch => {
     });
 };
 export const createBirdFact = () => dispatch => {
-    axios.get('https://some-random-api.ml/facts/bird')
+    fetch('https://some-random-api.ml/facts/bird?callback=foo')
     .then(res => {
+        console.log(res);
         dispatch({
             type: BIRD_FACTS,
-            payload: res.fact
-        });
+            payload: res.data
+    })
     });
+
 };
 export const createFeed = () => dispatch => {
     axios.get('https://jsonplaceholder.typicode.com/posts')

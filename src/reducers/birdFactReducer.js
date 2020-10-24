@@ -1,7 +1,7 @@
 import { BIRD_FACTS } from '../actions/types';
 
 let initialState = {
-    fact: ''
+    fact: 'hoots'
 }
 
 const birdFactReducer = (state = initialState, action) => {
