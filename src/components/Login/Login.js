@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
 import { createFeed, createAccount, loginUser} from '../../actions/userActions'
+import { createBirdFact, createBirdImage } from '../../actions/birdActions'
 import PropTypes from 'prop-types'
 
 class Login extends Component {
   
   componentDidMount(){
     this.props.createFeed();
+    this.props.createBirdImage();
+    this.props.createBirdFact();
   }
 
   constructor() {
@@ -88,7 +91,9 @@ class Login extends Component {
 Login.propTypes = {
   createAccount: PropTypes.func.isRequired,
   loginUser: PropTypes.func.isRequired,
-  createFeed: PropTypes.func.isRequired,  
+  createFeed: PropTypes.func.isRequired, 
+  createBirdFact: PropTypes.func.isRequired, 
+  createBirdImage:  PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -100,6 +105,8 @@ export default connect(
   {
   createAccount,
   loginUser,
-  createFeed
+  createFeed,
+  createBirdFact,
+  createBirdImage
 })
 (Login);

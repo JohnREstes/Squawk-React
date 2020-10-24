@@ -1,16 +1,22 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux'
-import { createBirdFact } from '../../actions/userActions'
+import { createBirdFact, createBirdImage } from '../../actions/birdActions'
+import $ from 'jquery'
 
 function Friends() {
   const fact = useSelector(state => state.birdFact.fact);
+  const imageURL = useSelector(state => state.birdFact.link);
+  $('#bird-img').attr("src", imageURL);
   const dispatch = useDispatch();
   return (
 
           <div className="row">
             <div className="col-12">
             <button onClick={() => dispatch(createBirdFact())}>Generate</button><br></br>
-              <h3>Randon Bird Fact: {fact}</h3>
+              <h5>Randon Bird Fact: {fact}</h5>
+              <button onClick={() => dispatch(createBirdImage())}>Generate</button><br></br>
+              <h5>Randon Bird Picture: </h5>
+              <img id="bird-img" alt="birdie"/>
             </div>
           </div>
   );

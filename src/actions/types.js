@@ -9,3 +9,4 @@ export const FRIENDS = "FRIENDS";
 export const EDIT_PROFILE = "EDIT_PROFILE";
 export const CREATE_ACCOUNT = "CREATE_ACCOUNT";
 export const BIRD_FACTS = "BIRD_FACTS";
+export const BIRD_IMAGE = "BIRD_IMAGE";
