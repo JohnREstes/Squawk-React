@@ -66,17 +66,17 @@ export const createAccount = () => dispatch => {
         type: CREATE_ACCOUNT,
     });
 };
-export const createBirdFact = () => dispatch => {
-    fetch('https://some-random-api.ml/facts/bird?callback=foo')
-    .then(res => {
-        console.log(res);
-        dispatch({
-            type: BIRD_FACTS,
-            payload: res.data
-    })
-    });
+// export const createBirdFact = () => dispatch => {
+//     fetch('https://some-random-api.ml/facts/bird')
+//     .then(res => {
+//         console.log(res);
+//         dispatch({
+//             type: BIRD_FACTS,
+//             payload: res.data
+//         })
+//     })
 
-};
+// };
 export const createFeed = () => dispatch => {
     axios.get('https://jsonplaceholder.typicode.com/posts')
     .then(res => dispatch({
@@ -84,3 +84,18 @@ export const createFeed = () => dispatch => {
             payload: res.data
         }));
 };
+export const createBirdFact = () => dispatch => {
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
+const url = "https://some-random-api.ml/facts/bird"; // site that doesn’t send Access-Control-*
+fetch(proxyurl + url) // https://cors-anywhere.herokuapp.com/https://example.com
+.then(response => response.text())
+.then(res => {
+    let fact = JSON.parse(res)
+    console.log(fact.fact);
+    dispatch({
+        type: BIRD_FACTS,
+        payload: fact.fact
+    })
+})
+.catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+}
