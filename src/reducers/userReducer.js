@@ -1,4 +1,4 @@
-import { CREATE_NEW_USER } from '../actions/types';
+import { CREATE_NEW_USER, LOGIN_SQUAWK_USER, LOGIN_USER } from '../actions/types';
 
 const initialState = {
     userDetails: {}
@@ -11,13 +11,13 @@ const userReducer = (state = initialState, action) => {
         ...state,
         userDetails: action.payload
       }
-    case 'LOGIN_USER':
+    case LOGIN_USER:
       return { 
         ...state,
         login: state.users = action.payload
 
       }
-    case 'LOGIN_SQUAWK_USER':
+    case LOGIN_SQUAWK_USER:
       return { ...state,
         header: action.payload
 

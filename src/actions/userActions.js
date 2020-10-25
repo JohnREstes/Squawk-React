@@ -57,6 +57,7 @@ export const loginSquawkUser = userInfo => dispatch => {
         password: userInfo.password
     })
     .then(res => {
+        $('#invalid').css('display', 'none');
         console.log(res);
         dispatch({
             type: LOGIN_SQUAWK_USER,
