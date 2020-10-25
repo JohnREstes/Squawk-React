@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
-import { createFeed, createAccount, loginUser} from '../../actions/userActions'
+import { createFeed, createAccount, loginSquawkUser} from '../../actions/userActions'
 import { createBirdFact, createBirdImage } from '../../actions/birdActions'
+import { LOGIN_SQUAWK_USER } from '../../actions/types'
 import PropTypes from 'prop-types'
 
 class Login extends Component {
@@ -16,9 +17,8 @@ class Login extends Component {
   constructor() {
     super()
     this.state = {
-      user: '',
-      password: '',
-      postId: 2
+      usernameOrEmailAddress: '',
+      password: ''
     }
 
     this.handleUserChange = this.handleUserChange.bind(this)
@@ -29,7 +29,7 @@ class Login extends Component {
 
   handleUserChange(event) {
     this.setState({ 
-        user: event.target.value
+      usernameOrEmailAddress: event.target.value
      })
   }
 
@@ -47,13 +47,11 @@ class Login extends Component {
   handleSubmit(event) {
     console.log("clicked submit")
     event.preventDefault()
-    const login = {
-      type: 'LOGIN_USER',
-      payload: {  
-          user: this.state.user, 
-          password: this.state.password }
+    const login = {  
+          usernameOrEmailAddress: this.state.usernameOrEmailAddress, 
+          password: this.state.password 
     }
-    this.props.loginUser(login);
+    this.props.loginSquawkUser(login);
   }
 
   render() {
@@ -62,13 +60,15 @@ class Login extends Component {
             <div className="login-div">
                 <h3>Log in to Squawk</h3>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
-                    User: <input
+                    <input
+                    placeholder="Username or Password"
                     type="text"
-                    value={this.state.user}
+                    value={this.state.usernameOrEmailAddress}
                     onChange={this.handleUserChange}
                     /><br></br>
-                    Password: <input
-                    type="text"
+                    <input
+                    placeholder="Password"
+                    type="password"
                     value={this.state.password}
                     onChange={this.handlePasswordChange}
                     />
@@ -79,8 +79,9 @@ class Login extends Component {
                     </div>
                 </form>
                 <div>
-                    <button onClick={() => this.handleCreateUser()}>Create New Account</button>
-                    <p>{this.props.pageDisplayed}</p>
+                    <button onClick={() => this.handleCreateUser()}>Create New Account</button><br></br>
+                    
+                    <p className="hidden" id="invalid">Username or Password is incorrect!</p>
                 </div>
             </div>
         </div>
@@ -90,7 +91,7 @@ class Login extends Component {
 
 Login.propTypes = {
   createAccount: PropTypes.func.isRequired,
-  loginUser: PropTypes.func.isRequired,
+  loginSquawkUser: PropTypes.func.isRequired,
   createFeed: PropTypes.func.isRequired, 
   createBirdFact: PropTypes.func.isRequired, 
   createBirdImage:  PropTypes.func.isRequired
@@ -104,7 +105,7 @@ export default connect(
   mapStateToProps,
   {
   createAccount,
-  loginUser,
+  loginSquawkUser,
   createFeed,
   createBirdFact,
   createBirdImage

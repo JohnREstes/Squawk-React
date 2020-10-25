@@ -12,8 +12,14 @@ const userReducer = (state = initialState, action) => {
         userDetails: action.payload
       }
     case 'LOGIN_USER':
-      return { state,
+      return { 
+        ...state,
         login: state.users = action.payload
+
+      }
+    case 'LOGIN_SQUAWK_USER':
+      return { ...state,
+        header: action.payload
 
       }
     default:

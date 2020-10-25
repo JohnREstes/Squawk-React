@@ -42,3 +42,9 @@ input{
   margin: 10px;
   padding: 2px;
 }
+#bird-img {
+  width: auto;
+  height: auto;
+  max-width: 95%;
+  max-height: 95%;
+}

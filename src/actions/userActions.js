@@ -1,5 +1,6 @@
-import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, LOAD_FEED } from './types';
+import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, LOAD_FEED, LOGIN_SQUAWK_USER } from './types';
 import axios from 'axios';
+import $ from 'jquery'
 
 //each action creator is a function
 //thunk middleware allows us to call dispatch function directly so we can make asynchronous requests
@@ -44,7 +45,28 @@ export const createNewUser = userInfo => dispatch => {
             type: CREATE_NEW_USER,
             payload: allUserInfo
         });
-    });
+    })
+    .catch(err => {
+        console.log(err)
+    })
+};
+export const loginSquawkUser = userInfo => dispatch => {
+    axios.post('http://localhost:5000/api/auth',
+    {
+        usernameOrEmailAddress: userInfo.usernameOrEmailAddress,
+        password: userInfo.password
+    })
+    .then(res => {
+        console.log(res);
+        dispatch({
+            type: LOGIN_SQUAWK_USER,
+            payload: res
+        });
+    })
+    .catch(err => {
+        $('#invalid').css('display', 'initial');
+        console.log(err)
+    })
 };
 export const feed = () => dispatch => {
     dispatch({

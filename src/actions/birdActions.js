@@ -7,7 +7,6 @@ export const createBirdFact = () => dispatch => {
     .then(response => response.text())
     .then(res => {
         let fact = JSON.parse(res)
-        console.log(fact.fact);
         dispatch({
             type: BIRD_FACTS,
             payload: fact.fact
@@ -22,7 +21,6 @@ export const createBirdFact = () => dispatch => {
         .then(response => response.text())
         .then(res => {
             let picture = JSON.parse(res)
-            console.log(picture.link);
             dispatch({
                 type: BIRD_IMAGE,
                 payload: picture.link
