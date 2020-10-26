@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, connect, useSelector } from 'react-redux'
 import { feed, friends, editProfile, loginToggle } from '../../actions/userActions'
+import { Menu, MenuItem, MenuButton } from '@szhsin/react-menu';
+import '@szhsin/react-menu/dist/index.css';
 
 function Header() {
   const dispatch = useDispatch();
@@ -27,9 +29,14 @@ function Header() {
         </div>
         <div className="col-2">
           <div className="row hidden justiy-content-center" id="navButtonsDiv">
-            <button id="navButtons" onClick={() => dispatch(friends())}>Friends</button>
+        <Menu menuButton={<MenuButton>Navigate</MenuButton>}>
+            <MenuItem onClick={() => dispatch(feed())}>Feed</MenuItem>
+            <MenuItem onClick={() => dispatch(friends())}>Friends</MenuItem>
+            <MenuItem onClick={() => dispatch(editProfile())}>Edit Profile</MenuItem>
+        </Menu>
+            {/* <button id="navButtons" onClick={() => dispatch(friends())}>Friends</button>
             <button id="navButtons" onClick={() => dispatch(editProfile())}>Edit Profile</button>
-            <button id="navButtons" onClick={() => dispatch(feed())}>Home</button>
+            <button id="navButtons" onClick={() => dispatch(feed())}>Home</button> */}
           </div>
           </div>  
         </div>
