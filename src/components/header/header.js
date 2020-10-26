@@ -5,13 +5,13 @@ import { feed, friends, editProfile, loginToggle } from '../../actions/userActio
 function Header() {
   const dispatch = useDispatch();
   const isLogged = useSelector(state => state.isLogged);
-  //const username = useSelector(state => state.user.userDetails.username);
+  const username = useSelector(state => state.user.login.username);
   return (
     <div className="header" id="main-header">
       <div className="row">
       <div className="col-2">
       <button onClick={() => dispatch(loginToggle())}>Log In Toggle</button><br></br>
-      {isLogged ? <h6>, you are logged in.</h6> : ''}
+      {isLogged ? <div id="username"><h6>{username}, you are logged in.</h6></div> : ''}
       </div>
         <div className="col-8">
             <div className="row">

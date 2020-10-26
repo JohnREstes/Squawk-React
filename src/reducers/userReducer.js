@@ -1,7 +1,10 @@
 import { CREATE_NEW_USER, LOGIN_SQUAWK_USER, LOGIN_USER } from '../actions/types';
 
 const initialState = {
-    userDetails: {}
+      login:{
+        username: "",
+        _id: ""
+      }
 }
 
 const userReducer = (state = initialState, action) => {

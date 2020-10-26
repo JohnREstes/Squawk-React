@@ -64,3 +64,6 @@ input{
   max-width: 95%;
   max-height: 95%;
 }
+#username{
+  margin: 10px;
+}

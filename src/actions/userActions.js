@@ -1,6 +1,7 @@
 import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, LOAD_FEED, LOGIN_SQUAWK_USER } from './types';
-import axios from 'axios';
+import axios from 'axios'
 import $ from 'jquery'
+import jwt_decode from "jwt-decode"
 
 //each action creator is a function
 //thunk middleware allows us to call dispatch function directly so we can make asynchronous requests
@@ -59,9 +60,11 @@ export const loginSquawkUser = userInfo => dispatch => {
     .then(res => {
         $('#invalid').css('display', 'none');
         console.log(res.data);
+        var decoded = jwt_decode(res.data);
+        console.log(decoded);
         dispatch({
             type: LOGIN_SQUAWK_USER,
-            payload: res.data
+            payload: decoded
         })
         dispatch({
             type: SIGN_IN
