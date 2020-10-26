@@ -12,20 +12,17 @@ function Friends() {
 
           <div className="row">
             <div className="col-12">
-            <button className="birdButton" onClick={() => dispatch(createBirdFact())}>Generate</button><br></br>
+              <div>
+                <button className="birdButton" onClick={() => dispatch(createBirdFact())}>Generate</button><br></br>
               <h4>Random Bird Fact: </h4>
-              <br></br>
               <h5>{fact}</h5>
               <br></br>
-            </div>
-            <div className="container">
-            <div className="row">
+              </div>
               <div className="span9 centred"> 
-                <h5>Random Bird Picture: </h5>
+                <h4>Random Bird Picture: </h4>
                 <img id="bird-img" alt="birdie"/><br></br>
                 <button className="birdButton" onClick={() => dispatch(createBirdImage())}>Generate</button>
-              </div>
-              </div>
+            </div>
             </div>
           </div>
   );

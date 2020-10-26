@@ -29,7 +29,7 @@ function Header() {
         </div>
         <div className="col-2">
           <div className="row hidden justiy-content-center" id="navButtonsDiv">
-        <Menu menuButton={<MenuButton>Navigate</MenuButton>}>
+        <Menu id="navigationButton" menuButton={<MenuButton>Navigate</MenuButton>}>
             <MenuItem onClick={() => dispatch(feed())}>Feed</MenuItem>
             <MenuItem onClick={() => dispatch(friends())}>Friends</MenuItem>
             <MenuItem onClick={() => dispatch(editProfile())}>Edit Profile</MenuItem>
