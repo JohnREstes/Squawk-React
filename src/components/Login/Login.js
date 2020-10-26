@@ -79,6 +79,7 @@ class Login extends Component {
                     </div>
                 </form>
                 <div>
+                    <br></br>
                     <button onClick={() => this.handleCreateUser()}>Create New Account</button><br></br>
                     
                     <p className="hidden" id="invalid">Username or Password is incorrect!</p>

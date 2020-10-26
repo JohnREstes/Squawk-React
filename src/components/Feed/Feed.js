@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 function Feed() {
   const feed = useSelector(state => state.feed);
   return (
-        <div className="col-6 text-center main-body">
+        <div className="col-6 text-center center">
           <div className="row">
             <div className="col-12">
                 <h1>Feed:</h1>

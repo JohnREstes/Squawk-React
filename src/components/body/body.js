@@ -20,7 +20,7 @@ function Body(){
     switch(pageDisplayed){
       case FEED:
         return (
-          <div className="row main-body">
+          <div className="row">
             <BirdBar/>
             <Feed/>
             <Friends/>
@@ -28,7 +28,7 @@ function Body(){
         )
       case FRIENDS:
         return (
-          <div className="row main-body">
+          <div className="row">
             <BirdBar/>
             <FriendsList/>
             <Friends/>
@@ -36,7 +36,7 @@ function Body(){
           )
       case EDIT_PROFILE:
         return (
-          <div className="row main-body">
+          <div className="row">
             <BirdBar/>
             <EditUser/>
             <Friends/>
@@ -46,7 +46,7 @@ function Body(){
     }
   }else if(isLogged === false && pageDisplayed === CREATE_ACCOUNT){
       return (
-        <div className="row main-body">
+        <div className="row">
           <BirdBar/>
           <UserRegistration/>
           <Friends/>
@@ -54,7 +54,7 @@ function Body(){
         )  
   }else{
         return (
-        <div className="row main-body">
+        <div className="row">
           <BirdBar/>
           <Login/>
           <Friends/>

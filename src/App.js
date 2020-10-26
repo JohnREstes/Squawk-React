@@ -5,10 +5,12 @@ import Body from './components/Body/Body'
 
 function App(){
   return (
-    <div className="container-fluid full-page">
+    <>
       <Header/>
-      <Body />
-    </div>
+      <div  className="container-fluid content">
+        <Body />
+      </div>
+    </>
   )
 }
 export default App;

@@ -62,6 +62,9 @@ export const loginSquawkUser = userInfo => dispatch => {
         dispatch({
             type: LOGIN_SQUAWK_USER,
             payload: res
+        })
+        dispatch({
+            type: SIGN_IN
         });
     })
     .catch(err => {

@@ -1,10 +1,34 @@
-body{
+body, html{
   background-color: rgb(176, 199, 241);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
 }
-.full-page {
-  height: 100%!important;
-  width: 100%!important;
-  margin: 0px!important;
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+.left,
+.right,
+.center {
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: scroll; 
+  text-align: center;
+}
+.content {
+  padding: 75px 0;
+  margin: 30px auto 0 auto;
+  width: 90%;
 }
 input{
   margin: 5px;
@@ -12,19 +36,11 @@ input{
 .App {
   text-align: center;
 }
-#main-header{
-  border-bottom: 1px black solid;
-}
 #friends-div{
-  border-left: 1px black solid;
-}
-.main-body{
-  height: 700px;
+  
 }
 .login-div{
-  width: 75%;
-  border: solid 1px black;
-  margin: 20px;
+  width: 85%;
 }
 #profile-picture{
   width: 200px;

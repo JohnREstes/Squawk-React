@@ -67,7 +67,6 @@ class newUser extends React.Component {
     }
 
   render() {
-    console.log(this.state.pictures)
     return (
         <div className="col-6">
             <div className="login-div">

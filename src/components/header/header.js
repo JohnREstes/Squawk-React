@@ -7,7 +7,8 @@ function Header() {
   const isLogged = useSelector(state => state.isLogged);
   const username = useSelector(state => state.user.userDetails.username);
   return (
-    <div className="row" id="main-header">
+    <div className="header" id="main-header">
+      <div className="row">
       <div className="col-2">
       <button onClick={() => dispatch(loginToggle())}>Log In Toggle</button><br></br>
       {isLogged ? <h6>{username}, you are logged in.</h6> : ''}
@@ -30,7 +31,10 @@ function Header() {
             <button id="navButtons" onClick={() => dispatch(editProfile())}>Edit Profile</button>
             <button id="navButtons" onClick={() => dispatch(feed())}>Home</button>
           </div>
-          
+          </div>  
+        </div>
+        <div className="progress-container">
+          <div className="progress-bar" id="myBar"></div>
         </div>
     </div>
   );

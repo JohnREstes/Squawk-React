@@ -13,9 +13,7 @@ const userReducer = (state = initialState, action) => {
       }
     case LOGIN_USER:
       return { 
-        ...state,
         login: state.users = action.payload
-
       }
     case LOGIN_SQUAWK_USER:
       return { ...state,
