@@ -1,10 +1,6 @@
 import { LOAD_FEED } from '../actions/types';
 
-const initialState = {
-    userDetails: {}
-}
-
-const feedReducer = (state = initialState, action) => {
+const feedReducer = (state = null, action) => {
  switch(action.type){
     case LOAD_FEED:
       return {

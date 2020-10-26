@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, LOAD_FEED, LOGIN_SQUAWK_USER } from './types';
+import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, LOGIN_SQUAWK_USER } from './types';
 import axios from 'axios'
 import $ from 'jquery'
 import jwt_decode from "jwt-decode"
@@ -64,7 +64,8 @@ export const loginSquawkUser = userInfo => dispatch => {
         console.log(decoded);
         dispatch({
             type: LOGIN_SQUAWK_USER,
-            payload: decoded
+            payload: decoded,
+            JWT: res.data
         })
         dispatch({
             type: SIGN_IN
@@ -94,11 +95,4 @@ export const createAccount = () => dispatch => {
     dispatch({
         type: CREATE_ACCOUNT,
     });
-};
-export const createFeed = () => dispatch => {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-    .then(res => dispatch({
-            type: LOAD_FEED,
-            payload: res.data
-        }));
 };

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
-import { createFeed, createAccount, loginSquawkUser} from '../../actions/userActions'
+import { createAccount, loginSquawkUser} from '../../actions/userActions'
+import { createFeed } from '../../actions/feedActions'
 import { createBirdFact, createBirdImage } from '../../actions/birdActions'
-import { LOGIN_SQUAWK_USER } from '../../actions/types'
 import PropTypes from 'prop-types'
 
 class Login extends Component {
