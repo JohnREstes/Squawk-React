@@ -61,16 +61,20 @@ class Login extends Component {
                 <h3>Log in to Squawk</h3>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
                     <input
-                    placeholder="Username or Password"
+                    placeholder="Username or email address"
                     type="text"
                     value={this.state.usernameOrEmailAddress}
                     onChange={this.handleUserChange}
+                    required="true"
+                    size="26"
                     /><br></br>
                     <input
                     placeholder="Password"
                     type="password"
                     value={this.state.password}
                     onChange={this.handlePasswordChange}
+                    required="true"
+                    size="26"
                     />
                     <div>
                     <button type="submit">
@@ -82,7 +86,7 @@ class Login extends Component {
                     <br></br>
                     <button onClick={() => this.handleCreateUser()}>Create New Account</button><br></br>
                     
-                    <p className="hidden" id="invalid">Username or Password is incorrect!</p>
+                    <p className="hidden" id="invalid">Invalid login. Please try again.</p>
                 </div>
             </div>
         </div>
