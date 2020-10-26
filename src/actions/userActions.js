@@ -58,10 +58,10 @@ export const loginSquawkUser = userInfo => dispatch => {
     })
     .then(res => {
         $('#invalid').css('display', 'none');
-        console.log(res);
+        console.log(res.data);
         dispatch({
             type: LOGIN_SQUAWK_USER,
-            payload: res
+            payload: res.data
         })
         dispatch({
             type: SIGN_IN

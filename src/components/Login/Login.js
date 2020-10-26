@@ -65,7 +65,7 @@ class Login extends Component {
                     type="text"
                     value={this.state.usernameOrEmailAddress}
                     onChange={this.handleUserChange}
-                    required="true"
+                    required={true}
                     size="26"
                     /><br></br>
                     <input
@@ -73,7 +73,7 @@ class Login extends Component {
                     type="password"
                     value={this.state.password}
                     onChange={this.handlePasswordChange}
-                    required="true"
+                    required={true}
                     size="26"
                     />
                     <div>
