@@ -1,9 +1,10 @@
-import { CREATE_NEW_USER, LOGIN_SQUAWK_USER, LOGIN_USER } from '../actions/types';
+import { CREATE_NEW_USER, LOGIN_SQUAWK_USER, GET_SQUAWK_USER } from '../actions/types';
 
 const initialState = {
       login:{
         username: "",
-        _id: ""
+        _id: "",
+        JWT: ""
       }
 }
 
@@ -16,9 +17,12 @@ const userReducer = (state = initialState, action) => {
       }
     case LOGIN_SQUAWK_USER:
       return { ...state,
-        login: action.payload,
+        info: action.payload,
         JWT: action.JWT
-
+      }
+    case GET_SQUAWK_USER:
+      return { ...state,
+        info: action.payload
       }
     default:
       return state

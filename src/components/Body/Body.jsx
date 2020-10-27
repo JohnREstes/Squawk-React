@@ -7,14 +7,15 @@ import EditUser from '../EditUser/EditUser'
 import UserRegistration from '../UserRegistration/UserRegistration'
 import FriendsList from '../FriendsList/FriendsList'
 import BirdBar from '../BirdBar/BirdBar'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import $ from 'jquery'
 import { FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT } from '../../actions/types'
 
 function Body(){
   const isLogged = useSelector(state => state.isLogged);
-  const pageDisplayed = useSelector(state => state.pageDisplayed.type)
-
+  const dispatch = useDispatch();
+  const pageDisplayed = useSelector(state => state.pageDisplayed.type);
+  
   if(isLogged){
     $("#navButtonsDiv").css("display", "initial")
     switch(pageDisplayed){

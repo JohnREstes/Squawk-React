@@ -1,7 +1,8 @@
-import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, LOGIN_SQUAWK_USER } from './types';
+import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, LOGIN_SQUAWK_USER, GET_SQUAWK_USER } from './types';
 import axios from 'axios'
 import $ from 'jquery'
 import jwt_decode from "jwt-decode"
+import { useSelector } from 'react-redux'
 
 //each action creator is a function
 //thunk middleware allows us to call dispatch function directly so we can make asynchronous requests
@@ -60,12 +61,18 @@ export const loginSquawkUser = userInfo => dispatch => {
     .then(res => {
         $('#invalid').css('display', 'none');
         console.log(res.data);
-        var decoded = jwt_decode(res.data);
-        console.log(decoded);
-        dispatch({
-            type: LOGIN_SQUAWK_USER,
-            payload: decoded,
-            JWT: res.data
+        localStorage.setItem("JWT", res.data);
+        const JsonWT = localStorage.getItem("JWT");
+        const tokenHeader = { headers: {
+            'x-auth-token': JsonWT
+          }}
+          axios.get('http://localhost:5000/api/users/user-info', tokenHeader)
+          .then(res => {
+              console.log(res.data);
+              dispatch({
+                  type: GET_SQUAWK_USER,
+                  payload: res.data,
+              })
         })
         dispatch({
             type: SIGN_IN
@@ -76,6 +83,7 @@ export const loginSquawkUser = userInfo => dispatch => {
         console.log(err)
     })
 };
+
 export const feed = () => dispatch => {
     dispatch({
         type: FEED,
