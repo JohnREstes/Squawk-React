@@ -7,7 +7,7 @@ import '@szhsin/react-menu/dist/index.css';
 function Header() {
   const dispatch = useDispatch();
   const isLogged = useSelector(state => state.isLogged);
-  const username = useSelector(state => state.user.login.username);
+  const username = useSelector(state => state.user.info.username);
   return (
     <div className="header" id="main-header">
       <div className="row">

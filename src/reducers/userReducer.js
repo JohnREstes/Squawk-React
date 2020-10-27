@@ -1,12 +1,23 @@
 import { CREATE_NEW_USER, LOGIN_SQUAWK_USER, GET_SQUAWK_USER } from '../actions/types';
 
 const initialState = {
-      login:{
+      info: {
+        aboutMe: "",
+        birdCall: "",
+        birdsIWatch: [],
+        emailAddress: "",
+        friends: [],
+        incomingFriendRequests: [],
+        isOnline: false,
+        joinedDate: "",
+        myBirds: [],
+        outgoingFriendRequests: [],
+        password: "Haha, you no see.",
+        posts: [],
+        profilePicture: "",
         username: "",
-        _id: "",
-        JWT: ""
-      }
-}
+        _id: ""
+}}
 
 const userReducer = (state = initialState, action) => {
  switch(action.type){
