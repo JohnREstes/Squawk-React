@@ -26,11 +26,12 @@ class Feed extends React.Component {
         </div> : (
         <div className="col-6 center">
           <div className="row">
-            <div className="col-12 justiy-content-center feed-div">
-                <h1>Feed:</h1>
+            <div className="col-12 justiy-content-center">
+                <h1 className="text-center">Feed:</h1>
                 {this.props.feed.feed.map(x => (
-                    <p key={x.id}>
-                    {this.props.base64TextString ? <img class="profile-pic" src={`data:image/png;base64,${this.props.base64TextString}`}/>: ''}
+                    <p className="feed-div" key={x.id}>
+                    {this.props.base64TextString ? <img className="profile-pic" src={`data:image/png;base64,${this.props.base64TextString}`}/>: ''}
+                    {this.props.username}
                       <br></br>
                       {x.title}</p>
                 ))}
@@ -42,7 +43,10 @@ class Feed extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { base64TextString: state.user.info.profilePicture, feed: state.feed }
+  return {  base64TextString: state.user.info.profilePicture, 
+            feed: state.feed,
+            username: state.user.info.username
+          }
 }
 
 const mapDispatchToProps = (dispatch) => {

@@ -79,7 +79,7 @@ input{
   max-height: 250px;
 }
 .feed-div{
-  width: 80%;
-  margin: 15px;
-  padding: 15px;
+  margin-left: 35px;
+  padding: 5px;
+  font-size: larger;
 }
