@@ -33,6 +33,7 @@ function Header() {
             <MenuItem onClick={() => dispatch(feed())}>Feed</MenuItem>
             <MenuItem onClick={() => dispatch(friends())}>Friends</MenuItem>
             <MenuItem onClick={() => dispatch(editProfile())}>Edit Profile</MenuItem>
+            <MenuItem onClick={() => dispatch(editProfile())}>LOGOUT</MenuItem>
         </Menu>
             {/* <button id="navButtons" onClick={() => dispatch(friends())}>Friends</button>
             <button id="navButtons" onClick={() => dispatch(editProfile())}>Edit Profile</button>

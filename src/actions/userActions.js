@@ -1,8 +1,6 @@
 import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, LOGIN_SQUAWK_USER, GET_SQUAWK_USER } from './types';
 import axios from 'axios'
 import $ from 'jquery'
-import jwt_decode from "jwt-decode"
-import { useSelector } from 'react-redux'
 
 //each action creator is a function
 //thunk middleware allows us to call dispatch function directly so we can make asynchronous requests

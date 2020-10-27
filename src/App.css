@@ -67,7 +67,7 @@ input{
   margin: 5px;
   padding: 2px;
 }
-#bird-img{
+#bird-img, #profile-pic{
   width: 100%;
   max-height: 250px;
 }
