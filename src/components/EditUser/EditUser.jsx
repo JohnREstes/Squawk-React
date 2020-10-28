@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { editUserProfile } from '../../actions/userActions'
 
+//edit to EditUser class name instead of newUser?
+
 class newUser extends React.Component {
   constructor() {
     super()
@@ -173,15 +175,10 @@ class newUser extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { posts: state.posts, isLogged: state.isLogged }
-}
+newUser.propTypes = {
+    editUserProfile: PropTypes.func.isRequired
+};
 
-const mapDispatchToProps = (dispatch) => {
-  return { dispatch }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(newUser)
+export default connect (null,{
+    editUserProfile
+})(newUser);
