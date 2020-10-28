@@ -53,9 +53,13 @@ class Feed extends React.Component {
     var microSecondsDiff = Math.abs(datefromAPITimeStamp - nowTimeStamp );
     // Number of milliseconds per day =
     //   24 hrs/day * 60 minutes/hour * 60 seconds/minute * 1000 msecs/second
-    var daysDiff = Math.floor(microSecondsDiff/(1000 * 60 * 24));
-    daysDiff = daysDiff + " hours ago"
-    return daysDiff
+    var hoursDiff = Math.floor(microSecondsDiff/(1000 * 60 * 24));
+    var minutesDiff = (Math.floor(microSecondsDiff/(1000 * 24)) - ( hoursDiff * 60));
+
+    hoursDiff = hoursDiff + " hours "
+    minutesDiff = minutesDiff + " minutes ago"
+    var timeDiff = hoursDiff + minutesDiff
+    return timeDiff
   }
 
   buildFeed(){
