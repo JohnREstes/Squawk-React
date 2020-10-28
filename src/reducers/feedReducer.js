@@ -1,4 +1,4 @@
-import { LOAD_FEED } from '../actions/types';
+import { LOAD_FEED, CREATE_POST } from '../actions/types';
 
 const feedReducer = (state = null, action) => {
  switch(action.type){
@@ -7,6 +7,11 @@ const feedReducer = (state = null, action) => {
         ...state,
         feed: action.payload
       }
+    case CREATE_POST:
+      return {
+        ...state,
+        feed: action.payload
+      }      
     default:
       return state
   }

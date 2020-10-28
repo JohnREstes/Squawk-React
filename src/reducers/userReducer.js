@@ -27,11 +27,6 @@ const userReducer = (state = initialState, action) => {
         ...state,
         info: action.payload
       }
-    case LOGIN_SQUAWK_USER:
-      return { ...state,
-        info: action.payload,
-        JWT: action.JWT
-      }
     case GET_SQUAWK_USER:
       return { ...state,
         info: action.payload

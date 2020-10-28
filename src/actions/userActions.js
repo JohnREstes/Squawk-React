@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, LOGIN_SQUAWK_USER, GET_SQUAWK_USER } from './types';
+import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, GET_SQUAWK_USER } from './types';
 import axios from 'axios'
 import $ from 'jquery'
 
@@ -64,24 +64,41 @@ export const loginSquawkUser = userInfo => dispatch => {
         const tokenHeader = { headers: {
             'x-auth-token': JsonWT
           }}
-          axios.get('http://localhost:5000/api/users/user-info', tokenHeader)
+          axios.get('http://localhost:5000/api/users/user-profile', tokenHeader)
           .then(res => {
               console.log(res.data);
               dispatch({
                   type: GET_SQUAWK_USER,
                   payload: res.data,
               })
-        })
-        dispatch({
-            type: SIGN_IN
-        });
+            })
+            .then(
+                dispatch({
+                    type: SIGN_IN
+                }))
     })
     .catch(err => {
         $('#invalid').css('display', 'initial');
         console.log(err)
     })
 };
-
+export const getSquawkUser = userInfo => dispatch => {
+    const JsonWT = localStorage.getItem("JWT");
+    const tokenHeader = { headers: {
+        'x-auth-token': JsonWT
+        }}
+        axios.get('http://localhost:5000/api/users/user-profile', tokenHeader)
+        .then(res => {
+            console.log(res.data);
+            dispatch({
+                type: GET_SQUAWK_USER,
+                payload: res.data,
+            })
+        })
+    .catch(err => {
+        console.log(err)
+    })
+};
 export const feed = () => dispatch => {
     dispatch({
         type: FEED,
