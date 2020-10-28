@@ -31,25 +31,10 @@ export const loginUser = info => dispatch => {
         payload: info
     });
 };
-export const editUserProfile = userInfo => dispatch =>{
-    const JsonWT = localStorage.getItem("JWT");
-    const tokenHeader = { headers: {
-        'x-auth-token': JsonWT
-      }}
-    axios.put('http://localhost:5000/api/users', tokenHeader, 
-    {
-        //create function for each property
-        username : userInfo.username,
-        password: userInfo.password,
-        emailAddress: userInfo.emailAddress,
-        birdCall: userInfo.birdCall,
-        aboutMe: userInfo.aboutMe,
-        myBirds: userInfo.myBirds,
-        birdsIWatch:userInfo.birdsIWatch,
-        g
-    })
-    .
-}
+
+
+
+
 export const createNewUser = userInfo => dispatch => {
     axios.post('http://localhost:5000/api/users',
     {
@@ -71,6 +56,25 @@ export const createNewUser = userInfo => dispatch => {
         console.log(err)
     })
 };
+
+export const editUserProfile = userInfo => dispatch =>{
+    let objectToUpdateKey = Object.keys(userInfo)[0];   
+    let objectToUpdateValue = Object.values(userInfo)[0];
+    let endpoint = switchCaseForEndPointCreation(objectToUpdateKey);   
+    const JsonWT = localStorage.getItem("JWT");
+    const tokenHeader = { headers: {
+        'x-auth-token': JsonWT
+    }}
+    
+    axios.put(`http://localhost:5000/api/${endpoint}`, {
+        objectToUpdateKey: objectToUpdateValue
+        } , tokenHeader, 
+    )
+    .then(res => {
+        console.log(res.data);
+    })
+};
+
 export const loginSquawkUser = userInfo => dispatch => {
     axios.post('http://localhost:5000/api/auth',
     {
@@ -84,14 +88,14 @@ export const loginSquawkUser = userInfo => dispatch => {
         const JsonWT = localStorage.getItem("JWT");
         const tokenHeader = { headers: {
             'x-auth-token': JsonWT
-          }}
-          axios.get('http://localhost:5000/api/users/user-info', tokenHeader)
-          .then(res => {
-              console.log(res.data);
-              dispatch({
-                  type: GET_SQUAWK_USER,
-                  payload: res.data,
-              })
+            }}
+            axios.get('http://localhost:5000/api/users/user-profile', tokenHeader)
+            .then(res => {
+                console.log(res.data);
+                dispatch({
+                    type: GET_SQUAWK_USER,
+                    payload: res.data,
+                })
         })
         dispatch({
             type: SIGN_IN
@@ -102,6 +106,34 @@ export const loginSquawkUser = userInfo => dispatch => {
         console.log(err)
     })
 };
+function switchCaseForEndPointCreation(key){
+    let endpointValue = "";
+    switch(key){
+        case "user":
+            endpointValue = "update-username";
+            break;
+        case "password":
+            endpointValue = "update-password";
+            break;
+        case "email":
+            endpointValue = "update-email-address";
+            break;
+        case "aboutMe":
+            endpointValue = "update-about-me";
+            break;
+        case "birdCall":
+            endpointValue = "update-bird-call";
+            break;
+        case "myBirds":
+            endpointValue = "update-my-birds";
+            break;
+        case "birdsIWatch":
+            endpointValue = "update-birds-i-watch";
+            break;
+    }
+    return endpointValue;
+}
+
 
 export const feed = () => dispatch => {
     dispatch({
