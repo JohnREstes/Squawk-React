@@ -1,5 +1,5 @@
 import React from 'react'
-import { createPost } from '../../actions/feedActions'
+import { createPost, createFeed } from '../../actions/feedActions'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -42,6 +42,7 @@ class Feed extends React.Component {
         imageString: this.state.postImage
       }
       this.props.createPost(newPost);
+
   }  
 
   calculateTime(postTime){
@@ -53,19 +54,19 @@ class Feed extends React.Component {
     // Number of milliseconds per day =
     //   24 hrs/day * 60 minutes/hour * 60 seconds/minute * 1000 msecs/second
     var daysDiff = Math.floor(microSecondsDiff/(1000 * 60 * 24));
-    daysDiff = daysDiff + " hours"
-    console.log(daysDiff);
+    daysDiff = daysDiff + " hours ago"
     return daysDiff
   }
 
   buildFeed(){
+    // if(!this.props.feed.feed.postsToDisplay === undefined){
     const feed = this.props.feed.feed.postsToDisplay.map(feed => {
       const { author, likes, postTime, text, imageString } = feed
     return (
       <div className="feed-div-box" key={postTime} style={{border: '1px solid black'}}>
         <p className="feed-div">
         {this.props.base64TextString ? <img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.base64TextString}`}/>: ''}
-        {author} {this.calculateTime(postTime)}
+        {author} {this.calculateTime(postTime)} {likes} : number of likes
           <br></br>
           {text}
           {imageString ? <img className="profile-pic" alt="Feed" src={`data:image/png;base64,${imageString}`}/>: ''}
@@ -73,7 +74,7 @@ class Feed extends React.Component {
           </div>
     )})
       return (<>{feed}</>)
-  }
+  }//}
 
   render(){
     return (!this.props.base64TextString ? 
@@ -117,13 +118,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {    
-    createPost: post => dispatch(createPost(post))
+    createPost: post => dispatch(createPost(post)),
+    createFeed: () => dispatch(createFeed())
 
   }
 }
 
 Feed.propTypes = {
-  createPost: PropTypes.func.isRequired
+  createPost: PropTypes.func.isRequired,
+  createFeed: PropTypes.func.isRequired
 };
 
 export default connect(

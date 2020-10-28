@@ -23,10 +23,7 @@ export const createPost = (postData) => dispatch => {
             text: postData.text,
             imageString: postData.imageString
     }, tokenHeader)
-    .then(res => dispatch({
-        type: CREATE_POST,
-        payload: res.data
-    }))
+
 }
 export const editPost = (postData) => dispatch => {
     console.log("Edit")
