@@ -44,17 +44,33 @@ class Feed extends React.Component {
       this.props.createPost(newPost);
   }  
 
+  calculateTime(postTime){
+    var dateFromAPI = postTime;
+    var now = new Date();
+    var datefromAPITimeStamp = (new Date(dateFromAPI)).getTime();
+    var nowTimeStamp = now.getTime();
+    var microSecondsDiff = Math.abs(datefromAPITimeStamp - nowTimeStamp );
+    // Number of milliseconds per day =
+    //   24 hrs/day * 60 minutes/hour * 60 seconds/minute * 1000 msecs/second
+    var daysDiff = Math.floor(microSecondsDiff/(1000 * 60 * 24));
+    daysDiff = daysDiff + " hours"
+    console.log(daysDiff);
+    return daysDiff
+  }
+
   buildFeed(){
     const feed = this.props.feed.feed.postsToDisplay.map(feed => {
       const { author, likes, postTime, text, imageString } = feed
     return (
-        <p className="feed-div" key={postTime}>
+      <div className="feed-div-box" key={postTime} style={{border: '1px solid black'}}>
+        <p className="feed-div">
         {this.props.base64TextString ? <img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.base64TextString}`}/>: ''}
-        {author}
+        {author} {this.calculateTime(postTime)}
           <br></br>
           {text}
           {imageString ? <img className="profile-pic" alt="Feed" src={`data:image/png;base64,${imageString}`}/>: ''}
           </p>
+          </div>
     )})
       return (<>{feed}</>)
   }

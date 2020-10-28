@@ -25,7 +25,7 @@ body, html{
   text-align: center;
 }
 .center {
-  height: 90vh;
+  height: 85vh;
   overflow: hidden;
   overflow-y: scroll; 
 }
@@ -79,7 +79,7 @@ input{
   max-height: 250px;
 }
 .feed-div{
-  margin-left: 35px;
-  padding: 5px;
+  margin-left: 30px;
+  padding: 10px;
   font-size: larger;
 }
