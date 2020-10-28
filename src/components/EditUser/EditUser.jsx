@@ -1,14 +1,16 @@
 import React from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { editUserProfile } from '../../actions/userActions'
 
 class newUser extends React.Component {
   constructor() {
     super()
     this.state = {
-      user: '',
+      username: '',
       password: '',
-      email: '',
+      emailAddress: '',
       birdCall: '',
       picture: '',
       aboutMe: '',
@@ -45,16 +47,19 @@ class newUser extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    // const newUser = { 
-    //     user: this.state.user,
-    //     password: this.state.password,
-    //     email: this.state.email,
-    //     birdCall: this.state.birdCall,
-    //     aboutMe: this.state.aboutMe,
-    //     myBirds: this.state.myBirds,
-    //     birdsIWatch:this.state.birdsIWatch,
-    //     base64TextString: this.state.base64TextString
-    // }
+    const updatedUser = { 
+        userId: this.state,
+        username: this.state.username,
+        password: this.state.password,
+        emailAddress: this.state.emailAddress,
+        birdCall: this.state.birdCall,
+        aboutMe: this.state.aboutMe,
+        myBirds: this.state.myBirds,
+        birdsIWatch:this.state.birdsIWatch,
+        base64TextString: this.state.base64TextString
+    }
+    this.props.editUserProfile(updatedUser);
+    //take this new user and send it to the right function call
     const preview = document.getElementById('profile-picture');
     console.log("binary string: ", this.state.base64TextString)
 
@@ -65,7 +70,9 @@ class newUser extends React.Component {
       e.preventDefault();
 
     }
-
+//create a form for each of the values.  function to handle the submit more solid
+//for multiple uses i.e. each of the values not needing their own call
+//also, need to create an edit button that reveals a submit and cancel button for each of the forms.
   render() {
     return (
         <div className="col-6">
@@ -74,7 +81,7 @@ class newUser extends React.Component {
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     User: <input
                     type="text" name="user"
-                    value={this.state.user}
+                    value={this.state.username}
                     onChange={(e) => this.onChange(e)}
                     /><br></br>
                     Password: <input
@@ -84,7 +91,7 @@ class newUser extends React.Component {
                     /><br></br>
                     Email: <input
                     type="email" name="email"
-                    value={this.state.email}
+                    value={this.state.emailAddress}
                     onChange={(e) => this.onChange(e)}
                     /><br></br>
                     About me: <textarea
@@ -123,9 +130,9 @@ class newUser extends React.Component {
 
                 <div>
                       <img id="profile-picture" alt="User uploaded for profile"/>
-                      <p>{this.state.user}</p>
+                      <p>{this.state.username}</p>
                       <p>{this.state.password}</p>
-                      <p>{this.state.email}</p>
+                      <p>{this.state.emailAddress}</p>
                       <p>{this.state.birdCall}</p>
                       <p>{this.state.aboutMe}</p>
                       <p>{this.state.myBirds}</p>

@@ -31,6 +31,25 @@ export const loginUser = info => dispatch => {
         payload: info
     });
 };
+export const editUserProfile = userInfo => dispatch =>{
+    const JsonWT = localStorage.getItem("JWT");
+    const tokenHeader = { headers: {
+        'x-auth-token': JsonWT
+      }}
+    axios.put('http://localhost:5000/api/users', tokenHeader, 
+    {
+        //create function for each property
+        username : userInfo.username,
+        password: userInfo.password,
+        emailAddress: userInfo.emailAddress,
+        birdCall: userInfo.birdCall,
+        aboutMe: userInfo.aboutMe,
+        myBirds: userInfo.myBirds,
+        birdsIWatch:userInfo.birdsIWatch,
+        g
+    })
+    .
+}
 export const createNewUser = userInfo => dispatch => {
     axios.post('http://localhost:5000/api/users',
     {
