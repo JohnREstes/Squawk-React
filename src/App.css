@@ -79,7 +79,25 @@ input{
   max-height: 250px;
 }
 .feed-div{
-  margin-left: 30px;
-  padding: 10px;
+  margin-left: 5px;
   font-size: larger;
+}
+.feed-top-row{
+  margin-top: 5px;
+}
+.posted-pic{
+  height: 160px;
+  width: auto;
+}
+.post-div{
+  border: black 1px solid;
+  padding: 7px;
+  margin-top: 5px;
+}
+#postText{
+  width: 80%;
+}
+.feed-icons{
+  height: 25px;
+  width: auto;
 }
