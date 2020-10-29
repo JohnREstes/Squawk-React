@@ -127,6 +127,7 @@ class Feed extends React.Component {
 
 
   buildFeed(){
+    const username = this.props.username;
     const posts = this.props.feed.feed.postsToDisplay;
     let wholeFeed = [];
     for(let i = 0; i < posts.length; i++){
@@ -139,6 +140,7 @@ class Feed extends React.Component {
       const postTime = posts[i].postTime;
       const text = posts[i].text;
       const imageString = posts[i].imageString;
+      const notAuthor = (username !== author);
       let post = (
       <div className="col-12 feed-div-box" key={_id} style={{border: '1px solid black'}}>
         <div className="row">
@@ -154,17 +156,19 @@ class Feed extends React.Component {
                 onClick={(e) => this.likePost(author, _id)}
                 ></img><br></br>
               </div>
-              <div className="col-2">
-              <img src={require('../../images/pencil.png')} className="feed-icons"
-                onClick={(e) => this.changeToEdit(_id)}
-                ></img>
-                <img src={require('../../images/trash.png')} className="feed-icons"
-                onClick={(e) => this.deletePost(_id)}
-                ></img><br></br>
-                <button className="hidden" id={buttonId}
-                onClick={(e) => this.editPost(_id)}
-                >Submit Changes</button>
-              </div>
+              {notAuthor ? <div className="col-2"></div> : (
+                <div className="col-2">
+                <img src={require('../../images/pencil.png')} className="feed-icons"
+                  onClick={(e) => this.changeToEdit(_id)}
+                  ></img>
+                  <img src={require('../../images/trash.png')} className="feed-icons"
+                  onClick={(e) => this.deletePost(_id)}
+                  ></img><br></br>
+                  <button className="hidden" id={buttonId}
+                  onClick={(e) => this.editPost(_id)}
+                  >Submit Changes</button>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -234,7 +238,8 @@ const mapStateToProps = (state) => {
   return {  base64TextString: state.user.info.profilePicture, 
             feed: state.feed,
             username: state.user.info.username,
-            feedUpdated: state.feedUpdated
+            feedUpdated: state.feedUpdated,
+            username: state.user.info.username
           }
 }
 
@@ -246,7 +251,6 @@ const mapDispatchToProps = dispatch => {
     editPost: data => dispatch(editPost(data)),
     deletePost: data => dispatch(deletePost(data)),
     feedToggle: () => dispatch(feedToggle())
-
   }
 }
 
