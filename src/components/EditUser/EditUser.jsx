@@ -4,13 +4,11 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { editUserProfile } from '../../actions/userActions'
 
-//edit to EditUser class name instead of newUser?
-
-class newUser extends React.Component {
+class EditUser extends React.Component {
   constructor() {
     super()
     this.state = {
-      user: '',
+      username: '',
       password: '',
       email: '',
       birdCall: '',
@@ -73,10 +71,10 @@ class newUser extends React.Component {
         <div className="col-6">
             <div className="login-div">
                 <h3 className="text-center">Edit User</h3>
-                <form onSubmit={(e) => this.onSubmit(e, "user")}>
-                    User: <input
-                    type="text" name="user"
-                    value={this.state.user}
+                <form onSubmit={(e) => this.onSubmit(e, "username")}>
+                    Username: <input
+                    type="text" name="username"
+                    value={this.state.username}
                     onChange={(e) => this.onChange(e)}/>
                      <button type="submit">
                         Submit
@@ -161,7 +159,7 @@ class newUser extends React.Component {
 
                 <div>
                       <img id="profile-picture" alt="User uploaded for profile"/>
-                      <p>{this.state.user}</p>
+                      <p>{this.state.username}</p>
                       <p>{this.state.password}</p>
                       <p>{this.state.email}</p>
                       <p>{this.state.birdCall}</p>
@@ -175,10 +173,10 @@ class newUser extends React.Component {
   }
 }
 
-newUser.propTypes = {
+EditUser.propTypes = {
     editUserProfile: PropTypes.func.isRequired
 };
 
 export default connect (null,{
     editUserProfile
-})(newUser);
+})(EditUser);

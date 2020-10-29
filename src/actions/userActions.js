@@ -60,16 +60,18 @@ export const createNewUser = userInfo => dispatch => {
 export const editUserProfile = userInfo => dispatch =>{
     let objectToUpdateKey = Object.keys(userInfo)[0];   
     let objectToUpdateValue = Object.values(userInfo)[0];
-    let endpoint = switchCaseForEndPointCreation(objectToUpdateKey);   
+    let endpoint = switchCaseForEndPointCreation(objectToUpdateKey);
+    console.log(objectToUpdateKey, objectToUpdateValue)
     const JsonWT = localStorage.getItem("JWT");
-    const tokenHeader = { headers: {
-        'x-auth-token': JsonWT
-    }}
-    
-    axios.put(`http://localhost:5000/api/${endpoint}`, {
-        objectToUpdateKey: objectToUpdateValue
-        } , tokenHeader, 
-    )
+    console.log(JsonWT);
+    const config = {
+        method: 'put',
+        url: `http://localhost:5000/api/users/${endpoint}`,
+        headers: { 'x-auth-token': JsonWT },
+        data: { objectToUpdateKey: objectToUpdateValue }
+    }
+
+    axios(config)
     .then(res => {
         console.log(res.data);
     })
@@ -109,26 +111,26 @@ export const loginSquawkUser = userInfo => dispatch => {
 function switchCaseForEndPointCreation(key){
     let endpointValue = "";
     switch(key){
-        case "user":
-            endpointValue = "update-username";
+        case 'username':
+            endpointValue = 'update-username';
             break;
-        case "password":
-            endpointValue = "update-password";
+        case 'password':
+            endpointValue = 'update-password';
             break;
-        case "email":
-            endpointValue = "update-email-address";
+        case 'email':
+            endpointValue = 'update-email-address';
             break;
-        case "aboutMe":
-            endpointValue = "update-about-me";
+        case 'aboutMe':
+            endpointValue = 'update-about-me';
             break;
-        case "birdCall":
-            endpointValue = "update-bird-call";
+        case 'birdCall':
+            endpointValue = 'update-bird-call';
             break;
-        case "myBirds":
-            endpointValue = "update-my-birds";
+        case 'myBirds':
+            endpointValue = 'update-my-birds';
             break;
-        case "birdsIWatch":
-            endpointValue = "update-birds-i-watch";
+        case 'birdsIWatch':
+            endpointValue = 'update-birds-i-watch';
             break;
     }
     return endpointValue;
