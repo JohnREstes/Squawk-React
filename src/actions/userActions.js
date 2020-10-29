@@ -58,6 +58,7 @@ export const createNewUser = userInfo => dispatch => {
 };
 
 export const editUserProfile = userInfo => dispatch =>{
+    debugger;
     let objectToUpdateKey = Object.keys(userInfo)[0];   
     let objectToUpdateValue = Object.values(userInfo)[0];
     let endpoint = switchCaseForEndPointCreation(objectToUpdateKey);
@@ -68,12 +69,14 @@ export const editUserProfile = userInfo => dispatch =>{
         method: 'put',
         url: `http://localhost:5000/api/users/${endpoint}`,
         headers: { 'x-auth-token': JsonWT },
-        data: { objectToUpdateKey: objectToUpdateValue }
+        data: { [objectToUpdateKey]: objectToUpdateValue }
     }
 
     axios(config)
     .then(res => {
         console.log(res.data);
+    }).catch(err =>{
+        console.log("ERROR", err.response);
     })
 };
 
