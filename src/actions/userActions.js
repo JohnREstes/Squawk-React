@@ -66,7 +66,6 @@ export const loginSquawkUser = userInfo => dispatch => {
           }}
           axios.get('http://localhost:5000/api/users/user-profile', tokenHeader)
           .then(res => {
-              console.log(res.data);
               dispatch({
                   type: GET_SQUAWK_USER,
                   payload: res.data,
@@ -82,7 +81,7 @@ export const loginSquawkUser = userInfo => dispatch => {
         console.log(err)
     })
 };
-export const getSquawkUser = userInfo => dispatch => {
+export const getSquawkUser = () => dispatch => {
     const JsonWT = localStorage.getItem("JWT");
     const tokenHeader = { headers: {
         'x-auth-token': JsonWT

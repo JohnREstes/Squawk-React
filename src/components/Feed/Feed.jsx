@@ -1,5 +1,5 @@
 import React from 'react'
-import { createPost, createFeed, likePost, editPost } from '../../actions/feedActions'
+import { createPost, createFeed, likePost, editPost, deletePost, feedToggle } from '../../actions/feedActions'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
@@ -10,9 +10,22 @@ class Feed extends React.Component {
     this.state = {
       postText: '',
       postImage: '',
-      editText: ''
+      editText: '',
+      feedToggle: false
     }
     this.onChange = this.onChange.bind(this)
+  }
+
+  componentDidUpdate(){
+    console.log("feed updated",this.props.feedUpdated);
+    if(this.props.feedUpdated){
+      this.props.createFeed();
+
+      this.setState({
+        feedToggle: this.props.feedUpdated
+      })
+      this.props.feedToggle();
+    }
   }
 
   onChange(e) {
@@ -70,11 +83,11 @@ class Feed extends React.Component {
         author: author,
         postId: _id
       }
-      this.props.likePost(likePost);
-      this.props.createFeed();
+    this.props.likePost(likePost);
   }
 
   changeToEdit(_id){
+    console.log(_id);
     const inputId = "#input" + _id;
     const textId = "#text" + _id; 
     const buttonId = "#button" + _id;
@@ -88,10 +101,16 @@ class Feed extends React.Component {
       postId: _id,
       newText: this.state.editText
     }
-    console.log(editPost)
     this.props.editPost(editPost);
-    this.props.createFeed();
-}
+  }
+
+  deletePost(_id){
+    const delPost = { 
+      postId: _id
+    }
+    this.props.deletePost(delPost);
+  }
+
 
   buildFeed(){
     const posts = this.props.feed.feed.postsToDisplay;
@@ -126,7 +145,7 @@ class Feed extends React.Component {
                 onClick={(e) => this.changeToEdit(_id)}
                 ></img>
                 <img src={require('../../images/trash.png')} className="feed-icons"
-                onClick={() => this.deletePost(author, _id)}
+                onClick={(e) => this.deletePost(_id)}
                 ></img><br></br>
                 <button className="hidden" id={buttonId}
                 onClick={(e) => this.editPost(_id)}
@@ -200,16 +219,19 @@ class Feed extends React.Component {
 const mapStateToProps = (state) => {
   return {  base64TextString: state.user.info.profilePicture, 
             feed: state.feed,
-            username: state.user.info.username
+            username: state.user.info.username,
+            feedUpdated: state.feedUpdated
           }
 }
 
 const mapDispatchToProps = dispatch => {
   return {    
-    createPost: post => dispatch(createPost(post)),
+    createPost: data => dispatch(createPost(data)),
     createFeed: () => dispatch(createFeed()),
-    likePost: like => dispatch(likePost(like)),
-    editPost: edit => dispatch(editPost(edit))
+    likePost: data => dispatch(likePost(data)),
+    editPost: data => dispatch(editPost(data)),
+    deletePost: data => dispatch(deletePost(data)),
+    feedToggle: () => dispatch(feedToggle())
 
   }
 }
@@ -218,7 +240,9 @@ Feed.propTypes = {
   createPost: PropTypes.func.isRequired,
   createFeed: PropTypes.func.isRequired,
   likePost: PropTypes.func.isRequired,
-  editPost: PropTypes.func.isRequired
+  editPost: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
+  feedToggle:  PropTypes.func.isRequired
 };
 
 export default connect(
