@@ -25,6 +25,9 @@ class Feed extends React.Component {
         feedToggle: this.props.feedUpdated
       })
       this.props.feedToggle();
+      this.setState({
+        feedToggle: this.props.feedUpdated
+      })
     }
   }
 
@@ -96,12 +99,23 @@ class Feed extends React.Component {
     $( textId ).css('display', 'none');
   }
 
+  closeChangeToEdit(_id){
+    console.log(_id);
+    const inputId = "#input" + _id;
+    const textId = "#text" + _id; 
+    const buttonId = "#button" + _id;
+    $( inputId ).css('display', 'none');
+    $( buttonId ).css('display', 'none');
+    $( textId ).css('display', 'initial');
+  }
+
   editPost(_id){
     const editPost = { 
       postId: _id,
       newText: this.state.editText
     }
     this.props.editPost(editPost);
+    this.closeChangeToEdit(_id);
   }
 
   deletePost(_id){
