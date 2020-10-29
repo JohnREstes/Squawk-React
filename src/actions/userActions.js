@@ -1,23 +1,7 @@
-import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, GET_SQUAWK_USER } from './types';
+import { SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, GET_SQUAWK_USER } from './types';
 import axios from 'axios'
 import $ from 'jquery'
 
-//each action creator is a function
-//thunk middleware allows us to call dispatch function directly so we can make asynchronous requests
-//dispatch is like resolving a promise; dispatch allows for sending of data
-
-export const increment = number => dispatch => {
-    dispatch({
-        type: INCREMENT,
-        payload: number
-    });
-};
-export const decrement = number => dispatch => {
-    dispatch({
-        type: DECREMENT,
-        payload: number
-    });
-};
 export const loginToggle = () => dispatch => {
     dispatch({
         type: SIGN_IN
@@ -98,6 +82,20 @@ export const getSquawkUser = () => dispatch => {
         console.log(err)
     })
 };
+
+export const logoutSquawkUser = () => dispatch => {
+    axios.post('http://localhost:5000/api/users/log-out')
+    .then(() => {
+        localStorage.removeItem("JWT");
+    })
+    .then(
+        dispatch({
+            type: SIGN_IN
+        }) 
+    )
+};
+
+
 export const feed = () => dispatch => {
     dispatch({
         type: FEED,
