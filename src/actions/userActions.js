@@ -110,12 +110,13 @@ export const getSquawkUser = () => dispatch => {
 };
 
 export const logoutSquawkUser = () => dispatch => {
-    const data = {}
     const JsonWT = localStorage.getItem("JWT");
-    const tokenHeader = { headers: {
-        'x-auth-token': JsonWT
-        }}
-    axios.post('http://localhost:5000/api/users/log-out', data, tokenHeader)
+    const config = {
+        method: 'post',
+        url: 'http://localhost:5000/api/users/log-out',
+        headers: { 'x-auth-token': JsonWT }
+    }
+    axios(config)
     .then(() => {
         localStorage.removeItem("JWT");
     })
