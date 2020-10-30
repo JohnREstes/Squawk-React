@@ -151,7 +151,7 @@ function switchCaseForEndPointCreation(key){
         case 'birdsIWatch':
             endpointValue = 'update-birds-i-watch';
             break;
-        case 'image':
+        case 'profilePicture':
             endpointValue = 'update-profile-picture';
             break;
     }

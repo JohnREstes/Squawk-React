@@ -12,7 +12,7 @@ class EditUser extends React.Component {
       password: '',
       emailAddress: '',
       birdCall: '',
-      image: '',
+      profilePicture: '',
       aboutMe: '',
       myBirds: '',
       birdsIWatch:'',
@@ -51,7 +51,7 @@ class EditUser extends React.Component {
 
     
     var updatedUserInfo;
-    if(propertyToModify === "image"){
+    if(propertyToModify === "profilePicture"){
         updatedUserInfo = {
             [propertyToModify]: this.state.base64TextString
         }
@@ -144,10 +144,10 @@ class EditUser extends React.Component {
                 </form>
                     <br></br>
                     <div><br></br>
-                <form onSubmit={(e) => this.onSubmit(e, "image")}>                                    
+                <form onSubmit={(e) => this.onSubmit(e, "profilePicture")}>                                    
                     <input
                         type="file"
-                        name="image"
+                        name="profilePicture"
                         id="file"
                         accept=".jpeg, .png, .jpg"
                         onChange={(e) => this.handlePictureChange(e)}
