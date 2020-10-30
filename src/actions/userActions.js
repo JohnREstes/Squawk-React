@@ -1,25 +1,7 @@
-import { INCREMENT, DECREMENT, SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, LOGIN_SQUAWK_USER, GET_SQUAWK_USER } from './types';
+import { SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, GET_SQUAWK_USER } from './types';
 import axios from 'axios'
 import $ from 'jquery'
-import jwt_decode from "jwt-decode"
-import { useSelector } from 'react-redux'
 
-//each action creator is a function
-//thunk middleware allows us to call dispatch function directly so we can make asynchronous requests
-//dispatch is like resolving a promise; dispatch allows for sending of data
-
-export const increment = number => dispatch => {
-    dispatch({
-        type: INCREMENT,
-        payload: number
-    });
-};
-export const decrement = number => dispatch => {
-    dispatch({
-        type: DECREMENT,
-        payload: number
-    });
-};
 export const loginToggle = () => dispatch => {
     dispatch({
         type: SIGN_IN
@@ -31,6 +13,10 @@ export const loginUser = info => dispatch => {
         payload: info
     });
 };
+
+
+
+
 export const createNewUser = userInfo => dispatch => {
     axios.post('http://localhost:5000/api/users',
     {
@@ -52,6 +38,28 @@ export const createNewUser = userInfo => dispatch => {
         console.log(err)
     })
 };
+
+export const editUserProfile = userInfo => dispatch =>{
+    let objectToUpdateKey = Object.keys(userInfo)[0];   
+    let objectToUpdateValue = Object.values(userInfo)[0];
+    let endpoint = switchCaseForEndPointCreation(objectToUpdateKey);
+    const JsonWT = localStorage.getItem("JWT");
+    
+    const config = {
+        method: 'put',
+        url: `http://localhost:5000/api/users/${endpoint}`,
+        headers: { 'x-auth-token': JsonWT },
+        data: { [objectToUpdateKey]: objectToUpdateValue }
+    }
+
+    axios(config)
+    .then(res => {
+        console.log(res.data);
+    }).catch(err =>{
+        console.log("ERROR", err.response);
+    })
+};
+
 export const loginSquawkUser = userInfo => dispatch => {
     axios.post('http://localhost:5000/api/auth',
     {
@@ -65,24 +73,87 @@ export const loginSquawkUser = userInfo => dispatch => {
         const JsonWT = localStorage.getItem("JWT");
         const tokenHeader = { headers: {
             'x-auth-token': JsonWT
+
           }}
           axios.get('http://localhost:5000/api/users/user-profile', tokenHeader)
           .then(res => {
-              console.log(res.data);
               dispatch({
                   type: GET_SQUAWK_USER,
                   payload: res.data,
               })
-        })
-        dispatch({
-            type: SIGN_IN
-        });
+            })
+            .then(
+                dispatch({
+                    type: SIGN_IN
+                }))
+
     })
     .catch(err => {
         $('#invalid').css('display', 'initial');
         console.log(err)
     })
 };
+
+export const getSquawkUser = () => dispatch => {
+    const JsonWT = localStorage.getItem("JWT");
+    const tokenHeader = { headers: {
+        'x-auth-token': JsonWT
+        }}
+        axios.get('http://localhost:5000/api/users/user-profile', tokenHeader)
+        .then(res => {
+            console.log(res.data);
+            dispatch({
+                type: GET_SQUAWK_USER,
+                payload: res.data,
+            })
+        })
+    .catch(err => {
+        console.log(err)
+    })
+};
+
+export const logoutSquawkUser = () => dispatch => {
+    axios.post('http://localhost:5000/api/users/log-out')
+    .then(() => {
+        localStorage.removeItem("JWT");
+    })
+    .then(
+        dispatch({
+            type: SIGN_IN
+        }) 
+    )
+};
+
+function switchCaseForEndPointCreation(key){
+    let endpointValue = "";
+    switch(key){
+        case 'username':
+            endpointValue = 'update-username';
+            break;
+        case 'password':
+            endpointValue = 'update-password';
+            break;
+        case 'emailAddress':
+            endpointValue = 'update-email-address';
+            break;
+        case 'aboutMe':
+            endpointValue = 'update-about-me';
+            break;
+        case 'birdCall':
+            endpointValue = 'update-bird-call';
+            break;
+        case 'myBirds':
+            endpointValue = 'update-my-birds';
+            break;
+        case 'birdsIWatch':
+            endpointValue = 'update-birds-i-watch';
+            break;
+        case 'image':
+            endpointValue = 'update-profile-picture';
+            break;
+    }
+    return endpointValue;
+}
 
 export const feed = () => dispatch => {
     dispatch({

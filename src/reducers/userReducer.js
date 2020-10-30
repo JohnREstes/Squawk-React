@@ -1,4 +1,5 @@
 import { CREATE_NEW_USER, LOGIN_SQUAWK_USER, GET_SQUAWK_USER } from '../actions/types';
+import { initialPicture } from '../../src/constants'  ;
 
 const initialState = {
 <<<<<<< Updated upstream
@@ -15,7 +16,7 @@ const initialState = {
         outgoingFriendRequests: [],
         password: "Haha, you no see.",
         posts: [],
-        profilePicture: "",
+        profilePicture: initialPicture,
         username: "",
         _id: ""
 =======
@@ -44,11 +45,6 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         info: action.payload
-      }
-    case LOGIN_SQUAWK_USER:
-      return { ...state,
-        info: action.payload,
-        JWT: action.JWT
       }
     case GET_SQUAWK_USER:
       return { ...state,
