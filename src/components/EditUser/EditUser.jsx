@@ -6,7 +6,7 @@ import { editUserProfile } from '../../actions/userActions'
 
 class EditUser extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       username: '',
       password: '',
@@ -19,34 +19,36 @@ class EditUser extends React.Component {
       base64TextString: ''
     }
 
-    this.onChange = this.onChange.bind(this)
-    this.handlePictureChange = this.handlePictureChange.bind(this)
+
+    this.onChange = this.onChange.bind(this);
+    this.handlePictureChange = this.handlePictureChange.bind(this);
   }
 
   onChange(e) {
-    this.setState({ 
-        [e.target.name]: e.target.value
-     })
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   }
 
-  handlePictureChange(event){
-      console.log("file to upload: ", event.target.files[0])
-      let file = event.target.files[0]
-      if (file){
-        const reader = new FileReader();
-        reader.onload = this._handleReaderLoaded.bind(this);
-        reader.readAsBinaryString(file);
-      }  
+  handlePictureChange(event) {
+    console.log("file to upload: ", event.target.files[0]);
+    let file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
     }
-    _handleReaderLoaded = (readerEvt) => {
-        let binaryString = readerEvt.target.result;
-        this.setState({
-            base64TextString: btoa(binaryString)
-        })
-    }
+  }
+  _handleReaderLoaded = (readerEvt) => {
+    let binaryString = readerEvt.target.result;
+    this.setState({
+      base64TextString: btoa(binaryString),
+    });
+  };
 
   onSubmit(e, propertyToModify) {
     e.preventDefault();
+
     
     var updatedUserInfo;
     if(propertyToModify === "image"){
@@ -65,7 +67,6 @@ class EditUser extends React.Component {
     preview.src = "data:image/png;base64," + this.state.base64TextString
   }
  
-
 
   render() {
     return (
@@ -169,8 +170,22 @@ class EditUser extends React.Component {
                       <p>{this.state.birdsIWatch}</p>
                 </div>
             </div>
+          </form>
+          <br></br>
+
+          <div>
+            <img id="profile-picture" alt="User uploaded for profile" />
+            <p>{this.state.user}</p>
+            <p>{this.state.password}</p>
+            <p>{this.state.email}</p>
+            <p>{this.state.birdCall}</p>
+            <p>{this.state.aboutMe}</p>
+            <p>{this.state.myBirds}</p>
+            <p>{this.state.birdsIWatch}</p>
+          </div>
         </div>
-    )
+      </div>
+    );
   }
 }
 
