@@ -169,22 +169,14 @@ class EditUser extends React.Component {
                       <p>{this.state.myBirds}</p>
                       <p>{this.state.birdsIWatch}</p>
                 </div>
+         
             </div>
-          </form>
-          <br></br>
-
-          <div>
-            <img id="profile-picture" alt="User uploaded for profile" />
-            <p>{this.state.user}</p>
-            <p>{this.state.password}</p>
-            <p>{this.state.email}</p>
-            <p>{this.state.birdCall}</p>
-            <p>{this.state.aboutMe}</p>
-            <p>{this.state.myBirds}</p>
-            <p>{this.state.birdsIWatch}</p>
-          </div>
         </div>
-      </div>
+       
+
+         
+        
+     
     );
   }
 }

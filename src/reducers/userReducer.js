@@ -2,7 +2,6 @@ import { CREATE_NEW_USER, LOGIN_SQUAWK_USER, GET_SQUAWK_USER } from '../actions/
 import { initialPicture } from '../../src/constants'  ;
 
 const initialState = {
-<<<<<<< Updated upstream
       info: {
         aboutMe: "",
         birdCall: "",
@@ -19,24 +18,6 @@ const initialState = {
         profilePicture: initialPicture,
         username: "",
         _id: ""
-=======
-  info: {
-    aboutMe: "",
-    birdCall: "",
-    birdsIWatch: [],
-    emailAddress: "",
-    friends: [],
-    incomingFriendRequests: [],
-    isOnline: false,
-    joinedDate: "",
-    myBirds: [],
-    outgoingFriendRequests: [],
-    password: "Haha, you no see.",
-    posts: [],
-    profilePicture: "",
-    username: "",
-    _id: ""
->>>>>>> Stashed changes
 }}
 
 const userReducer = (state = initialState, action) => {
