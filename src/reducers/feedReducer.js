@@ -1,4 +1,4 @@
-import { LOAD_FEED } from '../actions/types';
+import {  LOAD_FEED } from '../actions/types';
 
 const feedReducer = (state = null, action) => {
  switch(action.type){

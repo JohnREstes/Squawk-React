@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import '../../App.css'
 import { connect } from 'react-redux'
 import { createAccount, loginSquawkUser} from '../../actions/userActions'
 import { createFeed } from '../../actions/feedActions'
 import { createBirdFact, createBirdImage } from '../../actions/birdActions'
+import { deleteOldBlacklistedTokens } from '../../actions/generalActions'
 import PropTypes from 'prop-types'
 
 class Login extends Component {
@@ -52,6 +52,7 @@ class Login extends Component {
           password: this.state.password 
     }
     this.props.loginSquawkUser(login);
+    this.props.deleteOldBlacklistedTokens();
   }
 
   render() {
@@ -99,8 +100,21 @@ Login.propTypes = {
   loginSquawkUser: PropTypes.func.isRequired,
   createFeed: PropTypes.func.isRequired, 
   createBirdFact: PropTypes.func.isRequired, 
-  createBirdImage:  PropTypes.func.isRequired
+  createBirdImage:  PropTypes.func.isRequired,
+  deleteOldBlacklistedTokens: PropTypes.func.isRequired
 };
+
+// const mapDispatchToProps = dispatch => {
+//   return {    
+//     createPost: data => dispatch(createPost(data)),
+//     createFeed: () => dispatch(createFeed()),
+//     likePost: data => dispatch(likePost(data)),
+//     editPost: data => dispatch(editPost(data)),
+//     deletePost: data => dispatch(deletePost(data)),
+//     feedToggle: () => dispatch(feedToggle()),
+//     deleteOldBlacklistedTokens: () => dispatch(deleteOldBlacklistedTokens())
+//   }
+// }
 
 const mapStateToProps = (state) => ({
   pageDisplayed: state.pageDisplayed.type 
@@ -113,6 +127,7 @@ export default connect(
   loginSquawkUser,
   createFeed,
   createBirdFact,
-  createBirdImage
+  createBirdImage,
+  deleteOldBlacklistedTokens
 })
 (Login);

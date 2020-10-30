@@ -18,12 +18,16 @@ body, html{
   padding: 0;
 }
 .left,
-.right,
+.right{
+  height: 90vh;
+  overflow: hidden;
+  overflow-y: scroll; 
+  text-align: center;
+}
 .center {
   height: 85vh;
   overflow: hidden;
   overflow-y: scroll; 
-  text-align: center;
 }
 .content {
   padding: 75px 0;
@@ -39,11 +43,14 @@ input{
 .login-div{
   width: 85%;
 }
-#profile-picture{
-  width: 200px;
+.profile-pic{
+  height: 80px;
+  width: 80px;
 }
 #passwordMismatch{
   display: none;
+  color: red;
+  font-size: large;
 }
 .red{
   color: rgb(133, 36, 36);
@@ -54,6 +61,9 @@ input{
 #navButtons{
   margin: 10px;
   padding: 2px;
+}
+#navButtonsDiv{
+  margin: 10px;
 }
 #username{
   margin: 10px;
@@ -67,7 +77,30 @@ input{
   margin: 5px;
   padding: 2px;
 }
-#bird-img{
+#bird-img {
   width: 100%;
   max-height: 250px;
+}
+.feed-div{
+  margin-left: 5px;
+  font-size: larger;
+}
+.feed-top-row{
+  margin-top: 5px;
+}
+.posted-pic{
+  height: 160px;
+  width: auto;
+}
+.post-div{
+  border: black 1px solid;
+  padding: 7px;
+  margin-top: 5px;
+}
+#postText{
+  width: 80%;
+}
+.feed-icons{
+  height: 25px;
+  width: auto;
 }
