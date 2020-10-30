@@ -203,10 +203,7 @@ class Feed extends React.Component {
   }  
 
   render(){
-    return (!this.props.base64TextString ? 
-      <div className="col-6 text-center center">
-        <h1 id="loading">Loading...</h1>
-        </div> : (
+    return (
         <div className="col-6 center">
           <div className="row">
             <div className="col-12 justiy-content-center">
@@ -233,7 +230,7 @@ class Feed extends React.Component {
             </div>
           </div>
         </div>
-  ));
+  )
 }}
 
 const mapStateToProps = (state) => {
