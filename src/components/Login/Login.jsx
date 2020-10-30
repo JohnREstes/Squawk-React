@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createAccount, loginSquawkUser} from '../../actions/userActions'
-import { createFeed } from '../../actions/feedActions'
 import { createBirdFact, createBirdImage } from '../../actions/birdActions'
 import { deleteOldBlacklistedTokens } from '../../actions/generalActions'
 import PropTypes from 'prop-types'
@@ -9,7 +8,6 @@ import PropTypes from 'prop-types'
 class Login extends Component {
   
   componentDidMount(){
-    this.props.createFeed();
     this.props.createBirdImage();
     this.props.createBirdFact();
   }
@@ -98,7 +96,6 @@ class Login extends Component {
 Login.propTypes = {
   createAccount: PropTypes.func.isRequired,
   loginSquawkUser: PropTypes.func.isRequired,
-  createFeed: PropTypes.func.isRequired, 
   createBirdFact: PropTypes.func.isRequired, 
   createBirdImage:  PropTypes.func.isRequired,
   deleteOldBlacklistedTokens: PropTypes.func.isRequired
@@ -125,7 +122,6 @@ export default connect(
   {
   createAccount,
   loginSquawkUser,
-  createFeed,
   createBirdFact,
   createBirdImage,
   deleteOldBlacklistedTokens
