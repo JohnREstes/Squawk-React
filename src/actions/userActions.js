@@ -14,9 +14,6 @@ export const loginUser = info => dispatch => {
     });
 };
 
-
-
-
 export const createNewUser = userInfo => dispatch => {
     axios.post('http://localhost:5000/api/users',
     {
@@ -113,7 +110,12 @@ export const getSquawkUser = () => dispatch => {
 };
 
 export const logoutSquawkUser = () => dispatch => {
-    axios.post('http://localhost:5000/api/users/log-out')
+    const data = {}
+    const JsonWT = localStorage.getItem("JWT");
+    const tokenHeader = { headers: {
+        'x-auth-token': JsonWT
+        }}
+    axios.post('http://localhost:5000/api/users/log-out', data, tokenHeader)
     .then(() => {
         localStorage.removeItem("JWT");
     })
