@@ -1,16 +1,18 @@
 import React from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { editUserProfile } from '../../actions/userActions'
 
-class newUser extends React.Component {
+class EditUser extends React.Component {
   constructor() {
     super()
     this.state = {
-      user: '',
+      username: '',
       password: '',
-      email: '',
+      emailAddress: '',
       birdCall: '',
-      picture: '',
+      image: '',
       aboutMe: '',
       myBirds: '',
       birdsIWatch:'',
@@ -43,71 +45,105 @@ class newUser extends React.Component {
         })
     }
 
-  onSubmit(e) {
+  onSubmit(e, propertyToModify) {
     e.preventDefault();
-    // const newUser = { 
-    //     user: this.state.user,
-    //     password: this.state.password,
-    //     email: this.state.email,
-    //     birdCall: this.state.birdCall,
-    //     aboutMe: this.state.aboutMe,
-    //     myBirds: this.state.myBirds,
-    //     birdsIWatch:this.state.birdsIWatch,
-    //     base64TextString: this.state.base64TextString
-    // }
+    
+    var updatedUserInfo;
+    if(propertyToModify === "image"){
+        updatedUserInfo = {
+            [propertyToModify]: this.state.base64TextString
+        }
+    }else{
+        updatedUserInfo =
+        { 
+            [propertyToModify]: this.state[propertyToModify]
+        }
+    }
+    this.props.editUserProfile(updatedUserInfo);
+   
     const preview = document.getElementById('profile-picture');
-    console.log("binary string: ", this.state.base64TextString)
-
     preview.src = "data:image/png;base64," + this.state.base64TextString
   }
+ 
 
-  onFileSubmit = (e) => {
-      e.preventDefault();
-
-    }
 
   render() {
     return (
         <div className="col-6">
             <div className="login-div">
                 <h3 className="text-center">Edit User</h3>
-                <form onSubmit={(e) => this.onSubmit(e)}>
-                    User: <input
-                    type="text" name="user"
-                    value={this.state.user}
-                    onChange={(e) => this.onChange(e)}
-                    /><br></br>
+                <form onSubmit={(e) => this.onSubmit(e, "username")}>
+                    Username: <input
+                    type="text" name="username"
+                    value={this.state.username}
+                    onChange={(e) => this.onChange(e)}/>
+                     <button type="submit">
+                        Submit
+                    </button>
+                </form>
+                    <br></br>
+                <form onSubmit={(e) => this.onSubmit(e, "password")}>
                     Password: <input
                     type="password" name="password"
                     value={this.state.password}
-                    onChange={(e) => this.onChange(e)}
-                    /><br></br>
+                    onChange={(e) => this.onChange(e)}/>
+                    <button type="submit">
+                        Submit
+                    </button>
+                </form>
+                    <br></br>
+                <form onSubmit={(e) => this.onSubmit(e, "emailAddress")}>
                     Email: <input
-                    type="email" name="email"
-                    value={this.state.email}
-                    onChange={(e) => this.onChange(e)}
-                    /><br></br>
+                    type="email" name="emailAddress"
+                    value={this.state.emailAddress}
+                    onChange={(e) => this.onChange(e)}/>
+                    <button type="submit">
+                        Submit
+                    </button>
+                </form>
+                    <br></br>
+                <form onSubmit={(e) => this.onSubmit(e, "aboutMe")}>
                     About me: <textarea
                     type="text" name="aboutMe"
                     value={this.state.aboutMe}
-                    onChange={(e) => this.onChange(e)}
-                    /><br></br>
+                    onChange={(e) => this.onChange(e)}/>
+                    <button type="submit">
+                        Submit
+                    </button>
+                </form>
+                    <br></br>
+                <form onSubmit={(e) => this.onSubmit(e, "birdCall")}>
                     Bird Call: <textarea
                     type="text" name="birdCall"
                     value={this.state.birdCall}
-                    onChange={(e) => this.onChange(e)}
-                    /><br></br>
+                    onChange={(e) => this.onChange(e)}/>
+                    <button type="submit">
+                        Submit
+                    </button>
+                </form>    
+                    <br></br>
+                <form onSubmit={(e) => this.onSubmit(e, "myBirds")}>    
                     My Birds: <textarea
                     type="text" name="myBirds"
                     value={this.state.myBirds}
-                    onChange={(e) => this.onChange(e)}
-                    />     <br></br>
+                    onChange={(e) => this.onChange(e)}/>
+                    <button type="submit">
+                        Submit
+                    </button>
+                </form>
+                     <br></br>
+                <form onSubmit={(e) => this.onSubmit(e, "birdsIWatch")}>
                     Birds I Watch: <textarea
                     type="text" name="birdsIWatch"
                     value={this.state.birdsIWatch}
-                    onChange={(e) => this.onChange(e)}
-                    />     <br></br>                                
+                    onChange={(e) => this.onChange(e)}/>
+                    <button type="submit">
+                        Submit
+                    </button>
+                </form>
+                    <br></br>
                     <div><br></br>
+                <form onSubmit={(e) => this.onSubmit(e, "image")}>                                    
                     <input
                         type="file"
                         name="image"
@@ -118,14 +154,15 @@ class newUser extends React.Component {
                     <button type="submit">
                         Submit
                     </button>
+                  </form>  
                     </div>
-                </form><br></br>
+                <br></br>
 
                 <div>
                       <img id="profile-picture" alt="User uploaded for profile"/>
-                      <p>{this.state.user}</p>
+                      <p>{this.state.username}</p>
                       <p>{this.state.password}</p>
-                      <p>{this.state.email}</p>
+                      <p>{this.state.emailAddress}</p>
                       <p>{this.state.birdCall}</p>
                       <p>{this.state.aboutMe}</p>
                       <p>{this.state.myBirds}</p>
@@ -137,15 +174,10 @@ class newUser extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { posts: state.posts, isLogged: state.isLogged }
-}
+EditUser.propTypes = {
+    editUserProfile: PropTypes.func.isRequired
+};
 
-const mapDispatchToProps = (dispatch) => {
-  return { dispatch }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(newUser)
+export default connect (null,{
+    editUserProfile
+})(EditUser);
