@@ -147,7 +147,7 @@ class Feed extends React.Component {
           <div className="col-12">
             <div className="row ">
               <div className="col-2 feed-top-row">
-                {this.props.base64TextString ? <img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.base64TextString}`}/>: ''}
+                {notAuthor ? <img src={this.props.birdLink} className="profile-pic" alt="other user"/> : <img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.base64TextString}`}/>}
               </div>
               <div className="col-8">
                 {author}<br></br>  
@@ -239,7 +239,8 @@ const mapStateToProps = (state) => {
             feed: state.feed,
             username: state.user.info.username,
             feedUpdated: state.feedUpdated,
-            username: state.user.info.username
+            username: state.user.info.username,
+            birdLink: state.birdFact.link
           }
 }
 

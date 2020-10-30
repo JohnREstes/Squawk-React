@@ -62,6 +62,9 @@ input{
   margin: 10px;
   padding: 2px;
 }
+#navButtonsDiv{
+  margin: 10px;
+}
 #username{
   margin: 10px;
 }

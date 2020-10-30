@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, connect, useSelector } from 'react-redux'
-import { feed, friends, editProfile, loginToggle, logoutSquawkUser } from '../../actions/userActions'
+import { feed, friends, editProfile, logoutSquawkUser } from '../../actions/userActions'
 import { Menu, MenuItem, MenuButton, MenuDivider } from '@szhsin/react-menu';
 import '@szhsin/react-menu/dist/index.css';
 
@@ -11,11 +11,11 @@ function Header() {
   return (
     <div className="header" id="main-header">
       <div className="row">
-      <div className="col-2">
-      <button onClick={() => dispatch(loginToggle())}>Log In Toggle</button><br></br>
+      <div className="col-3">
+      <br></br>
       {isLogged ? <div id="username"><h6>{username}, you are logged in.</h6></div> : ''}
       </div>
-        <div className="col-8">
+        <div className="col-6">
             <div className="row">
               <div className="col-12 d-flex justify-content-center center-text">
                 <h1>Squawk</h1>
@@ -27,17 +27,20 @@ function Header() {
               </div>
             </div>
         </div>
+        <div className="col-1"></div>
         <div className="col-2">
-          <div className="row hidden justiy-content-center" id="navButtonsDiv">
-        <Menu id="navigationButton" menuButton={<MenuButton>Navigate</MenuButton>}>
-            <MenuItem onClick={() => dispatch(feed())}>Feed</MenuItem>
-            <MenuItem onClick={() => dispatch(friends())}>Friends</MenuItem>
-            <MenuItem onClick={() => dispatch(editProfile())}>Edit Profile</MenuItem>
-            <MenuDivider />
-            <MenuItem onClick={() => dispatch(logoutSquawkUser())}><b>Logout</b></MenuItem>
-        </Menu>
+          <div className="row">
+            <div className="col-12 hidden justiy-content-center" id="navButtonsDiv">
+              <Menu id="navigationButton" menuButton={<MenuButton>Navigate</MenuButton>}>
+                <MenuItem onClick={() => dispatch(feed())}>Feed</MenuItem>
+                <MenuItem onClick={() => dispatch(friends())}>Friends</MenuItem>
+                <MenuItem onClick={() => dispatch(editProfile())}>Edit Profile</MenuItem>
+                <MenuDivider />
+                <MenuItem onClick={() => dispatch(logoutSquawkUser())}><b>Logout</b></MenuItem>
+              </Menu>
+            </div>
           </div>
-          </div>  
+        </div>  
         </div>
         <div className="progress-container">
           <div className="progress-bar" id="myBar"></div>
