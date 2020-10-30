@@ -10,9 +10,9 @@ class EditUser extends React.Component {
     this.state = {
       username: '',
       password: '',
-      email: '',
+      emailAddress: '',
       birdCall: '',
-      picture: '',
+      image: '',
       aboutMe: '',
       myBirds: '',
       birdsIWatch:'',
@@ -46,26 +46,27 @@ class EditUser extends React.Component {
     }
 
   onSubmit(e, propertyToModify) {
-    console.log(propertyToModify);
     e.preventDefault();
-    const updatedUserInfo = { 
-        
-        [propertyToModify]: this.state[propertyToModify]
+    
+    var updatedUserInfo;
+    if(propertyToModify === "image"){
+        updatedUserInfo = {
+            [propertyToModify]: this.state.base64TextString
+        }
+    }else{
+        updatedUserInfo =
+        { 
+            [propertyToModify]: this.state[propertyToModify]
+        }
     }
     this.props.editUserProfile(updatedUserInfo);
-    //take this new user and send it to the right function call
+   
     const preview = document.getElementById('profile-picture');
-    console.log("binary string: ", this.state.base64TextString)
-
     preview.src = "data:image/png;base64," + this.state.base64TextString
   }
  
 
- 
-//create a form for each of the values.  function to handle the submit more solid
-//for multiple uses i.e. each of the values not needing their own call
-//also, need to create an edit button that reveals a submit and cancel button for each of the forms.
-//need to create another component to render when edit on-click that pulls up a submit and a cancel button
+
   render() {
     return (
         <div className="col-6">
@@ -81,7 +82,7 @@ class EditUser extends React.Component {
                     </button>
                 </form>
                     <br></br>
-                <form onSubmit={(e) => this.onSubmit(e)}>
+                <form onSubmit={(e) => this.onSubmit(e, "password")}>
                     Password: <input
                     type="password" name="password"
                     value={this.state.password}
@@ -91,17 +92,17 @@ class EditUser extends React.Component {
                     </button>
                 </form>
                     <br></br>
-                <form onSubmit={(e) => this.onSubmit(e)}>
+                <form onSubmit={(e) => this.onSubmit(e, "emailAddress")}>
                     Email: <input
-                    type="email" name="email"
-                    value={this.state.email}
+                    type="email" name="emailAddress"
+                    value={this.state.emailAddress}
                     onChange={(e) => this.onChange(e)}/>
                     <button type="submit">
                         Submit
                     </button>
                 </form>
                     <br></br>
-                <form onSubmit={(e) => this.onSubmit(e)}>
+                <form onSubmit={(e) => this.onSubmit(e, "aboutMe")}>
                     About me: <textarea
                     type="text" name="aboutMe"
                     value={this.state.aboutMe}
@@ -111,7 +112,7 @@ class EditUser extends React.Component {
                     </button>
                 </form>
                     <br></br>
-                <form onSubmit={(e) => this.onSubmit(e)}>
+                <form onSubmit={(e) => this.onSubmit(e, "birdCall")}>
                     Bird Call: <textarea
                     type="text" name="birdCall"
                     value={this.state.birdCall}
@@ -121,7 +122,7 @@ class EditUser extends React.Component {
                     </button>
                 </form>    
                     <br></br>
-                <form onSubmit={(e) => this.onSubmit(e)}>    
+                <form onSubmit={(e) => this.onSubmit(e, "myBirds")}>    
                     My Birds: <textarea
                     type="text" name="myBirds"
                     value={this.state.myBirds}
@@ -131,7 +132,7 @@ class EditUser extends React.Component {
                     </button>
                 </form>
                      <br></br>
-                <form onSubmit={(e) => this.onSubmit(e)}>
+                <form onSubmit={(e) => this.onSubmit(e, "birdsIWatch")}>
                     Birds I Watch: <textarea
                     type="text" name="birdsIWatch"
                     value={this.state.birdsIWatch}
@@ -142,7 +143,7 @@ class EditUser extends React.Component {
                 </form>
                     <br></br>
                     <div><br></br>
-                <form onSubmit={(e) => this.onSubmit(e)}>                                    
+                <form onSubmit={(e) => this.onSubmit(e, "image")}>                                    
                     <input
                         type="file"
                         name="image"
@@ -161,7 +162,7 @@ class EditUser extends React.Component {
                       <img id="profile-picture" alt="User uploaded for profile"/>
                       <p>{this.state.username}</p>
                       <p>{this.state.password}</p>
-                      <p>{this.state.email}</p>
+                      <p>{this.state.emailAddress}</p>
                       <p>{this.state.birdCall}</p>
                       <p>{this.state.aboutMe}</p>
                       <p>{this.state.myBirds}</p>

@@ -58,13 +58,11 @@ export const createNewUser = userInfo => dispatch => {
 };
 
 export const editUserProfile = userInfo => dispatch =>{
-    debugger;
     let objectToUpdateKey = Object.keys(userInfo)[0];   
     let objectToUpdateValue = Object.values(userInfo)[0];
     let endpoint = switchCaseForEndPointCreation(objectToUpdateKey);
-    console.log(objectToUpdateKey, objectToUpdateValue)
     const JsonWT = localStorage.getItem("JWT");
-    console.log(JsonWT);
+    
     const config = {
         method: 'put',
         url: `http://localhost:5000/api/users/${endpoint}`,
@@ -120,7 +118,7 @@ function switchCaseForEndPointCreation(key){
         case 'password':
             endpointValue = 'update-password';
             break;
-        case 'email':
+        case 'emailAddress':
             endpointValue = 'update-email-address';
             break;
         case 'aboutMe':
@@ -134,6 +132,9 @@ function switchCaseForEndPointCreation(key){
             break;
         case 'birdsIWatch':
             endpointValue = 'update-birds-i-watch';
+            break;
+        case 'image':
+            endpointValue = 'update-profile-picture';
             break;
     }
     return endpointValue;
