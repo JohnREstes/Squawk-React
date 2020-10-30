@@ -42,14 +42,14 @@ class Login extends Component {
     this.props.createAccount();
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     console.log("clicked submit")
     event.preventDefault()
     const login = {  
           usernameOrEmailAddress: this.state.usernameOrEmailAddress, 
           password: this.state.password 
     }
-    this.props.loginSquawkUser(login);
+    await this.props.loginSquawkUser(login);
     this.props.deleteOldBlacklistedTokens();
   }
 
