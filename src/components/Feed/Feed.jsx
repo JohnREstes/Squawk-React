@@ -16,6 +16,10 @@ class Feed extends React.Component {
     this.onChange = this.onChange.bind(this)
   }
 
+  componentDidMount(){
+    this.props.createFeed();
+  }
+
   componentDidUpdate(){
     console.log("feed updated",this.props.feedUpdated);
     if(this.props.feedUpdated){
