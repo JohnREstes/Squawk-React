@@ -134,7 +134,6 @@ class Feed extends React.Component {
     const username = this.props.username;
     const posts = this.props.feed.feed.postsToDisplay;
     const profilePicString = this.props.profilePicture;
-    console.log(profilePicString);
     let wholeFeed = [];
     for(let i = 0; i < posts.length; i++){
       const _id = posts[i]._id;

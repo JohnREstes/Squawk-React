@@ -1,11 +1,10 @@
 import React from 'react'
 import '../../App.css'
-import Friends from '../FriendsBar/FriendsBar'
+import FlockList from '../FlockBar/FlockBar'
 import Login from '../Login/Login'
 import Feed from '../Feed/Feed'
 import EditUser from '../EditUser/EditUser'
 import UserRegistration from '../UserRegistration/UserRegistration'
-import FriendsList from '../FriendsList/FriendsList'
 import BirdBar from '../BirdBar/BirdBar'
 import { useSelector, useDispatch } from 'react-redux'
 import $ from 'jquery'
@@ -25,7 +24,7 @@ function Body(){
           <div className="row">
             <BirdBar/>
             <Feed/>
-            <Friends/>
+            <FlockList/>
             
           </div>
         )
@@ -34,7 +33,7 @@ function Body(){
           <div className="row">
             <BirdBar/>
             <MyFlock/>
-            <Friends/>
+            <FlockList/>
           </div>
           )
       case EDIT_PROFILE:
@@ -42,7 +41,7 @@ function Body(){
           <div className="row">
             <BirdBar/>
             <EditUser/>
-            <Friends/>
+            <FlockList/>
           </div>
           )    
       default:
@@ -52,7 +51,7 @@ function Body(){
         <div className="row">
           <BirdBar/>
           <UserRegistration/>
-          <Friends/>
+          <FlockList/>
         </div>
         )  
   }else{
@@ -60,7 +59,7 @@ function Body(){
         <div className="row">
           <BirdBar/>
           <Login/>
-          <Friends/>
+          <FlockList/>
         </div>
       )
   } 
