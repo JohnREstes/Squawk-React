@@ -203,7 +203,8 @@ class Feed extends React.Component {
   }  
 
   render(){
-    return (
+    const isLoading = (this.props.feed.feed === "");
+    return (isLoading ? <h1>LOADING</h1> : (
         <div className="col-6 center">
           <div className="row">
             <div className="col-12 justiy-content-center">
@@ -230,7 +231,7 @@ class Feed extends React.Component {
             </div>
           </div>
         </div>
-  )
+  ))
 }}
 
 const mapStateToProps = (state) => {
