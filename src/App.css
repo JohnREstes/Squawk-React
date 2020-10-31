@@ -6,6 +6,16 @@ body, html{
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
 }
+input[type=text] {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+}
+input[type=password] {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+}
 .header {
   position: fixed;
   top: 0;
@@ -97,8 +107,8 @@ input{
   padding: 7px;
   margin-top: 5px;
 }
-#postText{
-  width: 80%;
+.inputBox{
+  width: 95%;
 }
 .feed-icons{
   height: 25px;

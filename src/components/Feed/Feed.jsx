@@ -183,7 +183,7 @@ class Feed extends React.Component {
             <div className="row feed-div">
               <div className="col-8 d-flex justify-content-center center-text">
                 <p id={textId}>{text}</p>
-                <input type="text" className="hidden" 
+                <input type="text" className="hidden inputBox" 
                 name="editText" 
                 placeholder={text}
                 id={inputId}
@@ -217,7 +217,7 @@ class Feed extends React.Component {
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     Post Text: <input
                     type="text" name="postText"
-                    id="postText"
+                    className="inputBox"
                     value={this.state.user}
                     onChange={(e) => this.onChange(e)}
                     /><br></br>
