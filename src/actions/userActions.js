@@ -1,4 +1,4 @@
-import { SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, GET_SQUAWK_USER } from './types';
+import { SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, GET_SQUAWK_USER, CLEAR_FEED } from './types';
 import axios from 'axios'
 import $ from 'jquery'
 
@@ -123,7 +123,10 @@ export const logoutSquawkUser = () => dispatch => {
     .then(
         dispatch({
             type: SIGN_IN
-        }) 
+        }), 
+        dispatch({
+            type: CLEAR_FEED
+        })
     )
 };
 

@@ -5,6 +5,7 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const GET_SQUAWK_USER = 'LOGIN_USER';
 export const CREATE_NEW_USER = 'CREATE_NEW_USER';
 export const LOAD_FEED = "LOAD_FEED";
+export const CLEAR_FEED = "CLEAR_FEED"
 export const FEED = "FEED";
 export const FRIENDS = "FRIENDS";
 export const EDIT_PROFILE = "EDIT_PROFILE";

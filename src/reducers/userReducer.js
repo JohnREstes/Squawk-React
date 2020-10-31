@@ -15,7 +15,7 @@ const initialState = {
         outgoingFriendRequests: [],
         password: "Haha, you no see.",
         posts: [],
-        profilePicture: initialPicture,
+        profilePicture: "",
         username: "",
         _id: ""
 }}

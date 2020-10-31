@@ -133,6 +133,8 @@ class Feed extends React.Component {
   buildFeed(){
     const username = this.props.username;
     const posts = this.props.feed.feed.postsToDisplay;
+    const profilePicString = this.props.profilePicture;
+    console.log(profilePicString);
     let wholeFeed = [];
     for(let i = 0; i < posts.length; i++){
       const _id = posts[i]._id;
@@ -150,7 +152,9 @@ class Feed extends React.Component {
         <div className="card-header">
           <div className="row">
               <div className="col-2 feed-top-row">
-                {notAuthor ? <img src={this.props.birdLink} className="profile-pic" alt="other user"/> : <img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.base64TextString}`}/>}
+                {notAuthor ? <img src={this.props.birdLink} className="profile-pic" alt="other user"/> :
+                profilePicString ? <img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.base64TextString}`}/> :
+                <img src={this.props.birdLink} className="profile-pic" alt="other user"/>}
               </div>
               <div className="col-8">
                 {author}<br></br>  
@@ -204,7 +208,8 @@ class Feed extends React.Component {
 
   render(){
     const isLoading = (this.props.feed.feed === "");
-    return (isLoading ? <h1>LOADING</h1> : (
+    console.log(isLoading)
+    return (isLoading ? <h1>Loading...</h1> : (
         <div className="col-6 center">
           <div className="row">
             <div className="col-12 justiy-content-center">
@@ -240,7 +245,8 @@ const mapStateToProps = (state) => {
             username: state.user.info.username,
             feedUpdated: state.feedUpdated,
             username: state.user.info.username,
-            birdLink: state.birdFact.link
+            birdLink: state.birdFact.link,
+            profilePicture: state.user.info.profilePicture
           }
 }
 
