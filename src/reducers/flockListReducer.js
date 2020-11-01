@@ -1,11 +1,18 @@
 import { LOAD_FLOCK_PROFILES } from '../actions/types';
 
-const flockListReducer = (state = null, action) => {
+const initialState = {
+  friendsAndStatus: {
+    friendsAndOnlineStatuses: []
+  }
+  
+}
+
+const flockListReducer = (state = initialState, action) => {
  switch(action.type){
     case LOAD_FLOCK_PROFILES:
       return {
         ...state,
-        feed: action.payload
+        friendsAndStatus: action.payload
       }
     default:
       return state

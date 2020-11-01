@@ -1,5 +1,4 @@
-import { CREATE_NEW_USER, LOGIN_SQUAWK_USER, GET_SQUAWK_USER } from '../actions/types';
-import { initialPicture } from '../../src/constants'  ;
+import { CREATE_NEW_USER, GET_SQUAWK_USER } from '../actions/types';
 
 const initialState = {
       info: {

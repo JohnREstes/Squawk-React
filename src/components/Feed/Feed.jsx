@@ -160,15 +160,18 @@ class Feed extends React.Component {
                 {this.calculateTime(postTime)}<br></br>
                 {likes} <img src={require('../../images/like.png')} className="feed-icons"
                 onClick={(e) => this.likePost(author, _id)}
+                alt="profile"
                 ></img><br></br>
               </div>
               {notAuthor ? <div className="col-2"></div> : (
                 <div className="col-2">
                 <img src={require('../../images/pencil.png')} className="feed-icons"
                   onClick={(e) => this.changeToEdit(_id)}
+                  alt="profile"
                   ></img>
                   <img src={require('../../images/trash.png')} className="feed-icons"
                   onClick={(e) => this.deletePost(_id)}
+                  alt="profile"
                   ></img><br></br>
                   <button className="hidden" id={buttonId}
                   onClick={(e) => this.editPost(_id)}
@@ -243,7 +246,6 @@ const mapStateToProps = (state) => {
             feed: state.feed,
             username: state.user.info.username,
             feedUpdated: state.feedUpdated,
-            username: state.user.info.username,
             birdLink: state.birdFact.link,
             profilePicture: state.user.info.profilePicture
           }
@@ -273,54 +275,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Feed)
-
-{/* <div className="col-12 feed-div-box" key={_id} style={{border: '1px solid black'}}>
-<div className="row">
-  <div className="col-12">
-    <div className="row ">
-      <div className="col-2 feed-top-row">
-        {notAuthor ? <img src={this.props.birdLink} className="profile-pic" alt="other user"/> : <img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.base64TextString}`}/>}
-      </div>
-      <div className="col-8">
-        {author}<br></br>  
-        {this.calculateTime(postTime)}<br></br>
-        {likes} <img src={require('../../images/like.png')} className="feed-icons"
-        onClick={(e) => this.likePost(author, _id)}
-        ></img><br></br>
-      </div>
-      {notAuthor ? <div className="col-2"></div> : (
-        <div className="col-2">
-        <img src={require('../../images/pencil.png')} className="feed-icons"
-          onClick={(e) => this.changeToEdit(_id)}
-          ></img>
-          <img src={require('../../images/trash.png')} className="feed-icons"
-          onClick={(e) => this.deletePost(_id)}
-          ></img><br></br>
-          <button className="hidden" id={buttonId}
-          onClick={(e) => this.editPost(_id)}
-          >Submit Changes</button>
-        </div>
-      )}
-    </div>
-  </div>
-</div>
-<div className="row">
-  <div className="col-12 post-div">
-    <div className="row feed-div">
-      <div className="col-8 d-flex justify-content-center center-text">
-        <p id={textId}>{text}</p>
-        <input type="text" className="hidden" 
-        name="editText" 
-        placeholder={text}
-        id={inputId}
-        value={this.state.editText}
-        onChange={(e) => this.onChange(e)}
-        ></input>
-      </div>
-      <div className="col-4 move-left">
-        {imageString ? <img className="posted-pic" alt="Feed" src={`data:image/png;base64,${imageString}`}/>: ''}
-      </div>
-    </div>
-  </div>
-</div>
-</div> */}

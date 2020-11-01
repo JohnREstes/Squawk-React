@@ -157,6 +157,8 @@ function switchCaseForEndPointCreation(key){
         case 'profilePicture':
             endpointValue = 'update-profile-picture';
             break;
+        default:
+            break;
     }
     return endpointValue;
 }

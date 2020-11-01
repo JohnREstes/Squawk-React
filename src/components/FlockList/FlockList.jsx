@@ -7,11 +7,11 @@ function FlockList() {
   dispatch(loadFlockProfiles());
   const isLogged = useSelector(state => state.isLogged);
   const username = useSelector(state => state.user.info.username);
-  return (isLogged ? (
+  return (
     <div >
       <h1>hi</h1>
     </div>
-  ) : <div></div>);
+  );
 }
 
 export default connect(null, { loadFlockProfiles })(FlockList);

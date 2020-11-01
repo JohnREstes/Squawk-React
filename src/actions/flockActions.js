@@ -1,5 +1,4 @@
 import axios from 'axios'
-import $ from 'jquery'
 import { FLOCK_REQUEST, ACCEPT_FLOCK, DECLINE_FLOCK, REMOVE_FLOCK, CANCEL_FLOCK } from "./types"
 
 export const flockRequest = (usernameOrEmailAddress) => dispatch => {
