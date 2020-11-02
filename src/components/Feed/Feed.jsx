@@ -3,7 +3,7 @@ import { createPost, createFeed, likePost, editPost, deletePost, feedToggle } fr
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
-import { loadFlockProfiles } from '../../actions/flockListActions'
+import { loadFlockProfiles, loadFlockList } from '../../actions/flockListActions'
 
 class Feed extends React.Component {
   constructor() {
@@ -20,6 +20,7 @@ class Feed extends React.Component {
   componentDidMount(){
     this.props.createFeed();
     this.props.loadFlockProfiles();
+    this.props.loadFlockList();
   }
 
   componentDidUpdate(){
@@ -88,6 +89,23 @@ class Feed extends React.Component {
     return timeDiff
   }
 
+  checkAuthor(author, notAuthor){
+    var currentAuthorPicture = "";
+    if (notAuthor){
+      for(let j = 0; j < this.props.friendsProfilePicture.length; j++){
+        if(this.props.friendsProfilePicture[j].username === author){
+          currentAuthorPicture = (<img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.friendsProfilePicture[j].profilePicture}`}/>);
+          break;
+        }else{
+          currentAuthorPicture = (<img src={this.props.birdLink} className="profile-pic" alt="other user"/>);
+        }
+      }
+    }else{
+      currentAuthorPicture = (<img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.base64TextString}`}/>)
+    }
+    return currentAuthorPicture;
+  }
+
   likePost(author, _id){
       const likePost = { 
         author: author,
@@ -154,9 +172,7 @@ class Feed extends React.Component {
         <div className="card-header">
           <div className="row">
               <div className="col-2 feed-top-row">
-                {notAuthor ? <img src={this.props.birdLink} className="profile-pic" alt="other user"/> :
-                profilePicString ? <img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.base64TextString}`}/> :
-                <img src={this.props.birdLink} className="profile-pic" alt="other user"/>}
+                {this.checkAuthor(author, notAuthor)}
               </div>
               <div className="col-8">
                 {author}<br></br>  
@@ -213,7 +229,6 @@ class Feed extends React.Component {
 
   render(){
     const isLoading = (this.props.feed.feed === "");
-    console.log(isLoading)
     return (isLoading ? <div className="col-6 center"><h1>Loading...</h1></div> : (
         <div className="col-6 center">
           <div className="row">
@@ -250,7 +265,8 @@ const mapStateToProps = (state) => {
             username: state.user.info.username,
             feedUpdated: state.feedUpdated,
             birdLink: state.birdFact.link,
-            profilePicture: state.user.info.profilePicture
+            profilePicture: state.user.info.profilePicture,
+            friendsProfilePicture: state.friendsAndStatus.friendsProfiles.allFriendsProfiles
           }
 }
 
@@ -262,7 +278,8 @@ const mapDispatchToProps = dispatch => {
     editPost: data => dispatch(editPost(data)),
     deletePost: data => dispatch(deletePost(data)),
     feedToggle: () => dispatch(feedToggle()),
-    loadFlockProfiles: () => dispatch(loadFlockProfiles())
+    loadFlockProfiles: () => dispatch(loadFlockProfiles()),
+    loadFlockList: () => dispatch(loadFlockList())
   }
 }
 
@@ -273,7 +290,8 @@ Feed.propTypes = {
   editPost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
   feedToggle:  PropTypes.func.isRequired,
-  loadFlockProfiles:  PropTypes.func.isRequired
+  loadFlockProfiles:  PropTypes.func.isRequired,
+  loadFlockList:  PropTypes.func.isRequired
 };
 
 export default connect(

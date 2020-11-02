@@ -29,7 +29,7 @@ input[type=password] {
 }
 .left,
 .right{
-  height: 90vh;
+  height: 85vh;
   overflow: hidden;
   overflow-y: scroll; 
   text-align: center;

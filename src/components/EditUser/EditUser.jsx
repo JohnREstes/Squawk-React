@@ -55,6 +55,8 @@ class EditUser extends React.Component {
         updatedUserInfo = {
             [propertyToModify]: this.state.base64TextString
         }
+        // const preview = document.getElementById('profile-pic');
+        // preview.src = "data:image/png;base64," + this.state.base64TextString
     }else{
         updatedUserInfo =
         { 
@@ -62,9 +64,6 @@ class EditUser extends React.Component {
         }
     }
     this.props.editUserProfile(updatedUserInfo);
-   
-    const preview = document.getElementById('profile-picture');
-    preview.src = "data:image/png;base64," + this.state.base64TextString
   }
  
 
@@ -77,6 +76,7 @@ class EditUser extends React.Component {
                     Username: <input
                     type="text" name="username"
                     value={this.state.username}
+                    placeholder={this.props.username}
                     onChange={(e) => this.onChange(e)}/>
                      <button type="submit">
                         Submit
@@ -97,6 +97,7 @@ class EditUser extends React.Component {
                     Email: <input
                     type="email" name="emailAddress"
                     value={this.state.emailAddress}
+                    placeholder={this.props.emailAddress}
                     onChange={(e) => this.onChange(e)}/>
                     <button type="submit">
                         Submit
@@ -107,6 +108,7 @@ class EditUser extends React.Component {
                     About me: <textarea
                     type="text" name="aboutMe"
                     value={this.state.aboutMe}
+                    placeholder={this.props.aboutMe}
                     onChange={(e) => this.onChange(e)}/>
                     <button type="submit">
                         Submit
@@ -117,6 +119,7 @@ class EditUser extends React.Component {
                     Bird Call: <textarea
                     type="text" name="birdCall"
                     value={this.state.birdCall}
+                    placeholder={this.props.birdCall}
                     onChange={(e) => this.onChange(e)}/>
                     <button type="submit">
                         Submit
@@ -127,6 +130,7 @@ class EditUser extends React.Component {
                     My Birds: <textarea
                     type="text" name="myBirds"
                     value={this.state.myBirds}
+                    placeholder={this.props.myBirds}
                     onChange={(e) => this.onChange(e)}/>
                     <button type="submit">
                         Submit
@@ -137,6 +141,7 @@ class EditUser extends React.Component {
                     Birds I Watch: <textarea
                     type="text" name="birdsIWatch"
                     value={this.state.birdsIWatch}
+                    placeholder={this.props.birdsIWatch}
                     onChange={(e) => this.onChange(e)}/>
                     <button type="submit">
                         Submit
@@ -158,18 +163,7 @@ class EditUser extends React.Component {
                   </form>  
                     </div>
                 <br></br>
-
-                <div>
-                      <img id="profile-picture" alt="User uploaded for profile"/>
-                      <p>{this.state.username}</p>
-                      <p>{this.state.password}</p>
-                      <p>{this.state.emailAddress}</p>
-                      <p>{this.state.birdCall}</p>
-                      <p>{this.state.aboutMe}</p>
-                      <p>{this.state.myBirds}</p>
-                      <p>{this.state.birdsIWatch}</p>
-                </div>
-         
+                <img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.base64TextString}`}/>
             </div>
         </div>
        
@@ -180,11 +174,30 @@ class EditUser extends React.Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => {
+    return {    
+      editUserProfile: data => dispatch(editUserProfile(data)),
+    }
+  }
+
+const mapStateToProps = (state) => {
+    return {  
+        username: state.user.info.username,
+        emailAddress: state.user.info.emailAddress,
+        birdCall: state.user.info.birdCall,
+        profilePicture: state.user.info.profilePicture,
+        aboutMe: state.user.info.aboutMe,
+        myBirds: state.user.info.myBirds,
+        birdsIWatch: state.user.info.birdsIWatch,
+    }
+}
 
 EditUser.propTypes = {
     editUserProfile: PropTypes.func.isRequired
 };
 
-export default connect (null,{
-    editUserProfile
-})(EditUser);
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(EditUser);

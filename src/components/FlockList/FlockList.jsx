@@ -1,6 +1,6 @@
 import React from 'react';
-import { useDispatch, connect, useSelector } from 'react-redux'
-import { loadFlockProfiles } from '../../actions/flockListActions'
+import { connect, useSelector } from 'react-redux'
+import { loadFlockList } from '../../actions/flockListActions'
 
 function FlockList() {
   const friendsAndStatus = useSelector(state => state.friendsAndStatus.friendsAndStatus);
@@ -30,4 +30,4 @@ function FlockList() {
   )
 };
 
-export default connect(null, { loadFlockProfiles })(FlockList);
+export default connect(null, { loadFlockList })(FlockList);
