@@ -9,7 +9,6 @@ export const loadFlockProfiles = () => dispatch => {
         }}
         axios.get('http://localhost:5000/api/users/online-friends', tokenHeader)
         .then(res => {
-            console.log(res.data);
             dispatch({
                 type: LOAD_FLOCK_PROFILES,
                 payload: res.data,

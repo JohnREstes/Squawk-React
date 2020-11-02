@@ -117,3 +117,6 @@ input{
 .card{
  margin-bottom: 5px;
 }
+.off-line{
+  opacity: .4;
+}

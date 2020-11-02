@@ -3,6 +3,7 @@ import { createPost, createFeed, likePost, editPost, deletePost, feedToggle } fr
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
+import { loadFlockProfiles } from '../../actions/flockListActions'
 
 class Feed extends React.Component {
   constructor() {
@@ -18,6 +19,7 @@ class Feed extends React.Component {
 
   componentDidMount(){
     this.props.createFeed();
+    this.props.loadFlockProfiles();
   }
 
   componentDidUpdate(){
@@ -211,7 +213,7 @@ class Feed extends React.Component {
   render(){
     const isLoading = (this.props.feed.feed === "");
     console.log(isLoading)
-    return (isLoading ? <h1>Loading...</h1> : (
+    return (isLoading ? <div className="col-6 center"><h1>Loading...</h1></div> : (
         <div className="col-6 center">
           <div className="row">
             <div className="col-12 justiy-content-center">
@@ -258,7 +260,8 @@ const mapDispatchToProps = dispatch => {
     likePost: data => dispatch(likePost(data)),
     editPost: data => dispatch(editPost(data)),
     deletePost: data => dispatch(deletePost(data)),
-    feedToggle: () => dispatch(feedToggle())
+    feedToggle: () => dispatch(feedToggle()),
+    loadFlockProfiles: () => dispatch(loadFlockProfiles())
   }
 }
 
@@ -268,7 +271,8 @@ Feed.propTypes = {
   likePost: PropTypes.func.isRequired,
   editPost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
-  feedToggle:  PropTypes.func.isRequired
+  feedToggle:  PropTypes.func.isRequired,
+  loadFlockProfiles:  PropTypes.func.isRequired
 };
 
 export default connect(
