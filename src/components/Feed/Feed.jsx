@@ -148,6 +148,7 @@ class Feed extends React.Component {
       postId: _id
     }
     this.props.deletePost(delPost);
+    this.props.createFeed();
   }
 
 
@@ -236,7 +237,7 @@ class Feed extends React.Component {
                 <h1 className="text-center">Feed:</h1>
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     Post Text: <input
-                    type="text" name="postText"
+                    type="text" name="postText" id="postText"
                     className="inputBox"
                     value={this.state.user}
                     onChange={(e) => this.onChange(e)}
