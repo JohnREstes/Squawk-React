@@ -91,11 +91,11 @@ class Feed extends React.Component {
     if (notAuthor){
       for(let j = 0; j < this.props.friendsProfilePicture.length; j++){
         if(this.props.friendsProfilePicture[j].username === author){
-          currentAuthorPicture = (<img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.friendsProfilePicture[j].profilePicture}`}/>);
-          break;
-        }else{
-          currentAuthorPicture = (<img src={this.props.birdLink} className="profile-pic" alt="other user"/>);
-        }
+          if(this.props.friendsProfilePicture[j].profilePicture === ''){
+            currentAuthorPicture = (<img src={this.props.birdLink} className="profile-pic" alt="other user"/>);
+          }else{
+            currentAuthorPicture = (<img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.friendsProfilePicture[j].profilePicture}`}/>);
+          }} 
       }
     }else{
       currentAuthorPicture = (<img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.base64TextString}`}/>)
@@ -243,7 +243,7 @@ class Feed extends React.Component {
                         accept=".jpeg, .png, .jpg"
                         onChange={(e) => this.handlePictureChange(e)}
                     />
-                    <button type="submit">
+                    <button type="submit" className="bouncy">
                         Submit
                     </button>
                 </form><br></br>

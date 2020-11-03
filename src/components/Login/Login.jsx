@@ -74,7 +74,7 @@ class Login extends Component {
                     size="26"
                     />
                     <div>
-                    <button type="submit">
+                    <button type="submit" className="bouncy">
                         Submit
                     </button>
                     </div>
