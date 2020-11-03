@@ -58,7 +58,7 @@ class MyFlock extends Component {
   removeFromFlock(){
     let removeFromFlockDiv = []
     if(this.props.friends.length === 0){
-      removeFromFlockDiv = (<div className="card"><div className="card-header"><p>You have no removeFrom requests!</p></div></div>)
+      removeFromFlockDiv = (<div className="card-body"><p>You have no removeFrom requests!</p></div>)
     }else{
       for(let i = 0; i < this.props.friends.length; i++){
         removeFromFlockDiv.push(
@@ -82,7 +82,7 @@ class MyFlock extends Component {
   incomingFlockRequest(){
     let incomingFlockDiv = []
     if(this.props.incomingFriendRequests.length === 0){
-      incomingFlockDiv = (<div className="card"><div className="card-header"><p>You have no friend requests</p></div></div>)
+      incomingFlockDiv = (<div className="card-body"><p>You have no friend requests</p></div>)
     }else{
       for(let i = 0; i < this.props.incomingFriendRequests.length; i++){
         incomingFlockDiv.push(
@@ -105,7 +105,7 @@ class MyFlock extends Component {
   outgoingFlockRequest(){
     let outgoingFlockDiv = []
     if(this.props.outgoingFriendRequests.length === 0){
-      outgoingFlockDiv = (<div className="card"><div className="card-header"><p>You have no outgoing requests!</p></div></div>)
+      outgoingFlockDiv = (<div className="card-body"><p>You have no outgoing requests!</p></div>)
     }else{
       for(let i = 0; i < this.props.outgoingFriendRequests.length; i++){
         outgoingFlockDiv.push(
