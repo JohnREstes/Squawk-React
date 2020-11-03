@@ -120,3 +120,6 @@ input{
 .off-line{
   opacity: .4;
 }
+.left-margin{
+  margin-left: 10px;
+}

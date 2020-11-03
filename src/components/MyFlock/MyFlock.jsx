@@ -40,7 +40,7 @@ class MyFlock extends Component {
   
   onRemove(e) {
     e.preventDefault();
-    this.props.removeFlock(this.state.usernameOrEmailAddress);
+    this.props.removeFlock(e.target.name);
     alert("You removed a request if one exists");
   }
     
@@ -52,19 +52,19 @@ class MyFlock extends Component {
   removeFromFlock(){
     let removeFromFlockDiv = []
     if(this.props.friends.length === 0){
-      removeFromFlockDiv = (<p>You have no removeFrom requests!</p>)
+      removeFromFlockDiv = (<div className="card"><div className="card-header"><p>You have no removeFrom requests!</p></div></div>)
     }else{
       for(let i = 0; i < this.props.friends.length; i++){
         removeFromFlockDiv.push(
           <div className="card"  key={`removeFromRequestIndex${i}`}>
             <div className="card-body">
               <div>
-                <p>{this.props.friends[i]}</p>
+                <p>{this.props.friends[i]}
               <button
-                type="text"
+                className="left-margin"
                 name={this.props.friends[i]}
                 onClick={(e) => this.onCancel(e)}>Remove Friend
-              </button>
+              </button></p>
               </div>
             </div>
           </div>
@@ -77,19 +77,19 @@ class MyFlock extends Component {
   incomingFlockRequest(){
     let incomingFlockDiv = []
     if(this.props.incomingFriendRequests.length === 0){
-      incomingFlockDiv = (<p>You have no friend requests</p>)
+      incomingFlockDiv = (<div className="card"><div className="card-header"><p>You have no friend requests</p></div></div>)
     }else{
       for(let i = 0; i < this.props.incomingFriendRequests.length; i++){
         incomingFlockDiv.push(
           <div className="card"  key={`incomingRequestIndex${i}`}>
             <div className="card-body">
               <div>
-                <p>{this.props.incomingFriendRequests[i]}</p>
+                <p>{this.props.incomingFriendRequests[i]}
               <button
-                type="text"
+                className="left-margin"
                 name={this.props.incomingFriendRequests[i]}
                 onClick={(e) => this.onRemove(e)}>Accept flock
-              </button>
+              </button></p>
               </div>
             </div>
           </div> 
@@ -103,19 +103,19 @@ class MyFlock extends Component {
   outgoingFlockRequest(){
     let outgoingFlockDiv = []
     if(this.props.outgoingFriendRequests.length === 0){
-      outgoingFlockDiv = (<p>You have no outgoing requests!</p>)
+      outgoingFlockDiv = (<div className="card"><div className="card-header"><p>You have no outgoing requests!</p></div></div>)
     }else{
       for(let i = 0; i < this.props.outgoingFriendRequests.length; i++){
         outgoingFlockDiv.push(
           <div className="card" key={`outgoingRequestIndex${i}`}>
             <div className="card-body">
               <div>
-                <p>{this.props.outgoingFriendRequests[i]}</p>
+                <p>{this.props.outgoingFriendRequests[i]}
               <button
-                type="text"
+                className="left-margin"
                 name={this.props.outgoingFriendRequests[i]}
                 onClick={(e) => this.onCancel(e)}>Cancel flock Request
-              </button>
+              </button></p>
               </div>
             </div>
           </div>
