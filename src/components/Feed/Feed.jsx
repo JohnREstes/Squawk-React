@@ -1,5 +1,5 @@
 import React from 'react'
-import { createPost, createFeed, likePost, editPost, deletePost, feedToggle } from '../../actions/feedActions'
+import { createPost, createFeed, likePost, editPost, deletePost, stateToggle } from '../../actions/feedActions'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
@@ -12,7 +12,7 @@ class Feed extends React.Component {
       postText: '',
       postImage: '',
       editText: '',
-      feedToggle: false
+      stateToggle: false
     }
     this.onChange = this.onChange.bind(this)
   }
@@ -24,15 +24,15 @@ class Feed extends React.Component {
   }
 
   componentDidUpdate(){
-    if(this.props.feedUpdated){
+    if(this.props.stateUpdated){
       this.props.createFeed();
 
       this.setState({
-        feedToggle: this.props.feedUpdated
+        stateToggle: this.props.stateUpdated
       })
-      this.props.feedToggle();
+      this.props.stateToggle();
       this.setState({
-        feedToggle: this.props.feedUpdated
+        stateToggle: this.props.stateUpdated
       })
     }
   }
@@ -258,7 +258,7 @@ const mapStateToProps = (state) => {
   return {  base64TextString: state.user.info.profilePicture, 
             feed: state.feed,
             username: state.user.info.username,
-            feedUpdated: state.feedUpdated,
+            stateUpdated: state.stateUpdated,
             birdLink: state.birdFact.link,
             profilePicture: state.user.info.profilePicture,
             friendsProfilePicture: state.friendsAndStatus.friendsProfiles.allFriendsProfiles
@@ -272,7 +272,7 @@ const mapDispatchToProps = dispatch => {
     likePost: data => dispatch(likePost(data)),
     editPost: data => dispatch(editPost(data)),
     deletePost: data => dispatch(deletePost(data)),
-    feedToggle: () => dispatch(feedToggle()),
+    stateToggle: () => dispatch(stateToggle()),
     loadFlockProfiles: () => dispatch(loadFlockProfiles()),
     loadFlockList: () => dispatch(loadFlockList())
   }
@@ -284,7 +284,7 @@ Feed.propTypes = {
   likePost: PropTypes.func.isRequired,
   editPost: PropTypes.func.isRequired,
   deletePost: PropTypes.func.isRequired,
-  feedToggle:  PropTypes.func.isRequired,
+  stateToggle:  PropTypes.func.isRequired,
   loadFlockProfiles:  PropTypes.func.isRequired,
   loadFlockList:  PropTypes.func.isRequired
 };

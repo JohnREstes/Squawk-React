@@ -6,7 +6,7 @@ import birdFactReducer from './birdFactReducer'
 import feedReducer from './feedReducer'
 import { combineReducers } from 'redux';
 import flockReducer from './flockReducer'
-import feedUpdatedReducer from './feedUpdatedReducer';
+import stateUpdatedReducer from './stateUpdatedReducer';
 import flockListReducer from './flockListReducer'
 
 
@@ -19,5 +19,5 @@ export default combineReducers({
     feed: feedReducer,
     flock: flockReducer,
     friendsAndStatus: flockListReducer,
-    feedUpdated: feedUpdatedReducer
+    stateUpdated: stateUpdatedReducer
 })

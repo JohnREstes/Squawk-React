@@ -1,31 +1,31 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import $ from "jquery";
-import {
-  flockRequest,
-  acceptFlock,
-  declineFlock,
-  removeFlock,
-  cancelFlock,
-} from "../../actions/flockActions";
+import { flockRequest, acceptFlock, declineFlock, removeFlock, cancelFlock } from "../../actions/flockActions";
 import PropTypes from "prop-types";
 import { getSquawkUser } from "../../actions/userActions";
+import { stateToggle } from "../../actions/feedActions";
 
 class MyFlock extends Component {
   constructor() {
     super();
     this.state = {
       usernameOrEmailAddress: "",
-      didUpdate: false
+      stateToggle: false
     };
     this.onChange = this.onChange.bind(this);
   }
 
   componentDidUpdate(){
-    if(this.state.didUpdate){
+    if(this.props.stateUpdated){
       this.props.getSquawkUser();
+
       this.setState({
-        didUpdate: false
+        stateToggle: this.props.stateUpdated
+      })
+      this.props.stateToggle();
+      this.setState({
+        stateToggle: this.props.stateUpdated
       })
     }
   }
@@ -192,7 +192,8 @@ const mapDispatchToProps = (dispatch) => {
     declineFlock: (data) => dispatch(declineFlock(data)),
     removeFlock: (data) => dispatch(removeFlock(data)),
     cancelFlock: (data) => dispatch(cancelFlock(data)),
-    getSquawkUser: () => dispatch(getSquawkUser())
+    getSquawkUser: () => dispatch(getSquawkUser()),
+    stateToggle: () => dispatch(stateToggle()),
   };
 };
 
@@ -202,6 +203,7 @@ const mapStateToProps = (state) => {
     incomingFriendRequests: state.user.info.incomingFriendRequests,
     outgoingFriendRequests: state.user.info.outgoingFriendRequests,
     friends: state.user.info.friends,
+    stateUpdated: state.stateUpdated
   };
 };
 
@@ -211,7 +213,8 @@ MyFlock.propTypes = {
   declineFlock: PropTypes.func.isRequired,
   removeFlock: PropTypes.func.isRequired,
   cancelFlock: PropTypes.func.isRequired,
-  getSquawkUser: PropTypes.func.isRequired
+  getSquawkUser: PropTypes.func.isRequired,
+  stateToggle: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyFlock);

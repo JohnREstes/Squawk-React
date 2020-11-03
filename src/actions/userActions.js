@@ -1,4 +1,4 @@
-import { SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, GET_SQUAWK_USER, CLEAR_FEED, FEED_UPDATED } from './types';
+import { SIGN_IN, LOGIN_USER, CREATE_NEW_USER, FEED, FRIENDS, EDIT_PROFILE, CREATE_ACCOUNT, GET_SQUAWK_USER, CLEAR_FEED, STATE_UPDATED } from './types';
 import axios from 'axios'
 import $ from 'jquery'
 
@@ -57,7 +57,7 @@ export const editUserProfile = userInfo => dispatch =>{
         console.log("ERROR", err.response);
     })
     .then(() => dispatch({
-        type: FEED_UPDATED
+        type: STATE_UPDATED
     }));
 };
 

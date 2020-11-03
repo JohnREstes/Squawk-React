@@ -1,4 +1,4 @@
-import { LOAD_FEED, FEED_UPDATED, } from './types'
+import { LOAD_FEED, STATE_UPDATED } from './types'
 import axios from 'axios'
 
 export const createFeed = () => dispatch => {
@@ -22,7 +22,7 @@ export const createPost = (postData) => dispatch => {
             imageString: postData.imageString
     }, tokenHeader)
     .then(() => dispatch({
-      type: FEED_UPDATED
+      type: STATE_UPDATED
   }));
 }
 
@@ -36,7 +36,7 @@ export const editPost = (postData) => dispatch => {
             newText: postData.newText
     }, tokenHeader)
     .then(() => dispatch({
-      type: FEED_UPDATED
+      type: STATE_UPDATED
   }));
 }
 
@@ -50,7 +50,7 @@ export const deletePost = (postData) => dispatch => {
     }
     axios(config)
     .then(() => dispatch({
-      type: FEED_UPDATED
+      type: STATE_UPDATED
   }));
 }
 
@@ -64,11 +64,11 @@ export const likePost = (likeData) => dispatch => {
           postId: likeData.postId
   }, tokenHeader)
   .then(() => dispatch({
-    type: FEED_UPDATED
+    type: STATE_UPDATED
 }));
 }
-export const feedToggle = () => dispatch => {
+export const stateToggle = () => dispatch => {
   dispatch({
-      type: FEED_UPDATED
+      type: STATE_UPDATED
   });
 };

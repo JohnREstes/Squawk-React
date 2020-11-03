@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FLOCK_REQUEST, ACCEPT_FLOCK, DECLINE_FLOCK, REMOVE_FLOCK, CANCEL_FLOCK } from "./types"
+import { FLOCK_REQUEST, ACCEPT_FLOCK, DECLINE_FLOCK, REMOVE_FLOCK, CANCEL_FLOCK, STATE_UPDATED } from "./types"
 
 export const flockRequest = (usernameOrEmailAddress) => dispatch => {
     const JsonWT = localStorage.getItem("JWT");
@@ -16,7 +16,9 @@ export const flockRequest = (usernameOrEmailAddress) => dispatch => {
             payload: res.data
         }) 
     })
-
+    .then(() => dispatch({
+        type: STATE_UPDATED
+    }));
 }
 
 export const acceptFlock = (username) => dispatch => {
@@ -33,6 +35,9 @@ export const acceptFlock = (username) => dispatch => {
             payload: res.data
         }) 
     })
+    .then(() => dispatch({
+        type: STATE_UPDATED
+    }));
 }
 
 export const declineFlock = (username) => dispatch => {
@@ -49,7 +54,10 @@ export const declineFlock = (username) => dispatch => {
       type: DECLINE_FLOCK,
       payload: res.data,
     });
-  });
+  })
+  .then(() => dispatch({
+    type: STATE_UPDATED
+}));
 }
 
 
@@ -67,6 +75,9 @@ export const removeFlock = (username) => dispatch => {
             payload: res.data
         }) 
     })
+    .then(() => dispatch({
+        type: STATE_UPDATED
+    }));
 }
 
 export const cancelFlock = (username) => dispatch => {
@@ -85,5 +96,8 @@ export const cancelFlock = (username) => dispatch => {
             payload: res.data
         }) 
     })
+    .then(() => dispatch({
+        type: STATE_UPDATED
+    }));
 }
 

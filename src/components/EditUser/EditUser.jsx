@@ -3,7 +3,7 @@ import '../../App.css'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { editUserProfile, getSquawkUser } from '../../actions/userActions'
-import { feedToggle } from '../../actions/feedActions'
+import { stateToggle  } from '../../actions/feedActions'
 import $ from 'jquery'
 
 class EditUser extends React.Component {
@@ -20,22 +20,22 @@ class EditUser extends React.Component {
       myBirds: '',
       birdsIWatch:'',
       base64TextString: '',
-      feedToggle: false
+      stateToggle: false
     }
     this.onChange = this.onChange.bind(this);
     this.handlePictureChange = this.handlePictureChange.bind(this);
   }
 
   componentDidUpdate(){
-    if(this.props.feedUpdated){
+    if(this.props.stateUpdated){
       this.props.getSquawkUser();
 
       this.setState({
-        feedToggle: this.props.feedUpdated
+        stateToggle: this.props.stateUpdated
       })
-      this.props.feedToggle();
+      this.props.stateToggle();
       this.setState({
-        feedToggle: this.props.feedUpdated
+        stateToggle: this.props.stateUpdated
       })
     }
   }
@@ -184,7 +184,7 @@ const mapDispatchToProps = dispatch => {
     return {    
       editUserProfile: data => dispatch(editUserProfile(data)),
       getSquawkUser: () => dispatch(getSquawkUser()),
-      feedToggle: () => dispatch(feedToggle()),
+      stateToggle: () => dispatch(stateToggle()),
     }
   }
 
@@ -197,14 +197,14 @@ const mapStateToProps = (state) => {
         aboutMe: state.user.info.aboutMe,
         myBirds: state.user.info.myBirds,
         birdsIWatch: state.user.info.birdsIWatch,
-        feedUpdated: state.feedUpdated
+        stateUpdated: state.stateUpdated
     }
 }
 
 EditUser.propTypes = {
     editUserProfile: PropTypes.func.isRequired,
     getSquawkUser:  PropTypes.func.isRequired,
-    feedToggle:  PropTypes.func.isRequired
+    stateToggle:  PropTypes.func.isRequired
 };
 
 
