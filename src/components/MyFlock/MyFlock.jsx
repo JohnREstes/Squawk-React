@@ -9,14 +9,25 @@ import {
   cancelFlock,
 } from "../../actions/flockActions";
 import PropTypes from "prop-types";
+import { getSquawkUser } from "../../actions/userActions";
 
 class MyFlock extends Component {
   constructor() {
     super();
     this.state = {
       usernameOrEmailAddress: "",
+      didUpdate: false
     };
     this.onChange = this.onChange.bind(this);
+  }
+
+  componentDidUpdate(){
+    if(this.state.didUpdate){
+      this.props.getSquawkUser();
+      this.setState({
+        didUpdate: false
+      })
+    }
   }
 
   onChange(e) {
@@ -29,30 +40,42 @@ class MyFlock extends Component {
     console.log(this.state.usernameOrEmailAddress);
     e.preventDefault();
     this.props.flockRequest(this.state.usernameOrEmailAddress);
-    alert("Flock request sent.");
+    $('#requestInput').val("");
+    this.setState({
+      usernameOrEmailAddress: "",
+      didUpdate: true
+    })
   }
 
   onAccept(e) {
     console.log(e.target.name);
     this.props.acceptFlock(e.target.name);
-    alert("You accepted a request if one exists.");
+    this.setState({
+      didUpdate: true
+    })
   }
 
   onDecline(e) {
     console.log(e.target.name);
     this.props.declineFlock(e.target.name);
-    alert("You denied a request if one exists.");
+    this.setState({
+      didUpdate: true
+    })
   }
 
   onRemove(e) {
     e.preventDefault();
     this.props.removeFlock(e.target.name);
-    alert("You removed a request if one exists");
+    this.setState({
+      didUpdate: true
+    })
   }
 
   onCancel(e) {
     this.props.cancelFlock(e.target.name);
-    alert("You canceled a sent request, if it ever existed.");
+    this.setState({
+      didUpdate: true
+    })
   }
 
   removeFromFlock(){
@@ -68,7 +91,7 @@ class MyFlock extends Component {
               <button
                 className="left-margin"
                 name={this.props.friends[i]}
-                onClick={(e) => this.onCancel(e)}>Remove Friend
+                onClick={(e) => this.onRemove(e)}>Remove Friend
               </button></p>
               </div>
             </div>
@@ -92,8 +115,14 @@ class MyFlock extends Component {
               <button
                 className="left-margin"
                 name={this.props.incomingFriendRequests[i]}
-                onClick={(e) => this.onRemove(e)}>Accept flock
-              </button></p>
+                onClick={(e) => this.onAccept(e)}>Accept Flock
+              </button>
+              <button
+                className="left-margin"
+                name={this.props.incomingFriendRequests[i]}
+                onClick={(e) => this.onDecline(e)}>Decline Flock
+              </button>
+              </p>
               </div>
             </div>
         );
@@ -133,7 +162,7 @@ class MyFlock extends Component {
           <form id="form1" onSubmit={(e) => this.onSubmit(e)}>
             Flock request:
             <input
-              type="text"
+              type="text" id="requestInput"
               name="usernameOrEmailAddress"
               value={this.state.usernameOrEmailAddress}
               onChange={(e) => this.onChange(e)}
@@ -165,6 +194,7 @@ const mapDispatchToProps = (dispatch) => {
     declineFlock: (data) => dispatch(declineFlock(data)),
     removeFlock: (data) => dispatch(removeFlock(data)),
     cancelFlock: (data) => dispatch(cancelFlock(data)),
+    getSquawkUser: () => dispatch(getSquawkUser())
   };
 };
 
@@ -183,6 +213,7 @@ MyFlock.propTypes = {
   declineFlock: PropTypes.func.isRequired,
   removeFlock: PropTypes.func.isRequired,
   cancelFlock: PropTypes.func.isRequired,
+  getSquawkUser: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyFlock);
