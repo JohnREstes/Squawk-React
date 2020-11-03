@@ -83,7 +83,7 @@ class Login extends Component {
                     <br></br>
                     <button onClick={() => this.handleCreateUser()}>Create New Account</button><br></br>
                     
-                    <p className="hidden" id="invalid">Invalid login. Please try again.</p>
+                    <p className="hidden red" id="invalid">Invalid login. Please try again.</p>
                 </div>
             </div>
         </div>
