@@ -72,10 +72,11 @@ export const removeFlock = (username) => dispatch => {
 }
 
 export const cancelFlock = (username) => dispatch => {
+    console.log(username)
     const JsonWT = localStorage.getItem("JWT");
     const config = {
         method: 'put',
-        url: 'http://localhost:5000/api/users/remove-friend',
+        url: 'http://localhost:5000/api/users/cancel-friend-request',
         headers: { 'x-auth-token': JsonWT },
         data: { username: username }
     }
