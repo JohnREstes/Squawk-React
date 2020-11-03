@@ -8,7 +8,11 @@ function Header() {
   const dispatch = useDispatch();
   const isLogged = useSelector(state => state.isLogged);
   const username = useSelector(state => state.user.info.username);
-  const profilePicture = useSelector(state => state.user.info.profilePicture);
+  var profilePicture = useSelector(state => state.user.info.profilePicture);
+  const imageURL = useSelector(state => state.birdFact.link);
+  if(profilePicture === ''){
+    profilePicture = (<img src={imageURL} className="profile-pic" alt="other user"/>)
+  }
   return (
     <div className="header" id="main-header">
       <div className="row">
