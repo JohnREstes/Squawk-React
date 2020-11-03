@@ -27,14 +27,14 @@ class MyFlock extends Component {
   }
 
   onAccept(e) {
-    e.preventDefault();
-    this.props.acceptFlock(this.state.usernameOrEmailAddress);
+    console.log(e.target.name)
+    this.props.acceptFlock(e.target.name);
     alert("You accepted a request if one exists.");
   }
   
   onDecline(e) {
-    e.preventDefault();
-    this.props.declineFlock(this.state.usernameOrEmailAddress);
+    console.log(e.target.name)
+    this.props.declineFlock(e.target.name);
     alert("You denied a request if one exists.");
   }
   
@@ -45,11 +45,85 @@ class MyFlock extends Component {
   }
     
   onCancel(e) {
-    e.preventDefault();
-    this.props.cancelFlock(this.state.usernameOrEmailAddress);
+    this.props.cancelFlock(e.target.name);
     alert("You canceled a sent request, if it ever existed.");
   }
 
+  removeFromFlock(){
+    let removeFromFlockDiv = []
+    if(this.props.friends.length === 0){
+      removeFromFlockDiv = (<p>You have no removeFrom requests!</p>)
+    }else{
+      for(let i = 0; i < this.props.friends.length; i++){
+        removeFromFlockDiv.push(
+          <div className="card"  key={`removeFromRequestIndex${i}`}>
+            <div className="card-body">
+              <div>
+                <p>{this.props.friends[i]}</p>
+              <button
+                type="text"
+                name={this.props.friends[i]}
+                onClick={(e) => this.onCancel(e)}>Remove Friend
+              </button>
+              </div>
+            </div>
+          </div>
+          );
+      }
+    }
+    return removeFromFlockDiv;
+  }
+
+  incomingFlockRequest(){
+    let incomingFlockDiv = []
+    if(this.props.incomingFriendRequests.length === 0){
+      incomingFlockDiv = (<p>You have no friend requests</p>)
+    }else{
+      for(let i = 0; i < this.props.incomingFriendRequests.length; i++){
+        incomingFlockDiv.push(
+          <div className="card"  key={`incomingRequestIndex${i}`}>
+            <div className="card-body">
+              <div>
+                <p>{this.props.incomingFriendRequests[i]}</p>
+              <button
+                type="text"
+                name={this.props.incomingFriendRequests[i]}
+                onClick={(e) => this.onRemove(e)}>Accept flock
+              </button>
+              </div>
+            </div>
+          </div> 
+          );
+      }
+    }
+    return incomingFlockDiv;
+    
+  }
+
+  outgoingFlockRequest(){
+    let outgoingFlockDiv = []
+    if(this.props.outgoingFriendRequests.length === 0){
+      outgoingFlockDiv = (<p>You have no outgoing requests!</p>)
+    }else{
+      for(let i = 0; i < this.props.outgoingFriendRequests.length; i++){
+        outgoingFlockDiv.push(
+          <div className="card" key={`outgoingRequestIndex${i}`}>
+            <div className="card-body">
+              <div>
+                <p>{this.props.outgoingFriendRequests[i]}</p>
+              <button
+                type="text"
+                name={this.props.outgoingFriendRequests[i]}
+                onClick={(e) => this.onCancel(e)}>Cancel flock Request
+              </button>
+              </div>
+            </div>
+          </div>
+        );
+      }
+    }
+    return outgoingFlockDiv;
+  }
 
   render() {
     return (
@@ -64,50 +138,17 @@ class MyFlock extends Component {
               value={this.state.usernameOrEmailAddress}
               onChange={(e) => this.onChange(e)}
             />
-
             <button type="submit">Submit</button>
-
           </form>
         <div>
-            <button
-              type="text"
-              name="usernameOfNewFriend"
-              value={this.state.usernameOrEmailAddress}
-              onClick={(e) => this.onAccept(e)}>Accept flock
-            </button>
-            <button
-              type="text"
-              name="usernameOfNotFriend"
-              value={this.state.usernameOrEmailAddress}
-              onClick={(e) => this.onDecline(e)}>Flock off
-            </button>
+          {this.removeFromFlock()}
         </div>
-          <form id="form4" onSubmit={(e) => this.onRemove(e)}>
-            Remove from Flock:
-            <input
-              type="text"
-              name="usernameOfExFriend"
-              value={this.state.usernameOrEmailAddress}
-              onChange={(e) => this.onChange(e)}
-            />
-
-            <button type="submit">Submit</button>
-
-          </form>
-
-          <form id="form5" onSubmit={(e) => this.onCancel(e)}>
-            Cancel flock invite:
-            <input
-              type="text"
-              name="usernameOfUnRequestedFriend"
-              value={this.state.usernameOrEmailAddress}
-              onChange={(e) => this.onChange(e)}
-            />
-
-            <button type="submit">Submit</button>
-
-          </form>
-
+        <div>
+          {this.incomingFlockRequest()}
+        </div>
+        <div>
+          {this.outgoingFlockRequest()}
+        </div>
         </div>
       </div>
     );
@@ -116,7 +157,11 @@ class MyFlock extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {    
-    flockRequest: (data) => dispatch(flockRequest(data))
+    flockRequest: (data) => dispatch(flockRequest(data)),
+    acceptFlock: (data) => dispatch(acceptFlock(data)),
+    declineFlock: (data) => dispatch(declineFlock(data)),
+    removeFlock: (data) => dispatch(removeFlock(data)),
+    cancelFlock: (data) => dispatch(cancelFlock(data))
   }
 }
 
@@ -130,7 +175,11 @@ const mapStateToProps = (state) => {
 }
 
 MyFlock.propTypes = {
-  flockRequest: PropTypes.func.isRequired
+  flockRequest: PropTypes.func.isRequired,
+  acceptFlock: PropTypes.func.isRequired,
+  declineFlock: PropTypes.func.isRequired,
+  removeFlock: PropTypes.func.isRequired,
+  cancelFlock: PropTypes.func.isRequired
 };
 
 

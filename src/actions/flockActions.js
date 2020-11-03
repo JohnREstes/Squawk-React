@@ -21,13 +21,13 @@ export const flockRequest = (usernameOrEmailAddress) => dispatch => {
 
 }
 
-export const acceptFlock = (usernameOrEmailAddress) => dispatch => {
+export const acceptFlock = (username) => dispatch => {
     const JsonWT = localStorage.getItem("JWT");
     const config = {
         method: 'put',
         url: 'http://localhost:5000/api/users/accept-friend-request',
         headers: { 'x-auth-token': JsonWT },
-        data: { usernameOrEmailAddress: usernameOrEmailAddress }
+        data: { username: username }
     }
 
   axios(config).then(res => {dispatch({
@@ -37,13 +37,13 @@ export const acceptFlock = (usernameOrEmailAddress) => dispatch => {
     })
 }
 
-export const declineFlock = (usernameOrEmailAddress) => dispatch => {
+export const declineFlock = (username) => dispatch => {
     const JsonWT = localStorage.getItem("JWT");
     const config = {
         method: 'put',
         url: 'http://localhost:5000/api/users/decline-friend-request',
         headers: { 'x-auth-token': JsonWT },
-        data: { usernameOrEmailAddress: usernameOrEmailAddress }
+        data: { username: username}
     }
 
   axios(config).then((res) => {
@@ -55,13 +55,13 @@ export const declineFlock = (usernameOrEmailAddress) => dispatch => {
 }
 
 
-export const removeFlock = (usernameOrEmailAddress) => dispatch => {
+export const removeFlock = (username) => dispatch => {
     const JsonWT = localStorage.getItem("JWT");
     const config = {
         method: 'put',
         url: 'http://localhost:5000/api/users/remove-friend',
         headers: { 'x-auth-token': JsonWT },
-        data: { usernameOrEmailAddress: usernameOrEmailAddress }
+        data: { username: username }
     }
 
   axios(config).then(res => {dispatch({
@@ -71,13 +71,13 @@ export const removeFlock = (usernameOrEmailAddress) => dispatch => {
     })
 }
 
-export const cancelFlock = (usernameOrEmailAddress) => dispatch => {
+export const cancelFlock = (username) => dispatch => {
     const JsonWT = localStorage.getItem("JWT");
     const config = {
         method: 'put',
         url: 'http://localhost:5000/api/users/remove-friend',
         headers: { 'x-auth-token': JsonWT },
-        data: { usernameOrEmailAddress: usernameOrEmailAddress }
+        data: { username: username }
     }
 
   axios(config)
