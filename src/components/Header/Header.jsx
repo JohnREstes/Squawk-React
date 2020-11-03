@@ -8,12 +8,19 @@ function Header() {
   const dispatch = useDispatch();
   const isLogged = useSelector(state => state.isLogged);
   const username = useSelector(state => state.user.info.username);
+  const profilePicture = useSelector(state => state.user.info.profilePicture);
   return (
     <div className="header" id="main-header">
       <div className="row">
       <div className="col-3">
-      <br></br>
-      {isLogged ? <div id="username"><h6>{username}, you are logged in.</h6></div> : ''}
+      {isLogged ? 
+        <div className="row" id="username">
+          <div className="col-3">
+            <img className="profile-pic" alt="profile" src={`data:image/png;base64,${profilePicture}`}/>
+          </div>
+          <div className="col-9">          
+          <h6>{username},<br></br>you are logged in.</h6>
+        </div> </div>: ''}
       </div>
         <div className="col-6">
             <div className="row">
