@@ -1,8 +1,18 @@
-import React from 'react';
-import { connect, useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import { connect, useSelector, useDispatch } from 'react-redux'
 import { loadFlockList } from '../../actions/flockListActions'
 
 function FlockList() {
+  const dispatch = useDispatch();
+  const globalStateUpdated = useSelector(state => state.stateUpdated);
+  const [stateUpdated, setStateUpdated] = useState(false);
+  useEffect(() => {
+    if(globalStateUpdated){
+      setStateUpdated(true); 
+      dispatch(loadFlockList())
+    }
+    setStateUpdated(false);
+  })
   const friendsAndStatus = useSelector(state => state.friendsAndStatus.friendsAndStatus);
   const FlockList = friendsAndStatus.friendsAndOnlineStatuses.length;
   return (FlockList ? (

@@ -44,7 +44,7 @@ function Header() {
             <div className="col-12 hidden justiy-content-center" id="navButtonsDiv">
               <Menu id="navigationButton" menuButton={<MenuButton>Navigate</MenuButton>}>
                 <MenuItem onClick={() => dispatch(feed())}>Feed</MenuItem>
-                <MenuItem onClick={() => dispatch(friends())}>Friends</MenuItem>
+                <MenuItem onClick={() => dispatch(friends())}>Flock</MenuItem>
                 <MenuItem onClick={() => dispatch(editProfile())}>Edit Profile</MenuItem>
                 <MenuDivider />
                 <MenuItem onClick={() => dispatch(logoutSquawkUser())}><b>Logout</b></MenuItem>
