@@ -127,6 +127,9 @@ export const logoutSquawkUser = () => dispatch => {
         }), 
         dispatch({
             type: CLEAR_FEED
+        }),
+        dispatch({
+            type: FEED
         })
     )
 };
