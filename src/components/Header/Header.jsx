@@ -34,7 +34,7 @@ function Header() {
             </div>
             <div className="row">
               <div className="col-12 d-flex justify-content-center center-text">
-                <h5>Where the bird enthusiasts gather</h5>
+                <h5>Where bird enthusiasts gather.</h5>
               </div>
             </div>
         </div>

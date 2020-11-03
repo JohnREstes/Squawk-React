@@ -92,91 +92,124 @@ class EditUser extends React.Component {
 
   render() {
     return (
-        <div className="col-6">
+        <div className="col-6 center">
             <div className="login-div">
-                <h3 className="text-center">Edit User</h3>
-                <form onSubmit={(e) => this.onSubmit(e, "username")}>
-                    Username: <input
-                    type="text" name="username" id="username"
-                    value={this.state.username}
-                    placeholder={this.props.username}
-                    onChange={(e) => this.onChange(e)}/>
-                     <button type="submit">
-                        Submit
-                    </button>
-                </form>
-                    <br></br>
-                <form onSubmit={(e) => this.onSubmit(e, "password")}>
-                    Password: <input
-                    type="password" name="password" id="password"
-                    value={this.state.password}
-                    onChange={(e) => this.onChange(e)}/><br></br>
-                    Re-enter Password: <input
-                    type="password" name="passwordRetype" id="passwordRetype"
-                    value={this.state.passwordRetype}
-                    onChange={(e) => this.onChange(e)}/>
-                    <button type="submit">
-                        Submit
-                    </button>
-                    <p id="passwordMismatch" className="hidden red">Passwords do not match!</p>
-                </form>
-                    <br></br>
-                <form onSubmit={(e) => this.onSubmit(e, "emailAddress")}>
-                    Email: <input
-                    type="email" name="emailAddress" id="emailAddress"
-                    value={this.state.emailAddress}
-                    placeholder={this.props.emailAddress}
-                    onChange={(e) => this.onChange(e)}/>
-                    <button type="submit">
-                        Submit
-                    </button>
-                </form>
-                    <br></br>
-                <form onSubmit={(e) => this.onSubmit(e, "aboutMe")}>
-                    About me: <textarea
-                    type="text" name="aboutMe" id="aboutMe"
-                    value={this.state.aboutMe}
-                    placeholder={this.props.aboutMe}
-                    onChange={(e) => this.onChange(e)}/>
-                    <button type="submit">
-                        Submit
-                    </button>
-                </form>
-                    <br></br>
-                <form onSubmit={(e) => this.onSubmit(e, "birdCall")}>
-                    Bird Call: <textarea
-                    type="text" name="birdCall" id="birdCall"
-                    value={this.state.birdCall}
-                    placeholder={this.props.birdCall}
-                    onChange={(e) => this.onChange(e)}/>
-                    <button type="submit">
-                        Submit
-                    </button>
-                </form>    
-                    <br></br>
-                    <div><br></br>
-                <form onSubmit={(e) => this.onSubmit(e, "profilePicture")}>                                    
-                    <input
-                        type="file"
-                        name="profilePicture"
-                        id="file"
-                        accept=".jpeg, .png, .jpg"
-                        onChange={(e) => this.handlePictureChange(e)}
-                    />
-                    <button type="submit">
-                        Submit
-                    </button>
-                  </form>  
+                <div className="card">
+                    <div className="card-header">
+                    <h3 className="text-center">Edit User</h3>
+                    </div>
+                    <div className="card-body">
+                    <form onSubmit={(e) => this.onSubmit(e, "username")}>
+                        <p>Username:</p>
+                        <input
+                        type="text" name="username" id="username"
+                        value={this.state.username}
+                        placeholder={this.props.username}
+                        onChange={(e) => this.onChange(e)}/>
+                         <br></br>
+                        <button type="submit">
+                            Submit
+                        </button>
+                    </form>                    
+                    </div>
+                </div>
+
+                <div className="card">
+                    <div className="card-body">
+                    <form onSubmit={(e) => this.onSubmit(e, "password")}>
+                        <p>Password:</p> 
+                        <input
+                        type="password" name="password" id="password"
+                        value={this.state.password}
+                        onChange={(e) => this.onChange(e)}/>
+                        <p></p>
+                        <p>Re-enter Password:</p> 
+                        <input
+                        type="password" name="passwordRetype" id="passwordRetype"
+                        value={this.state.passwordRetype}
+                        onChange={(e) => this.onChange(e)}/>
+                         <br></br>                       
+                        <button type="submit">
+                            Submit
+                        </button>
+                        <p id="passwordMismatch" className="hidden red">Passwords do not match!</p>
+                    </form>                    
+                    </div>
+                </div>
+
+                <div className="card">
+                    <div className="card-body">
+                    <form onSubmit={(e) => this.onSubmit(e, "emailAddress")}>
+                        <p>Email:</p>
+                        <input
+                        type="email" name="emailAddress" id="emailAddress"
+                        value={this.state.emailAddress}
+                        placeholder={this.props.emailAddress}
+                        onChange={(e) => this.onChange(e)}/>
+                        <br></br>
+                        <button type="submit">
+                            Submit
+                        </button>
+                    </form>                    
+                    </div>
+                </div>
+
+                <div className="card">
+                    <div className="card-body">
+                    <form onSubmit={(e) => this.onSubmit(e, "aboutMe")}>
+                        <p>About me:</p>
+                        <textarea
+                        type="text" name="aboutMe" id="aboutMe"
+                        value={this.state.aboutMe}
+                        placeholder={this.props.aboutMe}
+                        onChange={(e) => this.onChange(e)}/>
+                        <br></br>
+                        <button type="submit">
+                            Submit
+                        </button>
+                    </form>                    
+                    </div>
+                </div>
+          
+                <div className="card">
+                    <div className="card-body">
+                    <form onSubmit={(e) => this.onSubmit(e, "birdCall")}>
+                        <p>Bird Call:</p>
+                        <textarea
+                        type="text" name="birdCall" id="birdCall"
+                        value={this.state.birdCall}
+                        placeholder={this.props.birdCall}
+                        onChange={(e) => this.onChange(e)}/>
+                        <br></br>
+                        <button type="submit">
+                            Submit
+                        </button>
+                    </form>                      
+                    </div>
+                </div>  
+
+                <div className="card">
+                    <div className="card-body">
+                    <form onSubmit={(e) => this.onSubmit(e, "profilePicture")}>                                    
+                        <p>Profile Picture:</p>
+                        <input
+                            type="file"
+                            name="profilePicture"
+                            id="file"
+                            accept=".jpeg, .png, .jpg"
+                            onChange={(e) => this.handlePictureChange(e)}
+                        />
+                        <br></br>
+                        <button type="submit">
+                            Submit
+                        </button>
+                    </form>  
                     </div>
                 <br></br>
                 <p>Current Profile Picture: <img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.profilePicture}`}/></p>
+                </div>
             </div>
         </div>
-       
-
-         
-        
-     
     );
   }
 }
