@@ -115,11 +115,14 @@ input{
   width: auto;
 }
 .card{
- margin-bottom: 5px;
+ margin-top: 7px;
 }
 .off-line{
   opacity: .4;
 }
 .left-margin{
   margin-left: 10px;
+}
+#submitButton{
+  margin: 5px;
 }

@@ -159,13 +159,13 @@ class MyFlock extends Component {
           <form id="form1" onSubmit={(e) => this.onSubmit(e)}>
             Flock request:
             <input
-              type="text" id="requestInput"
+              type="text" id="requestInput" className="inputBox"
               name="usernameOrEmailAddress"
               placeholder="username or email address"
               value={this.state.usernameOrEmailAddress}
               onChange={(e) => this.onChange(e)}
             />
-            <button type="submit">Submit</button>
+            <button id="submitButton" type="submit">Submit</button>
           </form>
           <div className="card">
             <div className="card-header"> Friends:</div>
