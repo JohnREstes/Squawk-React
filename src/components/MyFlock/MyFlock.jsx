@@ -5,11 +5,11 @@ import { flockRequest, acceptFlock, declineFlock, removeFlock, cancelFlock } fro
 import PropTypes from "prop-types";
 
 class MyFlock extends Component {
-  constructor(props) {
-    super(props);
-    const [ state, setstate ] = useState( {
+  constructor() {
+    super();
+    this.state = {
       usernameOrEmailAddress: ""
-    });
+    };
     this.onChange = this.onChange.bind(this);
   }
 
@@ -20,6 +20,7 @@ class MyFlock extends Component {
   }
 
   onSubmit(e) {
+    console.log(this.state.usernameOrEmailAddress);
     e.preventDefault();
     this.props.flockRequest(this.state.usernameOrEmailAddress);
     alert("Flock request sent.");
@@ -33,19 +34,19 @@ class MyFlock extends Component {
   
   onDecline(e) {
     e.preventDefault();
-    this.props.acceptFlock(this.state.usernameOrEmailAddress);
+    this.props.declineFlock(this.state.usernameOrEmailAddress);
     alert("You denied a request if one exists.");
   }
   
   onRemove(e) {
     e.preventDefault();
-    this.props.acceptFlock(this.state.usernameOrEmailAddress);
+    this.props.removeFlock(this.state.usernameOrEmailAddress);
     alert("You removed a request if one exists");
   }
     
   onCancel(e) {
     e.preventDefault();
-    this.props.acceptFlock(this.state.usernameOrEmailAddress);
+    this.props.cancelFlock(this.state.usernameOrEmailAddress);
     alert("You canceled a sent request, if it ever existed.");
   }
 
@@ -59,43 +60,30 @@ class MyFlock extends Component {
             Flock request:
             <input
               type="text"
-              name={this.state.usernameOrEmailAddress}
-              value={this.state.usernameOrEmailAddressOfRequestedFriend}
+              name='usernameOrEmailAddress'
+              value={this.state.usernameOrEmailAddress}
               onChange={(e) => this.onChange(e)}
             />
 
             <button type="submit">Submit</button>
 
           </form>
-
-          <form id="form2" onSubmit={(e) => this.onAccept(e)}>
-            Accept flock:
-            <input
+        <div>
+            <button
               type="text"
               name="usernameOfNewFriend"
               value={this.state.usernameOrEmailAddress}
-              onChange={(e) => this.onChange(e)}
-            />
-
-            <button type="submit">Submit</button>
-
-          </form>
-
-          <form id="form3" onSubmit={(e) => this.onDecline(e)}>
-            Flock off (deny flock):
-            <input
+              onClick={(e) => this.onAccept(e)}>Accept flock
+            </button>
+            <button
               type="text"
               name="usernameOfNotFriend"
               value={this.state.usernameOrEmailAddress}
-              onChange={(e) => this.onChange(e)}
-            />
-
-            <button type="submit">Submit</button>
-
-          </form>
-
+              onClick={(e) => this.onDecline(e)}>Flock off
+            </button>
+        </div>
           <form id="form4" onSubmit={(e) => this.onRemove(e)}>
-            Add to Flock:
+            Remove from Flock:
             <input
               type="text"
               name="usernameOfExFriend"
@@ -126,10 +114,27 @@ class MyFlock extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {    
+    flockRequest: (data) => dispatch(flockRequest(data))
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {  
+      username: state.user.info.username,
+      incomingFriendRequests: state.user.info.incomingFriendRequests,
+      outgoingFriendRequests: state.user.info.outgoingFriendRequests,
+      friends: state.user.info.friends
+  }
+}
+
 MyFlock.propTypes = {
-  flockRequest: PropTypes.func.isRequired,
+  flockRequest: PropTypes.func.isRequired
 };
 
-export default connect(null, {
-  flockRequest,
-})(MyFlock);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyFlock);

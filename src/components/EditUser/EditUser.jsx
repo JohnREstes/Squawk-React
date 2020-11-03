@@ -2,7 +2,7 @@ import React from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { editUserProfile } from '../../actions/userActions'
+import { editUserProfile, getSquawkUser } from '../../actions/userActions'
 
 class EditUser extends React.Component {
   constructor() {
@@ -16,12 +16,21 @@ class EditUser extends React.Component {
       aboutMe: '',
       myBirds: '',
       birdsIWatch:'',
-      base64TextString: ''
+      base64TextString: '',
+      didUpdate: false
     }
-
-
     this.onChange = this.onChange.bind(this);
     this.handlePictureChange = this.handlePictureChange.bind(this);
+  }
+
+  componentDidUpdate(){
+      if(this.didUpdate){
+        this.props.getSquawkUser();
+        this.setState({
+            didUpdate: false
+        })
+      }
+
   }
 
   onChange(e) {
@@ -64,6 +73,10 @@ class EditUser extends React.Component {
         }
     }
     this.props.editUserProfile(updatedUserInfo);
+    
+    this.setState({
+        didUpdate: true
+    });
   }
  
 
@@ -126,7 +139,7 @@ class EditUser extends React.Component {
                     </button>
                 </form>    
                     <br></br>
-                <form onSubmit={(e) => this.onSubmit(e, "myBirds")}>    
+                {/* <form onSubmit={(e) => this.onSubmit(e, "myBirds")}>    
                     My Birds: <textarea
                     type="text" name="myBirds"
                     value={this.state.myBirds}
@@ -146,7 +159,7 @@ class EditUser extends React.Component {
                     <button type="submit">
                         Submit
                     </button>
-                </form>
+                </form> */}
                     <br></br>
                     <div><br></br>
                 <form onSubmit={(e) => this.onSubmit(e, "profilePicture")}>                                    
@@ -177,6 +190,7 @@ class EditUser extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {    
       editUserProfile: data => dispatch(editUserProfile(data)),
+      getSquawkUser: () => dispatch(getSquawkUser())
     }
   }
 
@@ -193,7 +207,8 @@ const mapStateToProps = (state) => {
 }
 
 EditUser.propTypes = {
-    editUserProfile: PropTypes.func.isRequired
+    editUserProfile: PropTypes.func.isRequired,
+    getSquawkUser:  PropTypes.func.isRequired
 };
 
 
