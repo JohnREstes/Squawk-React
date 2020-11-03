@@ -40,7 +40,6 @@ class EditUser extends React.Component {
   }
 
   handlePictureChange(event) {
-    console.log("file to upload: ", event.target.files[0]);
     let file = event.target.files[0];
     if (file) {
       const reader = new FileReader();

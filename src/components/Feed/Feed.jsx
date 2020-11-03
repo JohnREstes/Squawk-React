@@ -24,7 +24,6 @@ class Feed extends React.Component {
   }
 
   componentDidUpdate(){
-    console.log("feed updated",this.props.feedUpdated);
     if(this.props.feedUpdated){
       this.props.createFeed();
 
@@ -45,7 +44,6 @@ class Feed extends React.Component {
   }
 
   handlePictureChange(event){
-    console.log("file to upload: ", event.target.files[0])
     let file = event.target.files[0]
     if (file){
       const reader = new FileReader();
@@ -115,7 +113,6 @@ class Feed extends React.Component {
   }
 
   changeToEdit(_id){
-    console.log(_id);
     const inputId = "#input" + _id;
     const textId = "#text" + _id; 
     const buttonId = "#button" + _id;
@@ -125,7 +122,6 @@ class Feed extends React.Component {
   }
 
   closeChangeToEdit(_id){
-    console.log(_id);
     const inputId = "#input" + _id;
     const textId = "#text" + _id; 
     const buttonId = "#button" + _id;

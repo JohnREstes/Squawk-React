@@ -37,7 +37,6 @@ class MyFlock extends Component {
   }
 
   onSubmit(e) {
-    console.log(this.state.usernameOrEmailAddress);
     e.preventDefault();
     this.props.flockRequest(this.state.usernameOrEmailAddress);
     $('#requestInput').val("");
@@ -48,7 +47,6 @@ class MyFlock extends Component {
   }
 
   onAccept(e) {
-    console.log(e.target.name);
     this.props.acceptFlock(e.target.name);
     this.setState({
       didUpdate: true
@@ -56,7 +54,6 @@ class MyFlock extends Component {
   }
 
   onDecline(e) {
-    console.log(e.target.name);
     this.props.declineFlock(e.target.name);
     this.setState({
       didUpdate: true

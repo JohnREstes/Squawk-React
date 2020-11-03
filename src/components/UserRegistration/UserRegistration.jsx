@@ -26,7 +26,6 @@ class UserRegistration extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     if(this.state.password !== this.state.passwordVerify){
-      console.log('Password Mismatch');
       $("#passwordMismatch").css('display', 'inline');
     }else{
       const newUserInfo = { 

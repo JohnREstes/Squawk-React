@@ -5,8 +5,6 @@ import { loadFlockList } from '../../actions/flockListActions'
 function FlockList() {
   const friendsAndStatus = useSelector(state => state.friendsAndStatus.friendsAndStatus);
   const FlockList = friendsAndStatus.friendsAndOnlineStatuses.length;
-  console.log(friendsAndStatus.friendsAndOnlineStatuses);
-  console.log(FlockList);
   return (FlockList ? (
       <div className="col-3 right">
         <h3>Your flock!</h3>

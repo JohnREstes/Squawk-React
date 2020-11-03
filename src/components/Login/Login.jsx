@@ -38,12 +38,10 @@ class Login extends Component {
   }
 
   handleCreateUser(){
-    console.log("button clicked")
     this.props.createAccount();
   }
 
   async handleSubmit(event) {
-    console.log("clicked submit")
     event.preventDefault()
     const login = {  
           usernameOrEmailAddress: this.state.usernameOrEmailAddress, 

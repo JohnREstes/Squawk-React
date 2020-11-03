@@ -2,7 +2,6 @@ import axios from 'axios'
 import { FLOCK_REQUEST, ACCEPT_FLOCK, DECLINE_FLOCK, REMOVE_FLOCK, CANCEL_FLOCK } from "./types"
 
 export const flockRequest = (usernameOrEmailAddress) => dispatch => {
-    console.log(usernameOrEmailAddress);
     const JsonWT = localStorage.getItem("JWT");
     const config = {
         method: 'put',
@@ -12,7 +11,6 @@ export const flockRequest = (usernameOrEmailAddress) => dispatch => {
     }
 
   axios(config).then(res => {
-    console.log(res);  
     dispatch({
             type: FLOCK_REQUEST,
             payload: res.data
@@ -72,7 +70,6 @@ export const removeFlock = (username) => dispatch => {
 }
 
 export const cancelFlock = (username) => dispatch => {
-    console.log(username)
     const JsonWT = localStorage.getItem("JWT");
     const config = {
         method: 'put',

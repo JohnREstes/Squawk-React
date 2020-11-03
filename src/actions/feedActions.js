@@ -2,7 +2,6 @@ import { LOAD_FEED, FEED_UPDATED, } from './types'
 import axios from 'axios'
 
 export const createFeed = () => dispatch => {
-    console.log("Get")
     const JsonWT = localStorage.getItem("JWT");
     const tokenHeader = { headers: {
         'x-auth-token': JsonWT
@@ -14,7 +13,6 @@ export const createFeed = () => dispatch => {
         }));
 }        
 export const createPost = (postData) => dispatch => {
-    console.log("Create")
     const JsonWT = localStorage.getItem("JWT");
     const tokenHeader = { headers: {
         'x-auth-token': JsonWT
@@ -29,7 +27,6 @@ export const createPost = (postData) => dispatch => {
 }
 
 export const editPost = (postData) => dispatch => {
-    console.log("Edit")
     const JsonWT = localStorage.getItem("JWT");
     const tokenHeader = { headers: {
         'x-auth-token': JsonWT
@@ -44,7 +41,6 @@ export const editPost = (postData) => dispatch => {
 }
 
 export const deletePost = (postData) => dispatch => {
-    console.log("Delete :" + postData.postId)
     const JsonWT = localStorage.getItem("JWT");
     const config = {
       method: 'delete',
@@ -59,7 +55,6 @@ export const deletePost = (postData) => dispatch => {
 }
 
 export const likePost = (likeData) => dispatch => {
-  console.log("Like")
   const JsonWT = localStorage.getItem("JWT");
   const tokenHeader = { headers: {
       'x-auth-token': JsonWT

@@ -2,7 +2,6 @@ import { LOAD_FLOCK_PROFILES, LOAD_FLOCK_LIST } from './types';
 import axios from 'axios'
 
 export const loadFlockList = () => dispatch => {
-    console.log("Load Your Flock");
     const JsonWT = localStorage.getItem("JWT");
     const tokenHeader = { headers: {
         'x-auth-token': JsonWT
@@ -20,7 +19,6 @@ export const loadFlockList = () => dispatch => {
 };
 
 export const loadFlockProfiles = () => dispatch => {
-    console.log("Load Your Flock");
     const JsonWT = localStorage.getItem("JWT");
     const tokenHeader = { headers: {
         'x-auth-token': JsonWT
