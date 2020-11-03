@@ -139,28 +139,6 @@ class EditUser extends React.Component {
                     </button>
                 </form>    
                     <br></br>
-                {/* <form onSubmit={(e) => this.onSubmit(e, "myBirds")}>    
-                    My Birds: <textarea
-                    type="text" name="myBirds"
-                    value={this.state.myBirds}
-                    placeholder={this.props.myBirds}
-                    onChange={(e) => this.onChange(e)}/>
-                    <button type="submit">
-                        Submit
-                    </button>
-                </form>
-                     <br></br>
-                <form onSubmit={(e) => this.onSubmit(e, "birdsIWatch")}>
-                    Birds I Watch: <textarea
-                    type="text" name="birdsIWatch"
-                    value={this.state.birdsIWatch}
-                    placeholder={this.props.birdsIWatch}
-                    onChange={(e) => this.onChange(e)}/>
-                    <button type="submit">
-                        Submit
-                    </button>
-                </form> */}
-                    <br></br>
                     <div><br></br>
                 <form onSubmit={(e) => this.onSubmit(e, "profilePicture")}>                                    
                     <input
@@ -176,7 +154,7 @@ class EditUser extends React.Component {
                   </form>  
                     </div>
                 <br></br>
-                <img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.base64TextString}`}/>
+                <p>Current Profile Picture: <img className="profile-pic" alt="profile" src={`data:image/png;base64,${this.props.profilePicture}`}/></p>
             </div>
         </div>
        

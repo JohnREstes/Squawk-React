@@ -68,7 +68,6 @@ class Feed extends React.Component {
       }
       this.props.createPost(newPost);
       $('#postText').val('');
-      this.props.createFeed();
   }  
 
   calculateTime(postTime){
