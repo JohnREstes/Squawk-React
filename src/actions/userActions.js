@@ -119,6 +119,7 @@ export const logoutSquawkUser = () => dispatch => {
     axios(config)
     .then(() => {
         localStorage.removeItem("JWT");
+        $("#navButtonsDiv").css('display', 'none');
     })
     .then(
         dispatch({
