@@ -65,7 +65,7 @@ export const loginSquawkUser = userInfo => dispatch => {
     })
     .then(res => {
         $('#invalid').css('display', 'none');
-        console.log(res.data);
+        console.log("Signed in successfully.");
         localStorage.setItem("JWT", res.data);
         const JsonWT = localStorage.getItem("JWT");
         const tokenHeader = { headers: {

@@ -78,7 +78,7 @@ class MyFlock extends Component {
   removeFromFlock(){
     let removeFromFlockDiv = []
     if(this.props.friends.length === 0){
-      removeFromFlockDiv = (<div className="card-body"><p>You have no removeFrom requests!</p></div>)
+      removeFromFlockDiv = (<div className="card-body"><p>No friends yet! Request a friend above.</p></div>)
     }else{
       for(let i = 0; i < this.props.friends.length; i++){
         removeFromFlockDiv.push(
@@ -161,6 +161,7 @@ class MyFlock extends Component {
             <input
               type="text" id="requestInput"
               name="usernameOrEmailAddress"
+              placeholder="username or email address"
               value={this.state.usernameOrEmailAddress}
               onChange={(e) => this.onChange(e)}
             />
