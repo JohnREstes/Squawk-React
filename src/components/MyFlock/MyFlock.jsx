@@ -88,7 +88,7 @@ class MyFlock extends Component {
               <button
                 className="left-margin"
                 name={this.props.friends[i]}
-                onClick={(e) => this.onRemove(e)}>Remove Friend
+                onClick={(e) => this.onRemove(e)}>Remove from Flock
               </button></p>
               </div>
             </div>
