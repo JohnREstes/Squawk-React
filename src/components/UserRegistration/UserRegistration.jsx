@@ -43,10 +43,12 @@ Please log in!`)
 
   render() {
     return (
-        <div className="col-6 center">
+        <div className="col-6  text-center d-flex justify-content-center">
             <div className="login-div card">
+              <div className='card-header'>
+                <h3 className="text-center">Create a Squawk Account</h3>
+              </div>
               <div card-body>
-                <h3 className="text-center">Log in to Squawk</h3>
                 <form onSubmit={(e) => this.onSubmit(e)}>
                     <p>Username:</p> 
                     <input
