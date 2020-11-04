@@ -10,8 +10,10 @@ function Header() {
   const username = useSelector(state => state.user.info.username);
   var profilePicture = useSelector(state => state.user.info.profilePicture);
   const imageURL = useSelector(state => state.birdFact.link);
-  if(profilePicture === ''){
+  if(profilePicture === ""){
     profilePicture = (<img src={imageURL} className="profile-pic" alt="other user"/>)
+  }else{
+    profilePicture = (<img className="profile-pic" alt="profile" src={`data:image/png;base64,${profilePicture}`}/>);
   }
   return (
     <div className="header" id="main-header">
@@ -20,7 +22,7 @@ function Header() {
       {isLogged ? 
         <div className="row" id="username">
           <div className="col-3">
-            <img className="profile-pic" alt="profile" src={`data:image/png;base64,${profilePicture}`}/>
+            {profilePicture}
           </div>
           <div className="col-9">          
           <h6>{username},<br></br>you are logged in.</h6>

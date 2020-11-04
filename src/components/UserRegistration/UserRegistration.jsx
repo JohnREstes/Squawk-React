@@ -33,45 +33,53 @@ class UserRegistration extends React.Component {
         password: this.state.password,
         emailAddress: this.state.email
       }
-      this.props.feed();
-      this.props.loginToggle();
       this.props.createNewUser(newUserInfo);
-      //login
+alert(`New User ${newUserInfo.username} was created. 
+
+Please log in!`)
+      this.props.feed();
     }
   }
 
   render() {
     return (
-        <div className="col-6">
-            <div className="login-div">
+        <div className="col-6 center">
+            <div className="login-div card">
+              <div card-body>
                 <h3 className="text-center">Log in to Squawk</h3>
                 <form onSubmit={(e) => this.onSubmit(e)}>
-                    Username: <input
+                    <p>Username:</p> 
+                    <input
                     type="text" name="username"
                     value={this.state.username}
                     onChange={(e) => this.onChange(e)}
                     /><br></br>
-                    Email: <input
+                    <p>Email: </p>
+                    <input
                     type="email" name="email"
                     value={this.state.email}
                     onChange={(e) => this.onChange(e)}
                     /><br></br>
-                    Password: <input
+                    <p>Password:</p> 
+                    <input
                     type="password" name="password"
                     value={this.state.password}
                     onChange={(e) => this.onChange(e)}
                     /><br></br>
-                    Re-enter Password: <input
+                    <p>Re-enter Password:</p> 
+                    <input
                     type="password" name="passwordVerify"
                     value={this.state.passwordVerify}
                     onChange={(e) => this.onChange(e)}
                     /><br></br>
                     <p id="passwordMismatch" className="hidden red">Passwords do not match!</p>
                     <br></br>
-                    <button type="submit">
+                    <button type="submit" className="bouncy">
                         Submit
                     </button>
                 </form>
+                <button onClick={() => {this.props.feed()}}>Cancel</button>
+              </div>
             </div>
         </div>
     )
@@ -80,13 +88,11 @@ class UserRegistration extends React.Component {
 
 UserRegistration.propTypes = {
   createNewUser: PropTypes.func.isRequired,
-  feed: PropTypes.func.isRequired,
-  loginToggle:  PropTypes.func.isRequired
+  feed: PropTypes.func.isRequired
 };
 
 
 export default connect(null, { 
   createNewUser,
-  feed,
-  loginToggle
+  feed
 })(UserRegistration);
