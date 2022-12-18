@@ -169,7 +169,7 @@ class Feed extends React.Component {
               <div className="col-2 feed-top-row">
                 {this.checkAuthor(author, notAuthor)}
               </div>
-              <div className="col-8">
+              <div className="col-7">
                 {author}<br></br>  
                 {this.calculateTime(postTime)}<br></br>
                 {likes} <img src={require('../../images/like.png')} className="feed-icons"
@@ -177,7 +177,7 @@ class Feed extends React.Component {
                 alt="profile"
                 ></img><br></br>
               </div>
-              {notAuthor ? <div className="col-2"></div> : (
+              {notAuthor ? <div className="col-3"></div> : (
                 <div className="col-2">
                 <img src={require('../../images/pencil.png')} className="feed-icons"
                   onClick={(e) => this.changeToEdit(_id)}
@@ -230,7 +230,8 @@ class Feed extends React.Component {
             <div className="col-12 justiy-content-center">
                 <h1 className="text-center">Feed:</h1>
                 <form onSubmit={(e) => this.onSubmit(e)}>
-                    Post Text: <input
+                    <p>Post Text:</p> 
+                    <input
                     type="text" name="postText" id="postText"
                     className="inputBox"
                     value={this.state.user}

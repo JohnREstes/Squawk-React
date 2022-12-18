@@ -11,7 +11,8 @@ class MyFlock extends Component {
     super();
     this.state = {
       usernameOrEmailAddress: "",
-      stateToggle: false
+      stateToggle: false,
+      didUpdate: false,
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -157,7 +158,7 @@ class MyFlock extends Component {
         <div className="login-div">
           <h3 className="text-center">Find your flock!</h3>
           <form id="form1" onSubmit={(e) => this.onSubmit(e)}>
-            Flock request:
+            <p>Flock request:</p>
             <input
               type="text" id="requestInput" className="inputBox"
               name="usernameOrEmailAddress"
